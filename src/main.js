@@ -13,7 +13,17 @@ if (supabaseUrl && supabaseAnonKey) {
 
 // Ensure DOM is fully loaded
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Modal Logic
+  // --- Mobile Menu Toggle ---
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const navLinks = document.getElementById('nav-links');
+  
+  if(mobileMenuBtn && navLinks) {
+    mobileMenuBtn.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+  }
+
+  // --- Lead Form Modal Logic ---Logic
   const modal = document.getElementById('leadModal');
   const triggerBtns = document.querySelectorAll('.cta-trigger');
   const closeBtn = document.getElementById('closeModal');

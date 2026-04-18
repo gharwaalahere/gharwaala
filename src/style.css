@@ -156,6 +156,50 @@
     height: 500px;
     width: 100%;
   }
+
+  /* ================= Full Width Home Hero ================= */
+  .home-hero {
+    position: relative;
+    min-height: 85vh;
+    display: flex;
+    align-items: center;
+    background-image: url('/hero_kitchen_bg.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .home-hero-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(90deg, rgba(13, 148, 136, 0.95) 0%, rgba(13, 148, 136, 0.5) 50%, rgba(0,0,0,0.2) 100%);
+    z-index: 1;
+  }
+
+  .home-hero-container {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+  }
+
+  .home-hero-content {
+    max-width: 650px;
+    color: #fff;
+  }
+
+  .home-hero-content h1 {
+    color: #fff;
+    margin-bottom: 1.5rem;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    text-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  }
+
+  .home-hero-content .subtext {
+    font-size: 1.25rem;
+    margin-bottom: 2.5rem;
+    color: rgba(255, 255, 255, 0.95);
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  }
   
   /* ================= Trust Section ================= */
   .trust-section {
@@ -378,6 +422,16 @@
   .logo {
     text-decoration: none;
   }
+  
+  .menu-toggle {
+    display: none; /* Hidden on desktop */
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-text);
+    padding: 0.5rem;
+  }
+
   .nav-links {
     display: flex;
     gap: 1.5rem;
@@ -438,6 +492,15 @@
       text-align: center !important;
     }
 
+    .home-hero-overlay {
+      background: linear-gradient(180deg, rgba(13, 148, 136, 0.9) 0%, rgba(0,0,0,0.5) 100%);
+    }
+
+    .home-hero-content {
+      text-align: center;
+      margin: 0 auto;
+    }
+
     .hero-img {
       height: 300px !important;
     }
@@ -447,14 +510,36 @@
     }
 
     .nav-container {
-      flex-direction: column;
-      gap: 1rem;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+    }
+
+    .menu-toggle {
+      display: block;
     }
 
     .nav-links {
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1rem;
+      display: none; /* Hide by default on mobile */
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.98);
+      flex-direction: column;
+      padding: 1.5rem 0;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      border-bottom-left-radius: var(--border-radius);
+      border-bottom-right-radius: var(--border-radius);
+      border: 1px solid var(--color-border);
+      border-top: none;
+      text-align: center;
+      z-index: 40;
+    }
+
+    .nav-links.active {
+      display: flex;
     }
 
     .modal-content {

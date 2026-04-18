@@ -19,7 +19,10 @@
   <nav class="navbar">
     <div class="container nav-container">
       <a href="/" class="logo">🍳 Gharwaala</a>
-      <div class="nav-links">
+      <button class="menu-toggle" id="mobile-menu-btn" aria-label="Toggle navigation">
+        <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
+      <div class="nav-links" id="nav-links">
         <a href="/about.html">About Us</a>
         <a href="/designs.html">Designs</a>
         <a href="/blog.html">Blog</a>
@@ -28,17 +31,14 @@
     </div>
   </nav>
 
-  <!-- 1. Hero Section -->
-  <header class="hero">
-    <div class="container hero-container">
-      <div class="hero-content">
+  <!-- 1. Full Width Hero Section -->
+  <header class="home-hero">
+    <div class="home-hero-overlay"></div>
+    <div class="container home-hero-container">
+      <div class="home-hero-content">
         <h1>Design Your Kitchen Within Budget</h1>
-        <p class="subtext">Get your kitchen designed and built by trusted local experts—without confusion or
-          overspending.</p>
+        <p class="subtext">Get your kitchen designed and built by trusted local experts—without confusion or overspending.</p>
         <button class="btn btn-primary cta-trigger">Design My Kitchen</button>
-      </div>
-      <div class="hero-media">
-        <img src="/hero_kitchen.png" alt="A clean, realistic modular kitchen" class="hero-img" loading="eager" />
       </div>
     </div>
   </header>
