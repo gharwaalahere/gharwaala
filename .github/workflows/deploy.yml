@@ -40,4 +40,4 @@ jobs:
         timeout: 100000 
         state-name: .gharwaala-sync-state.json
         local-dir: ./dist/ # Uploads only the compiled Vite code
-        server-dir: public_html/ # Target directory on Hostinger
+        server-dir: ./ # Target directory on Hostinger
