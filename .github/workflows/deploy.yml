@@ -36,4 +36,4 @@ jobs:
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
         local-dir: ./dist/ # Uploads only the compiled Vite code
-        server-dir: ./ # Target directory on Hostinger
+        server-dir: ./public_html/ # Target directory on Hostinger
