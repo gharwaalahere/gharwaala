@@ -23,10 +23,32 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- Lead Form Modal Logic ---Logic
+  // --- Lead Form Modal Logic ---
   const modal = document.getElementById('leadModal');
   const triggerBtns = document.querySelectorAll('.cta-trigger');
   const closeBtn = document.getElementById('closeModal');
+
+  // --- Timeline Animation Logic ---
+  const timelineLine = document.getElementById('timeline-line');
+  const timelineSteps = document.querySelectorAll('.timeline-step');
+  
+  const timelineObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        if(entry.target.id === 'timeline-line') {
+          entry.target.classList.add('active');
+        } else {
+          entry.target.classList.add('in-view');
+        }
+      }
+    });
+  }, { threshold: 0.2 });
+
+  if (timelineLine) timelineObserver.observe(timelineLine);
+  timelineSteps.forEach((step, index) => {
+    step.style.transitionDelay = `${index * 0.3}s`;
+    timelineObserver.observe(step);
+  });
 
   // Open Modal
   if (triggerBtns.length > 0 && modal) {

@@ -15,7 +15,13 @@
   <!-- Navbar -->
   <nav class="navbar">
     <div class="container nav-container">
-      <a href="/" class="logo">🍳 Gharwaala</a>
+      <a href="/" class="logo" style="display: flex; align-items: center;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 100 100" fill="none" style="margin-right: 12px;">
+          <path d="M 12 40 L 50 12 L 88 40" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M 23 30 V 75 A 10 10 0 0 0 33 85 H 67 A 10 10 0 0 0 77 75 V 60 H 50" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span style="font-weight: 800; letter-spacing: -0.5px;">Ghar</span><span style="font-weight: 300; opacity: 0.7;">waala</span><span style="color: var(--color-primary); font-weight: 900;">.</span>
+      </a>
       <button class="menu-toggle" id="mobile-menu-btn" aria-label="Toggle navigation">
         <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
       </button>
@@ -29,52 +35,98 @@
   </nav>
 
   <!-- Blog Header -->
-  <section class="hero bg-light">
-    <div class="container text-center">
-      <h1 style="margin-bottom: 2rem;">Kitchen Insights & Tips</h1>
-      <p style="font-size: 1.2rem; color: var(--color-text-light);">Read the latest trends, guides, and tips on
-        designing your dream kitchen.</p>
+  <section class="blog-hero">
+    <div class="blog-hero-overlay"></div>
+    <div class="container text-center blog-hero-content">
+      <h1>Kitchen Insights & Tips</h1>
+      <p>Expert guides, latest trends, and practical advice to help you build the kitchen of your dreams.</p>
     </div>
   </section>
 
-  <!-- Blog Content Placeholder -->
-  <section class="trust-section">
+  <!-- Blog Content -->
+  <section class="blog-content" style="padding: 6rem 0; background: #fafafa;">
     <div class="container">
-      <div class="styles-grid">
-        <!-- Blog Post 1 -->
-        <div class="style-card" style="padding: 2rem; border: 1px solid var(--color-border); box-shadow: none;">
-          <h3 style="margin-bottom: 1rem;">How to choosing the right Laminates</h3>
-          <p>Laminates serve as the skin of your modular kitchen. In this post, we discuss different types of
-            finishes...</p>
-          <a href="#"
-            style="color: var(--color-primary); font-weight: 600; display: inline-block; margin-top: 1rem;">Read full
-            article &rarr;</a>
-        </div>
-        <!-- Blog Post 2 -->
-        <div class="style-card" style="padding: 2rem; border: 1px solid var(--color-border); box-shadow: none;">
-          <h3 style="margin-bottom: 1rem;">Top 5 Modular Kitchen Trends in 2026</h3>
-          <p>Minimalism is taking over. Discover what homeowners across India are asking for when remodeling...</p>
-          <a href="#"
-            style="color: var(--color-primary); font-weight: 600; display: inline-block; margin-top: 1rem;">Read full
-            article &rarr;</a>
-        </div>
-        <!-- Blog Post 3 -->
-        <div class="style-card" style="padding: 2rem; border: 1px solid var(--color-border); box-shadow: none;">
-          <h3 style="margin-bottom: 1rem;">Budgeting for your Kitchen</h3>
-          <p>Hidden costs can easily break your budget. Learn how to plan carefully and save on essential components...
-          </p>
-          <a href="#"
-            style="color: var(--color-primary); font-weight: 600; display: inline-block; margin-top: 1rem;">Read full
-            article &rarr;</a>
+      
+      <!-- Featured Post -->
+      <div class="featured-post">
+        <img src="/featured_laminates.png" alt="Featured Post" />
+        <div class="featured-post-text">
+          <span class="badge">Featured Guide</span>
+          <h2>The Ultimate Guide to Choosing Kitchen Laminates in 2026</h2>
+          <p>Laminates act as the skin of your modular kitchen. Whether you prefer a glossy modern look or a rugged matte finish, making the right choice affects both aesthetics and durability. We break down the top materials used by premium Indian designers.</p>
+          <a href="#" class="btn btn-outline" style="margin-top: 1rem;">Read Full Guide</a>
         </div>
       </div>
+
+      <!-- Recent Posts Grid -->
+      <h3 style="margin-bottom: 2.5rem; font-size: 2rem;">Recent Articles</h3>
+      <div class="styles-grid">
+        <div class="blog-card">
+          <img src="/modular_kitchen.png" alt="Post" />
+          <div class="blog-card-content">
+            <span class="blog-date">March 14, 2026</span>
+            <h4>5 Ways to Save Budget on Custom Cabinets</h4>
+            <p>Hidden costs can ruin a renovation. Learn where to cut back and where to spend to maximize layout efficiency.</p>
+            <a href="#">Keep Reading &rarr;</a>
+          </div>
+        </div>
+        <div class="blog-card">
+          <img src="/minimal_kitchen.png" alt="Post" />
+          <div class="blog-card-content">
+            <span class="blog-date">March 02, 2026</span>
+            <h4>Why Handleless Kitchens Are Trending</h4>
+            <p>The seamless look of a handleless kitchen is taking over modern Indian apartments. Is it practical for heavy cooking?</p>
+            <a href="#">Keep Reading &rarr;</a>
+          </div>
+        </div>
+        <div class="blog-card">
+          <img src="/modern_kitchen.png" alt="Post" />
+          <div class="blog-card-content">
+            <span class="blog-date">February 18, 2026</span>
+            <h4>Open vs Closed Kitchens: The Verdict</h4>
+            <p>Are open kitchens practical in India? We explore the pros and cons of spatial layouts and ventilation systems.</p>
+            <a href="#">Keep Reading &rarr;</a>
+          </div>
+        </div>
+      </div>
+      
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container text-center">
-      <p>&copy; 2026 Gharwaala. All rights reserved.</p>
+  <!-- Seamless Contact & Footer -->
+  <footer class="site-footer" id="contact">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <h2 class="logo-white" style="display: flex; align-items: center;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 100 100" fill="none" style="margin-right: 12px;">
+            <path d="M 12 40 L 50 12 L 88 40" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M 23 30 V 75 A 10 10 0 0 0 33 85 H 67 A 10 10 0 0 0 77 75 V 60 H 50" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span style="font-weight: 800; letter-spacing: -0.5px;">Ghar</span><span style="font-weight: 300; opacity: 0.7;">waala</span><span style="color: var(--color-primary); font-weight: 900;">.</span>
+        </h2>
+        <p>Transforming Indian kitchens with transparent pricing, trusted local professionals, and beautifully functional module designs.</p>
+      </div>
+      <div class="footer-links">
+        <h3>Quick Links</h3>
+        <a href="/about.html">About Us</a>
+        <a href="/designs.html">Designs Gallery</a>
+        <a href="/blog.html">Blog</a>
+      </div>
+      <div class="footer-contact">
+        <h3>Contact Us</h3>
+        <p>Have questions? Reach out instantly.</p>
+        <a href="mailto:gharwaalaofficial@gmail.com" class="contact-pill">
+          <span>📧</span> gharwaalaofficial@gmail.com
+        </a>
+        <a href="tel:+91987643210" class="contact-pill">
+          <span>📞</span> +91 9876 43210
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p>&copy; 2026 Gharwaala. All rights reserved.</p>
+      </div>
     </div>
   </footer>
 

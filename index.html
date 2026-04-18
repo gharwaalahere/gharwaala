@@ -18,7 +18,13 @@
   <!-- Navbar -->
   <nav class="navbar">
     <div class="container nav-container">
-      <a href="/" class="logo">🍳 Gharwaala</a>
+      <a href="/" class="logo" style="display: flex; align-items: center;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 100 100" fill="none" style="margin-right: 12px;">
+          <path d="M 12 40 L 50 12 L 88 40" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M 23 30 V 75 A 10 10 0 0 0 33 85 H 67 A 10 10 0 0 0 77 75 V 60 H 50" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span style="font-weight: 800; letter-spacing: -0.5px;">Ghar</span><span style="font-weight: 300; opacity: 0.7;">waala</span><span style="color: var(--color-primary); font-weight: 900;">.</span>
+      </a>
       <button class="menu-toggle" id="mobile-menu-btn" aria-label="Toggle navigation">
         <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
       </button>
@@ -67,19 +73,36 @@
   <!-- 3. Popular Kitchen Styles -->
   <section class="styles-section">
     <div class="container">
-      <h2 class="section-title">Popular Kitchen Styles</h2>
-      <div class="styles-grid">
+      <div class="text-center" style="max-width: 600px; margin: 0 auto 4rem auto;">
+        <h2 class="section-title" style="margin-bottom: 0.8rem;">Popular Kitchen Styles</h2>
+        <p style="font-size: 1.15rem; color: var(--color-text-light);">We custom design every project. Here are our most requested base layouts that combine stunning aesthetics with maximum utility.</p>
+      </div>
+      <div class="styles-grid staggered-grid">
         <div class="style-card">
           <img src="/modular_kitchen.png" alt="Modular Kitchen" loading="lazy" />
-          <div class="style-banner">Modular Kitchen</div>
+          <div class="style-badge">Top Choice</div>
+          <div class="style-banner">
+            <h3>Modular Kitchen</h3>
+            <p>Smart, factory-finished units designed for maximum storage and flawless aesthetics in any space.</p>
+            <div class="style-action">Explore Gallery <span>→</span></div>
+          </div>
         </div>
         <div class="style-card">
           <img src="/modern_kitchen.png" alt="Modern Kitchen" loading="lazy" />
-          <div class="style-banner">Modern Kitchen</div>
+          <div class="style-badge" style="background:#1f2937; color:#fff;">Trending</div>
+          <div class="style-banner">
+            <h3>Modern Kitchen</h3>
+            <p>Clean lines, high-gloss finishes, and seamless built-in appliances for a premium contemporary look.</p>
+            <div class="style-action">Explore Gallery <span>→</span></div>
+          </div>
         </div>
         <div class="style-card">
           <img src="/minimal_kitchen.png" alt="Minimal Kitchen" loading="lazy" />
-          <div class="style-banner">Minimal Kitchen</div>
+          <div class="style-banner">
+            <h3>Minimal Kitchen</h3>
+            <p>Clutter-free elegance featuring handleless cabinets, neutral tones, and highly practical layouts.</p>
+            <div class="style-action">Explore Gallery <span>→</span></div>
+          </div>
         </div>
       </div>
       <div class="text-center" style="margin-top: 3rem;">
@@ -92,21 +115,28 @@
   <section class="how-it-works bg-light">
     <div class="container">
       <h2 class="section-title">How It Works</h2>
-      <div class="steps-grid">
-        <div class="step-card">
+      <div class="timeline-container">
+        <div class="timeline-line" id="timeline-line"></div>
+        <div class="step-card timeline-step">
           <div class="step-number">1</div>
-          <h3>Submit Request</h3>
-          <p>Tell us your requirements and budget.</p>
+          <div class="step-content">
+            <h3>Submit Request</h3>
+            <p>Tell us your requirements and budget.</p>
+          </div>
         </div>
-        <div class="step-card">
+        <div class="step-card timeline-step">
           <div class="step-number">2</div>
-          <h3>Get Connected</h3>
-          <p>We match you with a trusted local professional.</p>
+          <div class="step-content">
+            <h3>Get Connected</h3>
+            <p>We match you with a trusted local professional.</p>
+          </div>
         </div>
-        <div class="step-card">
+        <div class="step-card timeline-step">
           <div class="step-number">3</div>
-          <h3>Build Your Kitchen</h3>
-          <p>Get your dream kitchen designed and executed.</p>
+          <div class="step-content">
+            <h3>Build Your Kitchen</h3>
+            <p>Get your dream kitchen designed and executed.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -114,29 +144,47 @@
 
   <!-- 5. Final CTA -->
   <section class="final-cta">
-    <div class="container text-center">
-      <h2>Ready to build your dream kitchen?</h2>
-      <p>Join hundreds of homeowners who have transformed their spaces with us.</p>
+    <div class="container text-center glass-box">
+      <h2 style="color: #fff;">Ready to build your dream kitchen?</h2>
+      <p style="color: rgba(255,255,255,0.9);">Join hundreds of homeowners who have transformed their spaces with us.</p>
       <button class="btn btn-primary cta-trigger mt-4">Design My Kitchen</button>
     </div>
   </section>
 
-  <!-- Contact Section -->
-  <section id="contact" class="contact-section">
-    <div class="container text-center">
-      <h2 class="section-title" style="margin-bottom: 1rem;">Contact Us</h2>
-      <p>Have any questions? Reach out to our team.</p>
-      <div class="contact-info" style="margin-top: 2rem;">
-        <p>📧 Email: gharwaalaofficial@gmail.com </p>
-        <p>📞 Phone: +91 9876 43210</p>
+  <!-- Seamless Contact & Footer -->
+  <footer class="site-footer" id="contact">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <h2 class="logo-white" style="display: flex; align-items: center;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 100 100" fill="none" style="margin-right: 12px;">
+            <path d="M 12 40 L 50 12 L 88 40" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M 23 30 V 75 A 10 10 0 0 0 33 85 H 67 A 10 10 0 0 0 77 75 V 60 H 50" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span style="font-weight: 800; letter-spacing: -0.5px;">Ghar</span><span style="font-weight: 300; opacity: 0.7;">waala</span><span style="color: var(--color-primary); font-weight: 900;">.</span>
+        </h2>
+        <p>Transforming Indian kitchens with transparent pricing, trusted local professionals, and beautifully functional module designs.</p>
+      </div>
+      <div class="footer-links">
+        <h3>Quick Links</h3>
+        <a href="/about.html">About Us</a>
+        <a href="/designs.html">Designs Gallery</a>
+        <a href="/blog.html">Blog</a>
+      </div>
+      <div class="footer-contact">
+        <h3>Contact Us</h3>
+        <p>Have questions? Reach out instantly.</p>
+        <a href="mailto:gharwaalaofficial@gmail.com" class="contact-pill">
+          <span>📧</span> gharwaalaofficial@gmail.com
+        </a>
+        <a href="tel:+91987643210" class="contact-pill">
+          <span>📞</span> +91 9876 43210
+        </a>
       </div>
     </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container text-center">
-      <p>&copy; 2026 Gharwaala. All rights reserved.</p>
+    <div class="footer-bottom">
+      <div class="container">
+        <p>&copy; 2026 Gharwaala. All rights reserved.</p>
+      </div>
     </div>
   </footer>
 
