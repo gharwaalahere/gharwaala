@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gharwaala | About Us</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container nav-container">
+      <a href="/" class="logo">🍳 Gharwaala</a>
+      <div class="nav-links">
+        <a href="/about.html">About Us</a>
+        <a href="/designs.html">Designs</a>
+        <a href="/blog.html">Blog</a>
+        <a href="/#contact">Contact Us</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- About Hero -->
+  <section class="about-hero" style="padding: 5rem 0; background: var(--color-bg);">
+    <div class="container hero-container" style="align-items: center;">
+      <div class="hero-media">
+        <img src="/about_kitchen.png" alt="Our Team at Gharwaala reviewing blueprints with homeowners" class="hero-img" style="height: auto; max-height: 450px;" loading="lazy" />
+      </div>
+      <div class="hero-content">
+        <h1 class="section-title" style="text-align: left; margin-bottom: 1.5rem; font-size: 2.5rem;">About Gharwaala</h1>
+        <p style="font-size: 1.15rem; margin-bottom: 1rem; color: var(--color-text); font-weight: 500;">We believe that a beautiful, functional kitchen shouldn't be a luxury reserved only for the wealthy.</p>
+        <p style="margin-bottom: 1rem;">Gharwaala was started with a simple mission: to connect homeowners in rising Indian cities directly with verified local professionals. This cuts out the expensive middlemen, confusing pricing, and unreliable workmanship.</p>
+        <p style="margin-bottom: 2rem;">Whether you have ₹50,000 or ₹5 Lakhs, our network ensures you get exactly the kitchen you want, built on time, and completely within your budget.</p>
+        <div style="border-left: 4px solid var(--color-primary); padding-left: 1rem; margin-top: 1.5rem; font-style: italic; color: var(--color-text-light);">
+          "Quality kitchens, honest pricing, local experts."
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Founders Section -->
+  <section class="founders-section bg-light" style="padding: 5rem 0;">
+    <div class="container text-center">
+      <h2 class="section-title" style="margin-bottom: 3rem;">Meet Our Founders</h2>
+      <div class="styles-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; justify-content: center;">
+        
+        <div class="style-card text-center" style="padding-bottom: 1.5rem;">
+          <img src="/founder.png" alt="Founder" loading="lazy" style="height: 350px; object-fit: cover; border-bottom: 3px solid var(--color-primary);" />
+          <h3 style="margin-top: 1.5rem;">Rahul Sharma</h3>
+          <p style="color: var(--color-primary); font-weight: 600; margin-bottom: 0.5rem;">Founder & CEO</p>
+          <p style="padding: 0 1rem; font-size: 0.95rem; color: var(--color-text-light);">Former architect passionate about bringing transparency to modular interior design across India.</p>
+        </div>
+
+        <div class="style-card text-center" style="padding-bottom: 1.5rem;">
+          <img src="/cofounder.png" alt="Co-Founder" loading="lazy" style="height: 350px; object-fit: cover; border-bottom: 3px solid var(--color-primary);" />
+          <h3 style="margin-top: 1.5rem;">Priya Patel</h3>
+          <p style="color: var(--color-primary); font-weight: 600; margin-bottom: 0.5rem;">Co-Founder & COO</p>
+          <p style="padding: 0 1rem; font-size: 0.95rem; color: var(--color-text-light);">Operations expert obsessed with ensuring every homeowner gets their dream kitchen delivered on time.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="final-cta">
+    <div class="container text-center">
+      <h2>Let's build something beautiful.</h2>
+      <p>Join hundreds of homeowners who have transformed their spaces with us.</p>
+      <button class="btn btn-primary cta-trigger mt-4">Design My Kitchen</button>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container text-center">
+      <p>&copy; 2026 Gharwaala. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Lead Generation Form Modal -->
+  <div class="modal-overlay" id="leadModal" style="opacity: 0; visibility: hidden;">
+    <div class="modal-content">
+      <button class="close-btn" id="closeModal">&times;</button>
+      <h2>Get Your Free Estimate</h2>
+      <p class="modal-subtext">Fill in your details and our experts will reach out to you.</p>
+
+      <form id="leadForm">
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" name="name" required placeholder="Ex. Rahul Kumar">
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" required placeholder="10-digit mobile number">
+        </div>
+        <div class="form-group">
+          <label for="location">City / Location</label>
+          <input type="text" id="location" name="location" required placeholder="Ex. Pune">
+        </div>
+        <div class="form-group">
+          <label for="budget">Estimated Budget</label>
+          <select id="budget" name="budget" required>
+            <option value="" disabled selected>Select your budget</option>
+            <option value="Under ₹1 Lakh">Under ₹1 Lakh</option>
+            <option value="₹1 Lakh - ₹3 Lakhs">₹1 Lakh - ₹3 Lakhs</option>
+            <option value="₹3 Lakhs - ₹5 Lakhs">₹3 Lakhs - ₹5 Lakhs</option>
+            <option value="Above ₹5 Lakhs">Above ₹5 Lakhs</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary w-100" id="submitBtn">Submit Request</button>
+        <div id="formMsg" class="form-message"></div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

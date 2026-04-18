@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gharwaala | All Kitchen Designs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container nav-container">
+      <a href="/" class="logo">🍳 Gharwaala</a>
+      <div class="nav-links">
+        <a href="/about.html">About Us</a>
+        <a href="/designs.html">Designs</a>
+        <a href="/blog.html">Blog</a>
+        <a href="/#contact">Contact Us</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- All Kitchen Styles -->
+  <section class="styles-section">
+    <div class="container">
+      <h1 class="section-title">Explore All Kitchen Designs</h1>
+      <p class="text-center" style="margin-bottom: 3rem;">Browse through our extensive catalog of budget-friendly,
+        premium kitchen designs built for modern Indian homes.</p>
+
+      <div class="styles-grid">
+        <!-- Existing 3 -->
+        <div class="style-card">
+          <img src="/modular_kitchen.png" alt="Modular Kitchen" loading="lazy" />
+          <div class="style-banner">Modular Kitchen</div>
+        </div>
+        <div class="style-card">
+          <img src="/modern_kitchen.png" alt="Modern Kitchen" loading="lazy" />
+          <div class="style-banner">Modern Kitchen</div>
+        </div>
+        <div class="style-card">
+          <img src="/minimal_kitchen.png" alt="Minimal Kitchen" loading="lazy" />
+          <div class="style-banner">Minimal Kitchen</div>
+        </div>
+
+        <!-- New 3 -->
+        <div class="style-card">
+          <img src="/l_shape_kitchen.png" alt="L-Shaped Kitchen" loading="lazy" />
+          <div class="style-banner">L-Shaped Kitchen</div>
+        </div>
+        <div class="style-card">
+          <img src="/u_shape_kitchen.png" alt="U-Shaped Kitchen" loading="lazy" />
+          <div class="style-banner">U-Shaped Kitchen</div>
+        </div>
+        <div class="style-card">
+          <img src="/open_kitchen.png" alt="Open Kitchen" loading="lazy" />
+          <div class="style-banner">Open Kitchen</div>
+        </div>
+      </div>
+
+      <div class="text-center" style="margin-top: 4rem;">
+        <h2>Start your kitchen journey today</h2>
+        <button class="btn btn-primary cta-trigger mt-4">Design My Kitchen</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container text-center">
+      <p>&copy; 2026 Gharwaala. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Lead Generation Form Modal -->
+  <div class="modal-overlay" id="leadModal" style="opacity: 0; visibility: hidden;">
+    <div class="modal-content">
+      <button class="close-btn" id="closeModal">&times;</button>
+      <h2>Get Your Free Estimate</h2>
+      <p class="modal-subtext">Fill in your details and our experts will reach out to you.</p>
+
+      <form id="leadForm">
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" name="name" required placeholder="Ex. Rahul Kumar">
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" required placeholder="10-digit mobile number">
+        </div>
+        <div class="form-group">
+          <label for="location">City / Location</label>
+          <input type="text" id="location" name="location" required placeholder="Ex. Pune">
+        </div>
+        <div class="form-group">
+          <label for="budget">Estimated Budget</label>
+          <select id="budget" name="budget" required>
+            <option value="" disabled selected>Select your budget</option>
+            <option value="Under ₹1 Lakh">Under ₹1 Lakh</option>
+            <option value="₹1 Lakh - ₹3 Lakhs">₹1 Lakh - ₹3 Lakhs</option>
+            <option value="₹3 Lakhs - ₹5 Lakhs">₹3 Lakhs - ₹5 Lakhs</option>
+            <option value="Above ₹5 Lakhs">Above ₹5 Lakhs</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary w-100" id="submitBtn">Submit Request</button>
+        <div id="formMsg" class="form-message"></div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>
