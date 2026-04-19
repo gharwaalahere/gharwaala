@@ -166,7 +166,7 @@
     min-height: 85vh;
     display: flex;
     align-items: center;
-    background-image: url('/hero_kitchen_bg_v3.png');
+    background-image: url('/hero_kitchen_bg_v3.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -440,7 +440,7 @@
 
   /* ================= Final CTA Glassmorphism ================= */
   .final-cta {
-    background: url('/modern_kitchen.png') center/cover fixed;
+    background: url('/modern_kitchen.jpg') center/cover fixed;
     position: relative;
     padding: 6rem 0;
   }
@@ -625,7 +625,7 @@
   .blog-hero {
     position: relative;
     padding: 8rem 0;
-    background: url('/blog_hero_bg.png') center/cover no-repeat;
+    background: url('/blog_hero_bg.jpg') center/cover no-repeat;
     display: flex;
     align-items: center;
   }

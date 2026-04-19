@@ -49,7 +49,7 @@
       
       <!-- Featured Post -->
       <div class="featured-post">
-        <img src="/featured_laminates.png" alt="Featured Post" />
+        <img src="/featured_laminates.jpg" alt="Featured Post" />
         <div class="featured-post-text">
           <span class="badge">Featured Guide</span>
           <h2>The Ultimate Guide to Choosing Kitchen Laminates in 2026</h2>
@@ -62,7 +62,7 @@
       <h3 style="margin-bottom: 2.5rem; font-size: 2rem;">Recent Articles</h3>
       <div class="styles-grid">
         <div class="blog-card">
-          <img src="/modular_kitchen.png" alt="Post" />
+          <img src="/modular_kitchen.jpg" alt="Post" />
           <div class="blog-card-content">
             <span class="blog-date">March 14, 2026</span>
             <h4>5 Ways to Save Budget on Custom Cabinets</h4>
@@ -71,7 +71,7 @@
           </div>
         </div>
         <div class="blog-card">
-          <img src="/minimal_kitchen.png" alt="Post" />
+          <img src="/minimal_kitchen.jpg" alt="Post" />
           <div class="blog-card-content">
             <span class="blog-date">March 02, 2026</span>
             <h4>Why Handleless Kitchens Are Trending</h4>
@@ -80,7 +80,7 @@
           </div>
         </div>
         <div class="blog-card">
-          <img src="/modern_kitchen.png" alt="Post" />
+          <img src="/modern_kitchen.jpg" alt="Post" />
           <div class="blog-card-content">
             <span class="blog-date">February 18, 2026</span>
             <h4>Open vs Closed Kitchens: The Verdict</h4>
@@ -129,6 +129,42 @@
       </div>
     </div>
   </footer>
+
+  <div class="modal-overlay" id="leadModal" style="opacity: 0; visibility: hidden;">
+    <div class="modal-content">
+      <button class="close-btn" id="closeModal">&times;</button>
+      <h2>Get Your Free Estimate</h2>
+      <p class="modal-subtext">Fill in your details and our experts will reach out to you.</p>
+
+      <form id="leadForm">
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" name="name" required placeholder="Ex. Rahul Kumar">
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" required placeholder="10-digit mobile number">
+        </div>
+        <div class="form-group">
+          <label for="location">City / Location</label>
+          <input type="text" id="location" name="location" required placeholder="Ex. Pune">
+        </div>
+        <div class="form-group">
+          <label for="budget">Estimated Budget</label>
+          <select id="budget" name="budget" required>
+            <option value="" disabled selected>Select your budget</option>
+            <option value="Under ₹1 Lakh">Under ₹1 Lakh</option>
+            <option value="₹1 Lakh - ₹3 Lakhs">₹1 Lakh - ₹3 Lakhs</option>
+            <option value="₹3 Lakhs - ₹5 Lakhs">₹3 Lakhs - ₹5 Lakhs</option>
+            <option value="Above ₹5 Lakhs">Above ₹5 Lakhs</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary w-100" id="submitBtn">Submit Request</button>
+
+        <div id="formMsg" class="form-message"></div>
+      </form>
+    </div>
+  </div>
 
   <!-- Scripts -->
   <script type="module" src="/src/main.js"></script>
