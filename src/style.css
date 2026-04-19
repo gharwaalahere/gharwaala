@@ -6,11 +6,12 @@
     /* Colors */
     --color-primary: #0d9488;     /* Soft Teal */
     --color-primary-dark: #0f766e;
-    --color-text: #1f2937;        /* Dark Grey */
-    --color-text-light: #4b5563;  /* Medium Grey */
-    --color-bg: #ffffff;
-    --color-bg-light: #f9fafb;    /* Light Grey Surface */
-    --color-border: #e5e7eb;
+    --color-text: #2f2a24;        /* Deep Warm Charcoal */
+    --color-text-light: #6e675e;  /* Warm Slate */
+    --color-bg: #f5f2eb;          /* Japanese Japandi Sand Base */
+    --color-bg-light: #eae5d9;    /* Deeper warm contrast */
+    --color-border: #dcd7c9;      /* Taupe borders */
+    --color-card-bg: #ffffff;     /* Explicit interior card pop */
     
     /* Typography */
     --font-primary: 'Outfit', sans-serif;
@@ -123,7 +124,7 @@
   }
   
   .logo {
-    font-size: 1.6rem;
+    font-size: 2.2rem;
     color: var(--color-text);
   }
   
@@ -166,7 +167,7 @@
     min-height: 85vh;
     display: flex;
     align-items: center;
-    background-image: url('/hero_kitchen_bg_v3.jpg');
+    background-image: url('/premium_modular_kitchen_v4.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -218,7 +219,7 @@
   .trust-card {
     text-align: center;
     padding: 2rem;
-    background: #fff;
+    background: var(--color-card-bg);
     border-radius: var(--border-radius);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
     border: 1px solid var(--color-border);
@@ -251,6 +252,7 @@
   
   .style-card {
     position: relative;
+    background-color: var(--color-card-bg);
     border-radius: var(--border-radius);
     overflow: hidden;
     cursor: pointer;
@@ -425,7 +427,7 @@
   }
 
   .timeline-step .step-content {
-    background: #fff;
+    background: var(--color-card-bg);
     padding: 1.5rem;
     border-radius: var(--border-radius);
     box-shadow: 0 4px 6px rgba(0,0,0,0.05);
@@ -498,7 +500,7 @@
   }
   
   .modal-content {
-    background: #fff;
+    background: var(--color-card-bg);
     width: 100%;
     max-width: 450px;
     padding: 2.5rem;
@@ -657,7 +659,7 @@
     display: grid;
     grid-template-columns: 1.2fr 1fr;
     gap: 0;
-    background: #fff;
+    background: var(--color-card-bg);
     border-radius: var(--border-radius);
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0,0,0,0.08);
@@ -694,7 +696,7 @@
   }
 
   .blog-card {
-    background: #fff;
+    background: var(--color-card-bg);
     border-radius: var(--border-radius);
     overflow: hidden;
     box-shadow: 0 6px 16px rgba(0,0,0,0.06);
@@ -951,3 +953,49 @@
       justify-content: center;
     }
   }
+
+/* Photo Gallery Modal */
+.photo-gallery-content {
+  max-width: 1100px !important;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 3rem;
+}
+
+.photo-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.photo-card {
+  background: var(--color-bg-light);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease;
+}
+.photo-card:hover { transform: translateY(-3px); }
+
+.photo-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+}
+
+.photo-card .photo-info {
+  padding: 1rem;
+}
+
+.photo-card h4 {
+  color: var(--color-primary-dark);
+  margin-bottom: 0.25rem;
+  font-size: 1.05rem;
+}
+
+.photo-card p {
+  font-size: 0.85rem;
+  color: var(--color-text-light);
+  line-height: 1.4;
+}

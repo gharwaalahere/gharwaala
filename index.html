@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Design your kitchen within budget. Get connected to trusted local professionals.">
   <title>Gharwaala | Design Your Kitchen Within Budget</title>
@@ -19,10 +19,7 @@
   <nav class="navbar">
     <div class="container nav-container">
       <a href="/" class="logo" style="display: flex; align-items: center;">
-        <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 100 100" fill="none" style="margin-right: 12px;">
-          <path d="M 12 40 L 50 12 L 88 40" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M 23 30 V 75 A 10 10 0 0 0 33 85 H 67 A 10 10 0 0 0 77 75 V 60 H 50" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+        <img src="/custom-logo.png" alt="Gharwaala Icon" style="height: 38px; transform: scale(2.2) translateY(3px); transform-origin: left center; margin-right: 32px; mix-blend-mode: multiply; object-fit: contain;">
         <span style="font-weight: 800; letter-spacing: -0.5px;">Ghar</span><span style="font-weight: 300; opacity: 0.7;">waala</span><span style="color: var(--color-primary); font-weight: 900;">.</span>
       </a>
       <button class="menu-toggle" id="mobile-menu-btn" aria-label="Toggle navigation">
@@ -78,7 +75,7 @@
         <p style="font-size: 1.15rem; color: var(--color-text-light);">We custom design every project. Here are our most requested base layouts that combine stunning aesthetics with maximum utility.</p>
       </div>
       <div class="styles-grid staggered-grid">
-        <div class="style-card">
+        <div class="style-card" onclick="openGallery('modular')">
           <img src="/modular_kitchen.jpg" alt="Modular Kitchen" loading="lazy" />
           <div class="style-badge">Top Choice</div>
           <div class="style-banner">
@@ -87,7 +84,7 @@
             <div class="style-action">Explore Gallery <span>→</span></div>
           </div>
         </div>
-        <div class="style-card">
+        <div class="style-card" onclick="openGallery('modern')">
           <img src="/modern_kitchen.jpg" alt="Modern Kitchen" loading="lazy" />
           <div class="style-badge" style="background:#1f2937; color:#fff;">Trending</div>
           <div class="style-banner">
@@ -96,7 +93,7 @@
             <div class="style-action">Explore Gallery <span>→</span></div>
           </div>
         </div>
-        <div class="style-card">
+        <div class="style-card" onclick="openGallery('minimal')">
           <img src="/minimal_kitchen.jpg" alt="Minimal Kitchen" loading="lazy" />
           <div class="style-banner">
             <h3>Minimal Kitchen</h3>
@@ -155,11 +152,8 @@
   <footer class="site-footer" id="contact">
     <div class="container footer-grid">
       <div class="footer-brand">
-        <h2 class="logo-white" style="display: flex; align-items: center;">
-          <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 100 100" fill="none" style="margin-right: 12px;">
-            <path d="M 12 40 L 50 12 L 88 40" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M 23 30 V 75 A 10 10 0 0 0 33 85 H 67 A 10 10 0 0 0 77 75 V 60 H 50" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+        <h2 class="logo-white" style="display: flex; align-items: center; margin-bottom: 20px;">
+          <img src="/custom-logo.png" alt="Gharwaala Icon" style="height: 42px; transform: scale(2.2) translateY(3px); transform-origin: left center; margin-right: 36px; filter: brightness(0) invert(1); mix-blend-mode: screen; object-fit: contain;">
           <span style="font-weight: 800; letter-spacing: -0.5px;">Ghar</span><span style="font-weight: 300; opacity: 0.7;">waala</span><span style="color: var(--color-primary); font-weight: 900;">.</span>
         </h2>
         <p>Transforming Indian kitchens with transparent pricing, trusted local professionals, and beautifully functional module designs.</p>
@@ -173,11 +167,11 @@
       <div class="footer-contact">
         <h3>Contact Us</h3>
         <p>Have questions? Reach out instantly.</p>
-        <a href="mailto:gharwaalaofficial@gmail.com" class="contact-pill">
-          <span>📧</span> gharwaalaofficial@gmail.com
+        <a href="mailto:support@gharwaala.com" class="contact-pill">
+          <span>📧</span> support@gharwaala.com
         </a>
-        <a href="tel:+91987643210" class="contact-pill">
-          <span>📞</span> +91 9876 43210
+        <a href="tel:+919971411342" class="contact-pill">
+          <span>📞</span> +91 99714 11342
         </a>
       </div>
     </div>
@@ -225,8 +219,94 @@
     </div>
   </div>
 
+  <!-- Photo Gallery Modal -->
+  <div id="photoGalleryModal" class="modal-overlay">
+    <div class="modal-content photo-gallery-content">
+      <button class="close-btn" id="closeGalleryBtn">✕</button>
+      <h2 id="galleryModeTitle" class="section-title text-center" style="margin-bottom: 2rem;">Gallery</h2>
+      <div id="galleryPhotoGrid" class="photo-gallery-grid">
+        <!-- JS injected photos go here -->
+      </div>
+    </div>
+  </div>
+
   <!-- Scripts -->
   <script type="module" src="/src/main.js"></script>
+  <script>
+    const galleryData = {
+      modular: [
+        { url: "/modular_corner.png", title: "Smart Corner Storage", desc: "Magic corner units making use of blind spots." },
+        { url: "/modular_tandem.png", title: "Tandem Drawers", desc: "Heavy-duty tandem boxes for large utensils." },
+        { url: "/modular_overhead.png", title: "Overhead Cabinets", desc: "Hydraulic lift-ups for easy overhead access." },
+        { url: "/modular_pantry.png", title: "Tall Pantry", desc: "Pull-out pantry units for massive grocery storage." },
+        { url: "/modular_wicker.png", title: "Wicker Baskets", desc: "Integrated woven wicker baskets for dry vegetables." },
+        { url: "/modular_sink.png", title: "Under-Sink Utility", desc: "Detergent racks and bin holders under the sink." },
+        { url: "/modular_shutter.png", title: "Rolling Shutters", desc: "Aluminum rolling shutters to hide appliances." },
+        { url: "/modular_cutlery.png", title: "Cutlery Trays", desc: "Organized PVC cutlery inserts in the top drawer." }
+      ],
+      modern: [
+        { url: "/modern_handleless.png", title: "Handleless Profiles", desc: "Gola profiles for a sleek, handle-free look." },
+        { url: "/modern_builtin.png", title: "Built-In Appliances", desc: "Seamlessly integrated ovens and microwaves." },
+        { url: "/modern_acrylic.png", title: "Acrylic High Gloss", desc: "Scratch-resistant premium 2mm acrylic finishes." },
+        { url: "/modern_quartz.png", title: "Quartz Countertops", desc: "Stain-resistant, pure white engineered quartz." },
+        { url: "/modern_profile.png", title: "Profile Lighting", desc: "LED profile strips routed into cabinetry bottoms." },
+        { url: "/modern_island.png", title: "Island Kitchen", desc: "Spacious central island with breakfast counter." },
+        { url: "/modern_tinted.png", title: "Tinted Glass Flaps", desc: "Black tinted glass with black aluminum frames." },
+        { url: "/modern_pu.png", title: "Matte PU Paint", desc: "Luxurious polyurethane matte painted shutters." }
+      ],
+      minimal: [
+        { url: "/minimal_monochrome.png", title: "Monochrome Palette", desc: "Strict adherence to a calming two-tone color scale." },
+        { url: "/minimal_kitchen.jpg", title: "Hidden Hardware", desc: "Push-to-open mechanisms for zero visual noise." },
+        { url: "/open_kitchen.jpg", title: "Open Shelving", desc: "A single open floating shelf for curated ceramics." },
+        { url: "/modern_acrylic.png", title: "Matte Finishes", desc: "Anti-fingerprint ultra-matte laminate surfaces." },
+        { url: "/modern_quartz.png", title: "Integrated Sink", desc: "Undermount sink for a perfectly flush countertop." },
+        { url: "/modular_overhead.png", title: "Concealed Hood", desc: "Chimney fully integrated and hidden in overheads." },
+        { url: "/modern_builtin.png", title: "Seamless Backsplash", desc: "Using the same quartz on counters running up the wall." },
+        { url: "/u_shape_kitchen.jpg", title: "Organized Clutter", desc: "Zero appliances left on the countertop." }
+      ]
+    };
+
+    const photoModal = document.getElementById('photoGalleryModal');
+    const photoGrid = document.getElementById('galleryPhotoGrid');
+    const modalTitle = document.getElementById('galleryModeTitle');
+    const closeGalleryBtn = document.getElementById('closeGalleryBtn');
+
+    window.openGallery = function(type) {
+      if(!galleryData[type]) return;
+      photoGrid.innerHTML = '';
+      
+      const titleMap = { modular: "Modular Kitchen Details", modern: "Modern Kitchen Details", minimal: "Minimal Kitchen Details" };
+      modalTitle.innerText = titleMap[type];
+
+      galleryData[type].forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'photo-card';
+        card.innerHTML = `
+          <img src="${item.url}" alt="${item.title}" loading="lazy" />
+          <div class="photo-info">
+            <h4>${item.title}</h4>
+            <p>${item.desc}</p>
+          </div>
+        `;
+        photoGrid.appendChild(card);
+      });
+
+      photoModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    };
+
+    closeGalleryBtn.addEventListener('click', () => {
+      photoModal.classList.remove('active');
+      document.body.style.overflow = '';
+      setTimeout(() => { photoGrid.innerHTML = ''; }, 300);
+    });
+
+    photoModal.addEventListener('click', (e) => {
+      if (e.target === photoModal) {
+        closeGalleryBtn.click();
+      }
+    });
+  </script>
 </body>
 
 </html>
