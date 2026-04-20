@@ -66,6 +66,10 @@ document.addEventListener('DOMContentLoaded', () => {
       popup.classList.remove('active');
       document.body.style.overflow = '';
     }
+    const leadModal = document.getElementById('leadModal');
+    if (leadModal) {
+      leadModal.classList.remove('active');
+    }
   };
 
   // Close Modal
