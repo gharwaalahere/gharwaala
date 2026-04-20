@@ -5,6 +5,8 @@
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Preload LCP hero background image for insanely fast rendering -->
+  <link rel="preload" as="image" href="/premium_modular_kitchen_v4.jpg" />
   <meta name="description" content="Design your kitchen within budget. Get connected to trusted local professionals.">
   <title>Gharwaala | Design Your Kitchen Within Budget</title>
   <!-- Google Fonts: Outfit -->
@@ -219,6 +221,21 @@
     </div>
   </div>
 
+  <!-- Success Popup Modal -->
+  <div id="successPopup" class="success-popup" style="visibility: hidden; opacity: 0;">
+    <div class="popup-content">
+      <div class="popup-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+          <polyline points="22 4 12 14.01 9 11.01"></polyline>
+        </svg>
+      </div>
+      <h3>Request Received!</h3>
+      <p>Thank you. Our team will connect with you soon.</p>
+      <button class="btn btn-primary" onclick="window.closeSuccessPopup()">Okay</button>
+    </div>
+  </div>
+
   <!-- Photo Gallery Modal -->
   <div id="photoGalleryModal" class="modal-overlay">
     <div class="modal-content photo-gallery-content">
@@ -235,33 +252,33 @@
   <script>
     const galleryData = {
       modular: [
-        { url: "/modular_corner.png", title: "Smart Corner Storage", desc: "Magic corner units making use of blind spots." },
-        { url: "/modular_tandem.png", title: "Tandem Drawers", desc: "Heavy-duty tandem boxes for large utensils." },
-        { url: "/modular_overhead.png", title: "Overhead Cabinets", desc: "Hydraulic lift-ups for easy overhead access." },
-        { url: "/modular_pantry.png", title: "Tall Pantry", desc: "Pull-out pantry units for massive grocery storage." },
-        { url: "/modular_wicker.png", title: "Wicker Baskets", desc: "Integrated woven wicker baskets for dry vegetables." },
-        { url: "/modular_sink.png", title: "Under-Sink Utility", desc: "Detergent racks and bin holders under the sink." },
-        { url: "/modular_shutter.png", title: "Rolling Shutters", desc: "Aluminum rolling shutters to hide appliances." },
-        { url: "/modular_cutlery.png", title: "Cutlery Trays", desc: "Organized PVC cutlery inserts in the top drawer." }
+        { url: "/modular_corner.jpg", title: "Smart Corner Storage", desc: "Magic corner units making use of blind spots." },
+        { url: "/modular_tandem.jpg", title: "Tandem Drawers", desc: "Heavy-duty tandem boxes for large utensils." },
+        { url: "/modular_overhead.jpg", title: "Overhead Cabinets", desc: "Hydraulic lift-ups for easy overhead access." },
+        { url: "/modular_pantry.jpg", title: "Tall Pantry", desc: "Pull-out pantry units for massive grocery storage." },
+        { url: "/modular_wicker.jpg", title: "Wicker Baskets", desc: "Integrated woven wicker baskets for dry vegetables." },
+        { url: "/modular_sink.jpg", title: "Under-Sink Utility", desc: "Detergent racks and bin holders under the sink." },
+        { url: "/modular_shutter.jpg", title: "Rolling Shutters", desc: "Aluminum rolling shutters to hide appliances." },
+        { url: "/modular_cutlery.jpg", title: "Cutlery Trays", desc: "Organized PVC cutlery inserts in the top drawer." }
       ],
       modern: [
-        { url: "/modern_handleless.png", title: "Handleless Profiles", desc: "Gola profiles for a sleek, handle-free look." },
-        { url: "/modern_builtin.png", title: "Built-In Appliances", desc: "Seamlessly integrated ovens and microwaves." },
-        { url: "/modern_acrylic.png", title: "Acrylic High Gloss", desc: "Scratch-resistant premium 2mm acrylic finishes." },
-        { url: "/modern_quartz.png", title: "Quartz Countertops", desc: "Stain-resistant, pure white engineered quartz." },
-        { url: "/modern_profile.png", title: "Profile Lighting", desc: "LED profile strips routed into cabinetry bottoms." },
-        { url: "/modern_island.png", title: "Island Kitchen", desc: "Spacious central island with breakfast counter." },
-        { url: "/modern_tinted.png", title: "Tinted Glass Flaps", desc: "Black tinted glass with black aluminum frames." },
-        { url: "/modern_pu.png", title: "Matte PU Paint", desc: "Luxurious polyurethane matte painted shutters." }
+        { url: "/modern_handleless.jpg", title: "Handleless Profiles", desc: "Gola profiles for a sleek, handle-free look." },
+        { url: "/modern_builtin.jpg", title: "Built-In Appliances", desc: "Seamlessly integrated ovens and microwaves." },
+        { url: "/modern_acrylic.jpg", title: "Acrylic High Gloss", desc: "Scratch-resistant premium 2mm acrylic finishes." },
+        { url: "/modern_quartz.jpg", title: "Quartz Countertops", desc: "Stain-resistant, pure white engineered quartz." },
+        { url: "/modern_profile.jpg", title: "Profile Lighting", desc: "LED profile strips routed into cabinetry bottoms." },
+        { url: "/modern_island.jpg", title: "Island Kitchen", desc: "Spacious central island with breakfast counter." },
+        { url: "/modern_tinted.jpg", title: "Tinted Glass Flaps", desc: "Black tinted glass with black aluminum frames." },
+        { url: "/modern_pu.jpg", title: "Matte PU Paint", desc: "Luxurious polyurethane matte painted shutters." }
       ],
       minimal: [
-        { url: "/minimal_monochrome.png", title: "Monochrome Palette", desc: "Strict adherence to a calming two-tone color scale." },
+        { url: "/minimal_monochrome.jpg", title: "Monochrome Palette", desc: "Strict adherence to a calming two-tone color scale." },
         { url: "/minimal_kitchen.jpg", title: "Hidden Hardware", desc: "Push-to-open mechanisms for zero visual noise." },
         { url: "/open_kitchen.jpg", title: "Open Shelving", desc: "A single open floating shelf for curated ceramics." },
-        { url: "/modern_acrylic.png", title: "Matte Finishes", desc: "Anti-fingerprint ultra-matte laminate surfaces." },
-        { url: "/modern_quartz.png", title: "Integrated Sink", desc: "Undermount sink for a perfectly flush countertop." },
-        { url: "/modular_overhead.png", title: "Concealed Hood", desc: "Chimney fully integrated and hidden in overheads." },
-        { url: "/modern_builtin.png", title: "Seamless Backsplash", desc: "Using the same quartz on counters running up the wall." },
+        { url: "/modern_acrylic.jpg", title: "Matte Finishes", desc: "Anti-fingerprint ultra-matte laminate surfaces." },
+        { url: "/modern_quartz.jpg", title: "Integrated Sink", desc: "Undermount sink for a perfectly flush countertop." },
+        { url: "/modular_overhead.jpg", title: "Concealed Hood", desc: "Chimney fully integrated and hidden in overheads." },
+        { url: "/modern_builtin.jpg", title: "Seamless Backsplash", desc: "Using the same quartz on counters running up the wall." },
         { url: "/u_shape_kitchen.jpg", title: "Organized Clutter", desc: "Zero appliances left on the countertop." }
       ]
     };

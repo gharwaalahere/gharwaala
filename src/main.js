@@ -59,6 +59,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Success Popup Close globally accessible
+  window.closeSuccessPopup = function() {
+    const popup = document.getElementById('successPopup');
+    if (popup) {
+      popup.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  };
+
   // Close Modal
   const closeModal = () => {
     modal.classList.remove('active');
@@ -118,8 +127,14 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       // Success
-      formMsg.textContent = "Thank you! Our team will contact you shortly.";
-      formMsg.classList.add('success');
+      const popup = document.getElementById('successPopup');
+      if (popup) {
+        popup.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      } else {
+        formMsg.textContent = "Thank you! Our team will contact you shortly.";
+        formMsg.classList.add('success');
+      }
       leadForm.reset();
 
     } catch (err) {

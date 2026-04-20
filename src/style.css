@@ -999,3 +999,89 @@
   color: var(--color-text-light);
   line-height: 1.4;
 }
+
+/* -------------------------------
+   Success Popup Styles
+--------------------------------*/
+.success-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(47, 42, 36, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.4s ease;
+}
+
+.success-popup.active {
+  visibility: visible;
+  opacity: 1;
+}
+
+.popup-content {
+  background: var(--color-card-bg);
+  padding: 3rem 2.5rem;
+  border-radius: var(--border-radius);
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  transform: translateY(30px) scale(0.95);
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  max-width: 90%;
+  width: 400px;
+}
+
+.success-popup.active .popup-content {
+  transform: translateY(0) scale(1);
+}
+
+.popup-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 1.5rem;
+  background: #eef8f3;
+  color: #10b981;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.popup-icon svg {
+  width: 40px;
+  height: 40px;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+}
+
+.success-popup.active .popup-icon svg {
+  animation: drawCheck 0.8s ease forwards 0.2s;
+}
+
+@keyframes drawCheck {
+  to { stroke-dashoffset: 0; }
+}
+
+.popup-content h3 {
+  color: var(--color-primary-dark);
+  font-size: 1.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.popup-content p {
+  color: var(--color-text-light);
+  margin-bottom: 2rem;
+  font-size: 1.05rem;
+  line-height: 1.5;
+}
+
+.popup-content button {
+  width: 100%;
+}
