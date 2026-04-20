@@ -89,6 +89,27 @@ document.addEventListener('DOMContentLoaded', () => {
   const formMsg = document.getElementById('formMsg');
   const submitBtn = document.getElementById('submitBtn');
 
+  const citySelect = document.getElementById('city');
+  const localityGroup = document.getElementById('localityGroup');
+  const localityInput = document.getElementById('locality');
+  const waitlistNote = document.getElementById('waitlistNote');
+
+  if (citySelect && localityGroup && submitBtn) {
+    citySelect.addEventListener('change', (e) => {
+      if (e.target.value === 'Other') {
+        localityGroup.style.display = 'none';
+        localityInput.required = false;
+        submitBtn.textContent = 'Join Waitlist';
+        if (waitlistNote) waitlistNote.style.display = 'block';
+      } else {
+        localityGroup.style.display = 'block';
+        localityInput.required = true;
+        submitBtn.textContent = 'Submit Request';
+        if (waitlistNote) waitlistNote.style.display = 'none';
+      }
+    });
+  }
+
   if (leadForm) {
     leadForm.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -107,7 +128,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const formData = new FormData(leadForm);
     const name = formData.get('name');
     const phone = formData.get('phone');
-    const location = formData.get('location');
+    const city = formData.get('city');
+    const locality = formData.get('locality') || '';
+
+    // Reconstruct full location string for db compatibility
+    const location = city === 'Other' ? 'Other City' : `${locality}, ${city}`;
     const budget = formData.get('budget');
 
     // UI Feedback: Loading
