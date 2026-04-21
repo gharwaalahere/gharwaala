@@ -15,10 +15,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/src/style.css" />
   <script>
-    if (sessionStorage.getItem('splashSeen') || window.location.hash) {
+    // Only bypass the splash screen if a hash anchor (like #contact) is used to navigate directly
+    if (window.location.hash) {
       document.documentElement.classList.add('skip-splash');
-    } else {
-      sessionStorage.setItem('splashSeen', 'true');
     }
   </script>
 </head>
