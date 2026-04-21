@@ -18,7 +18,7 @@
     <div class="container nav-container">
       <a href="/" class="logo" style="display: flex; align-items: center;">
         <img src="/custom-logo.png" alt="Gharwaala Icon" style="height: 38px; transform: scale(2.2) translateY(3px); transform-origin: left center; margin-right: 32px; mix-blend-mode: multiply; object-fit: contain;">
-        <span style="font-weight: 800; letter-spacing: -0.5px;">Ghar</span><span style="font-weight: 300; opacity: 0.7;">waala</span><span style="color: var(--color-primary); font-weight: 900;">.</span>
+        <span style="color: var(--color-primary); font-weight: 800; letter-spacing: -0.5px;">Ghar</span><span style="font-weight: 300; opacity: 0.7;">waala</span><span style="color: var(--color-primary); font-weight: 900;">.</span>
       </a>
       <button class="menu-toggle" id="mobile-menu-btn" aria-label="Toggle navigation">
         <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
@@ -41,31 +41,58 @@
 
       <div class="styles-grid">
         <!-- Existing 3 -->
-        <div class="style-card">
+        <div class="style-card" onclick="openGallery('modular')">
           <img src="/modular_kitchen.jpg" alt="Modular Kitchen" loading="lazy" />
-          <div class="style-banner">Modular Kitchen</div>
+          <div class="style-badge">Top Choice</div>
+          <div class="style-banner">
+            <h3>Modular Kitchen</h3>
+            <p>Smart, factory-finished units designed for maximum storage and flawless aesthetics in any space.</p>
+            <div class="style-action">Explore Gallery <span>→</span></div>
+          </div>
         </div>
-        <div class="style-card">
+        <div class="style-card" onclick="openGallery('modern')">
           <img src="/modern_kitchen.jpg" alt="Modern Kitchen" loading="lazy" />
-          <div class="style-banner">Modern Kitchen</div>
+          <div class="style-badge" style="background:#1f2937; color:#fff;">Trending</div>
+          <div class="style-banner">
+            <h3>Modern Kitchen</h3>
+            <p>Clean lines, high-gloss finishes, and seamless built-in appliances for a premium contemporary look.</p>
+            <div class="style-action">Explore Gallery <span>→</span></div>
+          </div>
         </div>
-        <div class="style-card">
+        <div class="style-card" onclick="openGallery('minimal')">
           <img src="/minimal_kitchen.jpg" alt="Minimal Kitchen" loading="lazy" />
-          <div class="style-banner">Minimal Kitchen</div>
+          <div class="style-banner">
+            <h3>Minimal Kitchen</h3>
+            <p>Clutter-free elegance featuring handleless cabinets, neutral tones, and highly practical layouts.</p>
+            <div class="style-action">Explore Gallery <span>→</span></div>
+          </div>
         </div>
 
         <!-- New 3 -->
-        <div class="style-card">
+        <div class="style-card" onclick="openGallery('l_shape')">
           <img src="/l_shape_kitchen.jpg" alt="L-Shaped Kitchen" loading="lazy" />
-          <div class="style-banner">L-Shaped Kitchen</div>
+          <div class="style-badge" style="background:#b45309; color:#fff;">Efficient</div>
+          <div class="style-banner">
+            <h3>L-Shaped Kitchen</h3>
+            <p>The ultimate classic layout perfect for Indian homes, maximizing corner space and offering an ideal work triangle.</p>
+            <div class="style-action">Explore Gallery <span>→</span></div>
+          </div>
         </div>
-        <div class="style-card">
+        <div class="style-card" onclick="openGallery('u_shape')">
           <img src="/u_shape_kitchen.jpg" alt="U-Shaped Kitchen" loading="lazy" />
-          <div class="style-banner">U-Shaped Kitchen</div>
+          <div class="style-banner">
+            <h3>U-Shaped Kitchen</h3>
+            <p>Designed for large families, offering three uninterrupted walls of dense, massive storage capacity.</p>
+            <div class="style-action">Explore Gallery <span>→</span></div>
+          </div>
         </div>
-        <div class="style-card">
+        <div class="style-card" onclick="openGallery('open')">
           <img src="/open_kitchen.jpg" alt="Open Kitchen" loading="lazy" />
-          <div class="style-banner">Open Kitchen</div>
+          <div class="style-banner">
+            <h3>Open Kitchen</h3>
+            <p>A beautiful architectural statement that dissolves boundaries, seamlessly integrating into your living and dining rooms.</p>
+            <div class="style-action">Explore Gallery <span>→</span></div>
+          </div>
         </div>
       </div>
 
@@ -143,6 +170,17 @@
         <button type="submit" class="btn btn-primary w-100" id="submitBtn">Submit Request</button>
         <div id="formMsg" class="form-message"></div>
       </form>
+    </div>
+  </div>
+
+  <!-- Photo Gallery Modal -->
+  <div id="photoGalleryModal" class="modal-overlay">
+    <div class="modal-content photo-gallery-content">
+      <button class="close-btn" id="closeGalleryBtn">✕</button>
+      <h2 id="galleryModeTitle" class="section-title text-center" style="margin-bottom: 2rem;">Gallery</h2>
+      <div id="galleryPhotoGrid" class="photo-gallery-grid">
+        <!-- JS injected photos go here -->
+      </div>
     </div>
   </div>
 

@@ -42,6 +42,45 @@
     display: block;
   }
   
+  /* ================= Splash Screen ================= */
+  html.skip-splash .splash-screen {
+    display: none !important;
+  }
+  
+  .splash-screen {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(245, 242, 235, 0.55); /* Translucent var(--color-bg) */
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: splashFadeOut 0.8s ease forwards 1.8s;
+  }
+
+  .splash-logo {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 0;
+    opacity: 0;
+    font-family: var(--font-primary);
+    transform: translateY(15px) scale(0.95);
+    animation: splashFadeIn 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards 0.2s;
+  }
+
+  @keyframes splashFadeIn {
+    0% { opacity: 0; transform: translateY(15px) scale(0.95); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  @keyframes splashFadeOut {
+    0% { opacity: 1; pointer-events: all; }
+    100% { opacity: 0; pointer-events: none; visibility: hidden; }
+  }
+  
   .container {
     max-width: var(--container-width);
     margin: 0 auto;
@@ -167,7 +206,7 @@
     min-height: 85vh;
     display: flex;
     align-items: center;
-    background-image: url('/premium_modular_kitchen_v4.jpg');
+    background-image: url('/indian_family_hero.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -427,81 +466,168 @@
   /* ================= How It Works Timeline ================= */
   .how-it-works {
     padding: 6rem 0;
+    overflow: hidden;
   }
   
   .timeline-container {
     position: relative;
-    max-width: 600px;
-    margin: 0 auto;
+    max-width: 900px;
+    margin: 4rem auto 0;
     padding: 2rem 0;
   }
   
-  .timeline-line {
+  /* Central Track */
+  .timeline-track {
     position: absolute;
-    left: 28px; /* Center of the 60px step-number */
+    left: 50%;
+    transform: translateX(-50%);
     top: 0;
     bottom: 0;
     width: 4px;
     background-color: var(--color-border);
     z-index: 1;
-    transform-origin: top;
-    transform: scaleY(0);
-    transition: transform 1.5s ease-out;
+    border-radius: 2px;
   }
   
-  .timeline-line.active {
-    transform: scaleY(1);
+  /* Animated Fill Line */
+  .timeline-line-fill {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 0;
+    width: 4px;
+    height: 0%;
     background-color: var(--color-primary);
+    z-index: 2;
+    border-radius: 2px;
+    transition: height 0.1s ease-out; /* Real-time JS mapping */
+    box-shadow: 0 0 10px rgba(13, 148, 136, 0.5);
   }
-
+  
   .timeline-step {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    margin-bottom: 3rem;
+    margin-bottom: 5rem;
     position: relative;
-    z-index: 2;
+    z-index: 3;
     opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.6s ease;
-  }
-
-  .timeline-step.in-view {
-    opacity: 1;
-    transform: translateY(0);
+    transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
   }
 
   .timeline-step:last-child {
     margin-bottom: 0;
   }
 
-  .step-number {
-    width: 60px;
-    height: 60px;
-    background-color: var(--color-primary);
-    color: #fff;
-    font-size: 1.5rem;
-    font-weight: 700;
+  .timeline-step.left-step {
+    flex-direction: row-reverse;
+    transform: translateX(-60px);
+  }
+
+  .timeline-step.right-step {
+    flex-direction: row;
+    transform: translateX(60px);
+  }
+
+  /* Triggered via JS Observer */
+  .timeline-step.active {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* Step Cards */
+  .timeline-step .step-card {
+    width: 43%;
+    background: var(--color-card-bg);
+    padding: 2.2rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    border: 1px solid var(--color-border);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .timeline-step .step-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 30px rgba(13, 148, 136, 0.12);
+  }
+
+  .timeline-step .step-card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-primary-dark);
+  }
+  
+  /* The SVG Icon Node */
+  .timeline-step .step-icon {
+    width: 64px;
+    height: 64px;
+    background-color: var(--color-bg);
+    border: 3px solid var(--color-border);
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 50%;
-    margin-right: 2rem;
-    flex-shrink: 0;
-    box-shadow: 0 8px 16px rgba(13, 148, 136, 0.3);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--color-text-light);
+    transition: all 0.5s ease 0.3s; /* Glow activates slightly after card slides in */
+    box-shadow: 0 0 0 6px var(--color-bg-light);
   }
 
-  .timeline-step .step-content {
-    background: var(--color-card-bg);
-    padding: 1.5rem;
-    border-radius: var(--border-radius);
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-    flex-grow: 1;
-    text-align: left;
-    border: 1px solid var(--color-border);
+  .timeline-step.active .step-icon {
+    border-color: var(--color-primary);
+    background-color: var(--color-primary);
+    color: #fff;
+    box-shadow: 0 0 20px rgba(13, 148, 136, 0.5), 0 0 0 6px var(--color-bg-light);
+    transform: translateX(-50%) scale(1.1);
   }
 
-  .timeline-step .step-content h3 {
-    margin-bottom: 0.25rem;
+  /* Empty Div for Flex Balancing */
+  .timeline-step::before {
+    content: '';
+    display: block;
+    width: 43%;
+  }
+
+  /* Responsive Mobile Layout */
+  @media (max-width: 900px) {
+    .timeline-track, .timeline-line-fill {
+      left: 32px;
+      transform: none;
+    }
+
+    .timeline-step.left-step, .timeline-step.right-step {
+      flex-direction: row;
+      justify-content: flex-start;
+      margin-bottom: 3.5rem;
+      transform: translateY(40px); /* Animate upwards on mobile instead of side-to-side */
+    }
+
+    .timeline-step.active {
+      transform: translateY(0);
+    }
+
+    .timeline-step::before {
+      display: none; /* Remove right gap */
+    }
+
+    .timeline-step .step-icon {
+      left: 32px;
+      transform: translateX(-50%);
+      width: 56px;
+      height: 56px;
+    }
+
+    .timeline-step.active .step-icon {
+      transform: translateX(-50%) scale(1.05); /* Slight mobile pop */
+    }
+
+    .timeline-step .step-card {
+      width: calc(100% - 80px);
+      margin-left: auto;
+      padding: 1.5rem;
+    }
   }
 
   /* ================= Final CTA Glassmorphism ================= */
