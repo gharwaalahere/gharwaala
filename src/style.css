@@ -50,9 +50,10 @@
   .splash-screen {
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
-    background-color: rgba(245, 242, 235, 0.55); /* Translucent var(--color-bg) */
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
+    /* Spotlight Frost: Opaque center for logo text legibility, transparent edges to reveal the hero image */
+    background: radial-gradient(circle at center, rgba(245, 242, 235, 0.95) 15%, rgba(245, 242, 235, 0.60) 100%);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     z-index: 99999;
     display: flex;
     align-items: center;
