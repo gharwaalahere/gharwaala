@@ -1083,8 +1083,13 @@
       height: 300px !important;
     }
   
-    .hero, .trust-section, .styles-section, .how-it-works, .final-cta, .site-footer {
+    .hero, .trust-section, .styles-section, .how-it-works, .final-cta {
       padding: 3rem 0 !important;
+    }
+    
+    .site-footer {
+      padding-top: 3rem !important;
+      padding-bottom: 0 !important;
     }
 
     .nav-container {
@@ -1127,12 +1132,16 @@
       overflow-y: auto;
     }
 
-    /* Footer tweaks */
+    /* Footer grid tweaks */
     .footer-grid {
       grid-template-columns: 1fr;
       gap: 2.5rem;
       text-align: center;
       margin-bottom: 1.5rem;
+    }
+    
+    .footer-brand .logo-white {
+      justify-content: center;
     }
     
     .footer-brand p {
