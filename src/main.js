@@ -16,8 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- Mobile Menu Toggle ---
   const mobileMenuBtn = document.getElementById('mobile-menu-btn');
   const navLinks = document.getElementById('nav-links');
-  
-  if(mobileMenuBtn && navLinks) {
+
+  if (mobileMenuBtn && navLinks) {
     mobileMenuBtn.addEventListener('click', () => {
       navLinks.classList.toggle('active');
     });
@@ -32,17 +32,17 @@ document.addEventListener('DOMContentLoaded', () => {
   const timelineContainer = document.querySelector('.timeline-container');
   const scrollLine = document.getElementById('timeline-scroll-line');
   const timelineSteps = document.querySelectorAll('.timeline-step');
-  
+
   if (timelineContainer && scrollLine) {
     window.addEventListener('scroll', () => {
       // Calculate continuous scroll progress mapped to the container height
       const containerRect = timelineContainer.getBoundingClientRect();
       const viewportCenter = window.innerHeight * 0.65; // triggering point
-      
+
       const progressPixels = Math.max(0, viewportCenter - containerRect.top);
       let percentage = (progressPixels / containerRect.height) * 100;
       percentage = Math.min(100, Math.max(0, percentage)); // clamp between 0-100
-      
+
       scrollLine.style.height = `${percentage}%`;
 
       // Activate step cards exactly when the scroll line hits them
@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
     });
-    
+
     // Initialize state instantly on load
     window.dispatchEvent(new Event('scroll'));
   }
@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Success Popup Close globally accessible
-  window.closeSuccessPopup = function() {
+  window.closeSuccessPopup = function () {
     const popup = document.getElementById('successPopup');
     if (popup) {
       popup.classList.remove('active');
@@ -129,138 +129,138 @@ document.addEventListener('DOMContentLoaded', () => {
   if (leadForm) {
     leadForm.addEventListener('submit', async (e) => {
       e.preventDefault();
-    
-    // Reset messages
-    formMsg.className = 'form-message';
-    formMsg.textContent = '';
-    
-    if (!supabase) {
-      formMsg.textContent = "Supabase is not configured. Please add VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY to .env file.";
-      formMsg.classList.add('error');
-      return;
-    }
 
-    // Get Data
-    const formData = new FormData(leadForm);
-    const name = formData.get('name');
-    let phone = formData.get('phone') || '';
-    const city = formData.get('city');
-    const locality = formData.get('locality') || '';
+      // Reset messages
+      formMsg.className = 'form-message';
+      formMsg.textContent = '';
 
-    // Indian Phone Validation
-    const cleanPhone = phone.replace(/\D/g, ''); // strip spaces, +, -
-    let finalPhone = cleanPhone;
-    
-    if (finalPhone.length === 12 && finalPhone.startsWith('91')) {
-      finalPhone = finalPhone.substring(2);
-    } else if (finalPhone.length === 11 && finalPhone.startsWith('0')) {
-      finalPhone = finalPhone.substring(1);
-    }
+      if (!supabase) {
+        formMsg.textContent = "Supabase is not configured. Please add VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY to .env file.";
+        formMsg.classList.add('error');
+        return;
+      }
 
-    if (!/^[6-9]\d{9}$/.test(finalPhone)) {
-      formMsg.textContent = "Please enter a valid 10-digit Indian mobile number.";
-      formMsg.classList.add('error');
-      return; // halt submission if invalid
-    }
-    phone = finalPhone; // use clean 10-digit number for db/email
+      // Get Data
+      const formData = new FormData(leadForm);
+      const name = formData.get('name');
+      let phone = formData.get('phone') || '';
+      const city = formData.get('city');
+      const locality = formData.get('locality') || '';
 
-    // Reconstruct full location string for db compatibility
-    const location = city === 'Other' ? 'Other City' : `${locality}, ${city}`;
-    const budget = formData.get('budget');
+      // Indian Phone Validation
+      const cleanPhone = phone.replace(/\D/g, ''); // strip spaces, +, -
+      let finalPhone = cleanPhone;
 
-    // UI Feedback: Loading
-    submitBtn.textContent = 'Submitting...';
-    submitBtn.disabled = true;
+      if (finalPhone.length === 12 && finalPhone.startsWith('91')) {
+        finalPhone = finalPhone.substring(2);
+      } else if (finalPhone.length === 11 && finalPhone.startsWith('0')) {
+        finalPhone = finalPhone.substring(1);
+      }
 
-    try {
-      // 1. Instant Email Notification via Web3Forms
-      const web3FormsKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
-      if (web3FormsKey && web3FormsKey.trim() !== '') {
-        // Format explicitly to Indian Standard Time to prevent UTC timezone drift
-        const submissionTime = new Date().toLocaleString("en-IN", {
-          timeZone: "Asia/Kolkata",
-          dateStyle: "medium",
-          timeStyle: "short"
-        });
+      if (!/^[6-9]\d{9}$/.test(finalPhone)) {
+        formMsg.textContent = "Please enter a valid 10-digit Indian mobile number.";
+        formMsg.classList.add('error');
+        return; // halt submission if invalid
+      }
+      phone = finalPhone; // use clean 10-digit number for db/email
 
-        const payloadObject = {
-          access_key: web3FormsKey,
-          subject: "🔔 NEW LEAD: " + name + " from " + location,
-          from_name: "Gharwaala System",
-          email: "notifications@gharwaala.com", // Critical: Bypasses silent spam drops by satisfying standard email format requirements
-          Name: name,
-          Phone: phone,
-          Location: location,
-          Budget: budget,
-          "System Check": "Passed - Authentic Lead",
-          "Submitted At (IST)": submissionTime
-        };
+      // Reconstruct full location string for db compatibility
+      const location = city === 'Other' ? 'Other City' : `${locality}, ${city}`;
+      const budget = formData.get('budget');
 
-        try {
-          const w3Res = await fetch("https://api.web3forms.com/submit", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              "Accept": "application/json"
-            },
-            body: JSON.stringify(payloadObject)
+      // UI Feedback: Loading
+      submitBtn.textContent = 'Submitting...';
+      submitBtn.disabled = true;
+
+      try {
+        // 1. Instant Email Notification via Web3Forms
+        const web3FormsKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
+        if (web3FormsKey && web3FormsKey.trim() !== '') {
+          // Format explicitly to Indian Standard Time to prevent UTC timezone drift
+          const submissionTime = new Date().toLocaleString("en-IN", {
+            timeZone: "Asia/Kolkata",
+            dateStyle: "medium",
+            timeStyle: "short"
           });
-          const w3Json = await w3Res.json();
-          if (!w3Json.success) {
-            console.error("Web3Forms API rejected:", w3Json);
-            alert("Email Notification Failed: " + w3Json.message);
-          } else {
-            console.log("Web3Forms Email Sent Successfully!", w3Json);
+
+          const payloadObject = {
+            access_key: web3FormsKey,
+            subject: "🔔 NEW LEAD: " + name + " from " + location,
+            from_name: "Gharwaala System",
+            email: "notifications@gharwaala.com", // Critical: Bypasses silent spam drops by satisfying standard email format requirements
+            Name: name,
+            Phone: phone,
+            Location: location,
+            Budget: budget,
+            "System Check": "Passed - Authentic Lead",
+            "Submitted At (IST)": submissionTime
+          };
+
+          try {
+            const w3Res = await fetch("https://api.web3forms.com/submit", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+              },
+              body: JSON.stringify(payloadObject)
+            });
+            const w3Json = await w3Res.json();
+            if (!w3Json.success) {
+              console.error("Web3Forms API rejected:", w3Json);
+              // Silently fail: do not alert the user. Supabase is the source of truth.
+            } else {
+              console.log("Web3Forms Email Sent Successfully!", w3Json);
+            }
+          } catch (err) {
+            console.error("Web3Forms Network Error:", err);
+            // Silently fail network errors to ensure user still sees Success Popup for Supabase.
           }
-        } catch(err) {
-          console.error("Web3Forms Network Error:", err);
-          alert("Email Network Error: " + err.message);
+        }
+
+        // 2. Insert into Supabase table "leads"
+        if (supabase) {
+          const { data, error } = await supabase
+            .from('leads')
+            .insert([
+              { name, phone, location, budget }
+            ]);
+
+          if (error) {
+            console.error("Supabase Error:", error);
+          }
+        }
+
+        // Success
+        const popup = document.getElementById('successPopup');
+        if (popup) {
+          popup.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        } else {
+          formMsg.textContent = "Thank you! Our team will contact you shortly.";
+          formMsg.classList.add('success');
+        }
+        leadForm.reset();
+
+      } catch (err) {
+        console.error("Supabase Error:", err);
+        formMsg.textContent = "Failed to submit request. Please try again.";
+        formMsg.classList.add('error');
+      } finally {
+        // Revert UI
+        submitBtn.textContent = 'Submit Request';
+        submitBtn.disabled = false;
+
+        // Auto close modal on success after 3 seconds
+        if (formMsg.classList.contains('success')) {
+          setTimeout(() => {
+            closeModal();
+            formMsg.className = 'form-message'; // reset
+            formMsg.textContent = '';
+          }, 3000);
         }
       }
-
-      // 2. Insert into Supabase table "leads"
-      if (supabase) {
-        const { data, error } = await supabase
-          .from('leads')
-          .insert([
-            { name, phone, location, budget }
-          ]);
-
-        if (error) {
-          console.error("Supabase Error:", error);
-        }
-      }
-
-      // Success
-      const popup = document.getElementById('successPopup');
-      if (popup) {
-        popup.classList.add('active');
-        document.body.style.overflow = 'hidden';
-      } else {
-        formMsg.textContent = "Thank you! Our team will contact you shortly.";
-        formMsg.classList.add('success');
-      }
-      leadForm.reset();
-
-    } catch (err) {
-      console.error("Supabase Error:", err);
-      formMsg.textContent = "Failed to submit request. Please try again.";
-      formMsg.classList.add('error');
-    } finally {
-      // Revert UI
-      submitBtn.textContent = 'Submit Request';
-      submitBtn.disabled = false;
-      
-      // Auto close modal on success after 3 seconds
-      if (formMsg.classList.contains('success')) {
-        setTimeout(() => {
-          closeModal();
-          formMsg.className = 'form-message'; // reset
-          formMsg.textContent = '';
-        }, 3000);
-      }
-    }
-  });
+    });
   }
 });
 
@@ -291,26 +291,26 @@ const galleryData = {
   minimal: [
     { url: "/minimal_monochrome.jpg", title: "Monochrome Palette", desc: "Strict adherence to a calming two-tone color scale." },
     { url: "/minimal_kitchen.jpg", title: "Hidden Hardware", desc: "Push-to-open mechanisms for zero visual noise." },
-    { url: "/open_kitchen.jpg", title: "Open Shelving", desc: "A single open floating shelf for curated ceramics." },
-    { url: "/modern_acrylic.jpg", title: "Matte Finishes", desc: "Anti-fingerprint ultra-matte laminate surfaces." },
-    { url: "/modern_quartz.jpg", title: "Integrated Sink", desc: "Undermount sink for a perfectly flush countertop." },
-    { url: "/modular_overhead.jpg", title: "Concealed Hood", desc: "Chimney fully integrated and hidden in overheads." },
-    { url: "/modern_builtin.jpg", title: "Seamless Backsplash", desc: "Using the same quartz on counters running up the wall." },
-    { url: "/u_shape_kitchen.jpg", title: "Organized Clutter", desc: "Zero appliances left on the countertop." }
+    { url: "/minimal_open_shelving.png", title: "Open Shelving", desc: "A single open floating shelf for curated ceramics." },
+    { url: "/minimal_matte.png", title: "Matte Finishes", desc: "Anti-fingerprint ultra-matte laminate surfaces." },
+    { url: "/minimal_integrated_sink.png", title: "Integrated Sink", desc: "Undermount sink for a perfectly flush countertop." },
+    { url: "/minimal_concealed_hood.png", title: "Concealed Hood", desc: "Chimney fully integrated and hidden in overheads." },
+    { url: "/minimal_seamless_backsplash.png", title: "Seamless Backsplash", desc: "Using the same quartz on counters running up the wall." },
+    { url: "/minimal_organized_clutter.png", title: "Organized Clutter", desc: "Zero appliances left on the countertop." }
   ],
   l_shape: [
-    { url: "/l_shape_kitchen.jpg", title: "Maximizing Space", desc: "The classic L-shape providing perfect work-triangle efficiency." },
-    { url: "/modular_corner.jpg", title: "Corner Carousels", desc: "Utilizing deep corners effectively with swivel trays." },
-    { url: "/modular_wicker.jpg", title: "Wicker Integration", desc: "Breathable baskets woven right into the layout." },
-    { url: "/modern_builtin.jpg", title: "Integrated Ovens", desc: "Appliances securely placed at ergonomic eye levels." },
-    { url: "/modern_quartz.jpg", title: "Long Counter Space", desc: "Uninterrupted quartz counters perfect for heavy meal prep." },
-    { url: "/modular_sink.jpg", title: "Smart Sink Placement", desc: "Strategically located sink for uninterrupted workflow flow." },
-    { url: "/modern_handleless.jpg", title: "Continuous Lines", desc: "Handleless designs keep the L-shape looking long." },
-    { url: "/modern_profile.jpg", title: "Under-Cabinet Lighting", desc: "Illuminating the entire L-shaped counter evenly." }
+    { url: "/l_shape_maximizing.png", title: "Maximizing Space", desc: "The classic L-shape providing perfect work-triangle efficiency." },
+    { url: "/l_shape_corner_carousels.png", title: "Corner Carousels", desc: "Utilizing deep corners effectively with swivel trays." },
+    { url: "/l_shape_wicker.png", title: "Wicker Integration", desc: "Breathable baskets woven right into the layout." },
+    { url: "/l_shape_integrated_ovens.png", title: "Integrated Ovens", desc: "Appliances securely placed at ergonomic eye levels." },
+    { url: "/l_shape_long_counter.png", title: "Long Counter Space", desc: "Uninterrupted quartz counters perfect for heavy meal prep." },
+    { url: "/l_shape_smart_sink.png", title: "Smart Sink Placement", desc: "Strategically located sink for uninterrupted workflow flow." },
+    { url: "/l_shape_handleless.png", title: "Continuous Lines", desc: "Handleless designs keep the L-shape looking long." },
+    { url: "/l_shape_profile_lighting.png", title: "Under-Cabinet Lighting", desc: "Illuminating the entire L-shaped counter evenly." }
   ],
   open: [
-    { url: "/open_kitchen.jpg", title: "Living Space Integration", desc: "Flows perfectly into the dining and living area." },
-    { url: "/modern_island.jpg", title: "Breakfast Island", desc: "The perfect bridge between kitchen and living room." },
+    { url: "/open_living_integration.png", title: "Living Space Integration", desc: "Flows perfectly into the dining and living area." },
+    { url: "/open_breakfast_island.png", title: "Breakfast Island", desc: "The perfect bridge between kitchen and living room." },
     { url: "/hero_kitchen_bg_v3.jpg", title: "Bar Seating", desc: "Casual seating for entertaining guests while cooking." },
     { url: "/minimal_monochrome.jpg", title: "Subtle Tones", desc: "Colors that match the living room aesthetics seamlessly." },
     { url: "/modular_overhead.jpg", title: "Hidden Chimney", desc: "Keeping the visual sightlines clear to the living room." },
@@ -337,13 +337,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const closeGalleryBtn = document.getElementById('closeGalleryBtn');
 
   // Globally expose the function to inline onclick handlers
-  window.openGallery = function(type) {
-    if(!galleryData[type] || !photoModal || !photoGrid) return;
+  window.openGallery = function (type) {
+    if (!galleryData[type] || !photoModal || !photoGrid) return;
     photoGrid.innerHTML = '';
-    
-    const titleMap = { 
-      modular: "Modular Kitchen Details", 
-      modern: "Modern Kitchen Details", 
+
+    const titleMap = {
+      modular: "Modular Kitchen Details",
+      modern: "Modern Kitchen Details",
       minimal: "Minimal Kitchen Details",
       l_shape: "L-Shape Kitchen Details",
       u_shape: "U-Shape Kitchen Details",
