@@ -18,9 +18,23 @@ document.addEventListener('DOMContentLoaded', () => {
   const navLinks = document.getElementById('nav-links');
 
   if (mobileMenuBtn && navLinks) {
+    // Toggle menu
     mobileMenuBtn.addEventListener('click', () => {
       navLinks.classList.toggle('active');
     });
+
+    // Close menu when clicking any link inside it
+    const links = navLinks.querySelectorAll('a');
+    links.forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+      });
+    });
+
+    // Close menu on scroll
+    window.addEventListener('scroll', () => {
+      navLinks.classList.remove('active');
+    }, { passive: true });
   }
 
   // --- Lead Form Modal Logic ---
