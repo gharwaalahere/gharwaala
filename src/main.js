@@ -179,7 +179,10 @@ document.addEventListener('DOMContentLoaded', () => {
       phone = finalPhone; // use clean 10-digit number for db/email
 
       // Reconstruct full location string for db compatibility
-      const location = city === 'Other' ? 'Other City' : `${locality}, ${city}`;
+      let location = formData.get('location');
+      if (!location) {
+        location = city === 'Other' ? 'Other City' : `${locality}, ${city}`;
+      }
       const budget = formData.get('budget');
 
       // UI Feedback: Loading
