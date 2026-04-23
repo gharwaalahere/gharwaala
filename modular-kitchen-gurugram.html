@@ -47,14 +47,127 @@
     ]
   }
   </script>
+  
   <style>
-    .page-hero { padding: 8rem 0 4rem 0; background: var(--color-bg); text-align: center; border-bottom: 1px solid #e5e7eb; }
-    .page-hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; color: #111827; max-width: 900px; margin: 0 auto 1.5rem auto; line-height: 1.2; letter-spacing: -0.02em; }
-    .page-content { max-width: 800px; margin: 0 auto; padding: 4rem 20px; font-size: 1.15rem; line-height: 1.8; color: #4b5563; font-family: 'Lora', serif; }
-    .page-content h2 { font-family: 'Outfit', sans-serif; font-size: 2rem; color: #111827; margin: 3rem 0 1.5rem 0; font-weight: 700; }
-    .page-content p { margin-bottom: 1.5rem; }
-    .page-content a { color: var(--color-primary); font-weight: 600; text-decoration: underline; }
+    /* Premium Landing Page Styles */
+    :root {
+      --blog-text: #374151;
+      --blog-heading: #111827;
+    }
+    body {
+      background-color: #fafafa;
+    }
+    .city-hero-wrapper {
+      position: relative;
+      padding: 10rem 20px 8rem 20px;
+      background: linear-gradient(rgba(17, 24, 39, 0.7), rgba(17, 24, 39, 0.85)), url('/modern_kitchen.jpg') center/cover no-repeat;
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    .city-hero-wrapper h1 {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 800;
+      color: #ffffff;
+      max-width: 1000px;
+      margin: 0 auto;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      text-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    .city-hero-wrapper p.subtitle {
+      font-size: 1.35rem;
+      color: rgba(255, 255, 255, 0.9);
+      max-width: 750px;
+      margin: 1.5rem auto 0 auto;
+      font-weight: 400;
+      line-height: 1.6;
+    }
+    .article-container {
+      max-width: 840px;
+      margin: 0 auto;
+      padding: 0 20px 4rem 20px;
+    }
+    .article-body {
+      font-family: 'Lora', serif;
+      font-size: 1.2rem;
+      line-height: 1.8;
+      color: var(--blog-text);
+    }
+    .article-body p { margin-bottom: 2rem; }
+    .article-body p:first-of-type {
+      font-size: 1.35rem; line-height: 1.7; color: #1f2937; font-weight: 400;
+    }
+    .article-body p:first-of-type::first-letter {
+      float: left;
+      font-size: 4.5rem;
+      line-height: 1;
+      font-weight: 700;
+      color: var(--color-primary);
+      margin-right: 12px;
+      margin-top: -6px;
+      font-family: 'Outfit', sans-serif;
+    }
+    .article-body h2 {
+      font-family: 'Outfit', sans-serif; font-size: 2.2rem; font-weight: 800; color: var(--blog-heading); margin-top: 4.5rem; margin-bottom: 1.5rem; letter-spacing: -0.01em; line-height: 1.3;
+      position: relative;
+      padding-bottom: 0.75rem;
+    }
+    .article-body h2::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 60px;
+      height: 4px;
+      background: var(--color-primary);
+      border-radius: 2px;
+    }
+    .article-body h3 {
+      font-family: 'Outfit', sans-serif; font-size: 1.6rem; font-weight: 700; color: var(--blog-heading); margin-top: 2.5rem; margin-bottom: 1rem;
+    }
+    .article-body ul { margin-bottom: 2rem; padding-left: 1.5rem; }
+    .article-body li { margin-bottom: 1rem; }
+    .article-body a { color: var(--color-primary); font-weight: 600; text-decoration: none; border-bottom: 2px solid rgba(13, 148, 136, 0.2); transition: border-color 0.2s; }
+    .article-body a:hover { border-color: var(--color-primary); }
+    
+    /* Table Styling for Cost Guide */
+    table {
+      width: 100%; border-collapse: separate; border-spacing: 0; margin: 3rem 0;
+      border-radius: 12px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+      font-family: 'Outfit', sans-serif;
+      background: white;
+    }
+    th { background: var(--color-primary); color: white; padding: 20px; text-align: left; font-weight: 700; font-size: 1.15rem; letter-spacing: 0.5px; }
+    td { padding: 18px 20px; border-bottom: 1px solid #f3f4f6; color: #4b5563; font-size: 1.1rem; }
+    tr:last-child td { border-bottom: none; }
+    tr:nth-child(even) td { background: #f9fafb; }
+    tr:hover td { background: #f0fdfa; transition: background 0.2s; }
+    
+    /* Premium FAQ Accordion / Cards */
+    .faq-container { margin-top: 3rem; }
+    .faq-item {
+      background: white; border: 1px solid #e5e7eb; border-radius: 12px; padding: 1.5rem 2rem; margin-bottom: 1.5rem;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.02); transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .faq-item:hover { transform: translateY(-3px); box-shadow: 0 12px 24px rgba(0,0,0,0.06); border-color: #d1d5db; }
+    .faq-item h3 { margin: 0 0 0.75rem 0; font-size: 1.35rem; color: var(--blog-heading); font-family: 'Outfit', sans-serif; font-weight: 700; }
+    .faq-item p { margin: 0; font-size: 1.1rem; color: #4b5563; line-height: 1.6; font-family: 'Lora', serif;}
+
+    /* CTA Box */
+    .inline-cta {
+      background: linear-gradient(135deg, var(--color-primary), #0f766e); color: white; padding: 4rem 3rem; border-radius: 24px; text-align: center; margin: 5rem 0 2rem 0;
+      box-shadow: 0 20px 40px rgba(13, 148, 136, 0.25);
+    }
+    .inline-cta h3 { font-size: 2.2rem; color: white; margin-bottom: 1rem; margin-top: 0; font-family: 'Outfit', sans-serif; font-weight: 800; border: none; }
+    .inline-cta p { color: rgba(255, 255, 255, 0.9); font-size: 1.2rem; margin-bottom: 2.5rem; font-family: 'Outfit', sans-serif; }
+    .btn-white {
+      background: white; color: var(--color-primary); padding: 1.2rem 3rem; border-radius: 50px; font-weight: 800; font-size: 1.15rem;
+      border: none; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; display: inline-block;
+      font-family: 'Outfit', sans-serif; text-transform: uppercase; letter-spacing: 1px;
+    }
+    .btn-white:hover { transform: translateY(-4px); box-shadow: 0 15px 30px rgba(0,0,0,0.15); }
   </style>
+
 </head>
 <body>
   <nav class="navbar">
@@ -75,13 +188,15 @@
     </div>
   </nav>
 
-  <header class="page-hero">
-    <div class="container">
-      <h1>Modular Kitchen Design in Gurugram — Premium Quality, Honest Pricing</h1>
-    </div>
-  </header>
+  <header class="city-hero-wrapper">
+  <div class="container">
+    <h1>Modular Kitchen Design in Gurugram — Premium Quality, Honest Pricing</h1>
+    <p class="subtitle">Get expert interior design, trusted local professionals, and beautifully functional kitchen layouts tailored for your home and budget.</p>
+  </div>
+</header>
 
-  <main class="page-content">
+  <main class="article-container">
+    <article class="article-body">
     
       <h2>Elevating Kitchen Design in Gurugram</h2>
       <p>Gurugram demands a blend of luxury and extreme functionality. Whether you are situated in the upscale DLF phases, along Golf Course Road, or in the rapidly developing Sohna Road area, your home deserves a premium <strong>modular kitchen in Gurugram</strong>. Gharwaala bridges the gap between high-end design aspirations and honest, transparent pricing.</p>
@@ -93,27 +208,27 @@
       <p>Because Gurugram properties are often larger, U-shaped and Island kitchens are incredibly common. A premium Island kitchen can range from ₹3.5 Lakhs to ₹8 Lakhs, depending heavily on custom organization modules and high-end built-in appliances.</p>
 
       <h2>Frequently Asked Questions (Gurugram)</h2>
-      <div itemscope itemtype="https://schema.org/FAQPage">
-        <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" style="margin-bottom:1rem;">
-          <h3 itemprop="name" style="font-size:1.1rem; color:var(--color-primary);">How much does a modular kitchen cost in Gurugram?</h3>
+      <div class="faq-container" itemscope itemtype="https://schema.org/FAQPage">
+        <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+          <h3 itemprop="name">How much does a modular kitchen cost in Gurugram?</h3>
           <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
             <p itemprop="text">Premium modular kitchens in Gurugram typically start around ₹2.5 Lakhs and can go up to ₹8 Lakhs for large Island layouts with luxury finishes.</p>
           </div>
         </div>
-        <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" style="margin-bottom:1rem;">
-          <h3 itemprop="name" style="font-size:1.1rem; color:var(--color-primary);">How long does kitchen installation take in Gurugram?</h3>
+        <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+          <h3 itemprop="name">How long does kitchen installation take in Gurugram?</h3>
           <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
             <p itemprop="text">Due to premium customizations, a Gurugram kitchen typically takes 4 to 5 weeks for manufacturing and installation.</p>
           </div>
         </div>
-        <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" style="margin-bottom:1rem;">
-          <h3 itemprop="name" style="font-size:1.1rem; color:var(--color-primary);">Do you offer free consultation in Gurugram?</h3>
+        <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+          <h3 itemprop="name">Do you offer free consultation in Gurugram?</h3>
           <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
             <p itemprop="text">Absolutely. We offer free on-site measurements and 3D design consultations across Gurugram.</p>
           </div>
         </div>
-        <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" style="margin-bottom:1rem;">
-          <h3 itemprop="name" style="font-size:1.1rem; color:var(--color-primary);">What modular kitchen styles are popular in Gurugram?</h3>
+        <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+          <h3 itemprop="name">What modular kitchen styles are popular in Gurugram?</h3>
           <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
             <p itemprop="text">Open concept kitchens with large breakfast counters or central islands, featuring matte or soft-touch finishes, dominate the Gurgaon market.</p>
           </div>
@@ -121,8 +236,12 @@
       </div>
       <p style="margin-top:2rem;"><strong>Also serving:</strong> <a href="/modular-kitchen-delhi.html">Delhi</a>, <a href="/modular-kitchen-noida.html">Noida</a>, <a href="/modular-kitchen-faridabad.html">Faridabad</a>.</p>
     
-    <div style="text-align: center; margin-top: 4rem;">
-      <button class="btn btn-primary cta-trigger">Get Free Estimate in Gurugram</button>
+        </article>
+
+    <div class="inline-cta">
+      <h3>Ready to upgrade your kitchen?</h3>
+      <p>Get a free 3D design consultation and an exact estimate tailored to your floor plan.</p>
+      <button class="btn-white cta-trigger">Get Free Estimate in Gurugram</button>
     </div>
   </main>
 

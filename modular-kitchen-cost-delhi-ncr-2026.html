@@ -43,14 +43,127 @@
     "url": "https://gharwaala.com/modular-kitchen-cost-delhi-ncr-2026.html"
   }
   </script>
+  
   <style>
-    .page-hero { padding: 8rem 0 4rem 0; background: var(--color-bg); text-align: center; border-bottom: 1px solid #e5e7eb; }
-    .page-hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; color: #111827; max-width: 900px; margin: 0 auto 1.5rem auto; line-height: 1.2; letter-spacing: -0.02em; }
-    .page-content { max-width: 800px; margin: 0 auto; padding: 4rem 20px; font-size: 1.15rem; line-height: 1.8; color: #4b5563; font-family: 'Lora', serif; }
-    .page-content h2 { font-family: 'Outfit', sans-serif; font-size: 2rem; color: #111827; margin: 3rem 0 1.5rem 0; font-weight: 700; }
-    .page-content p { margin-bottom: 1.5rem; }
-    .page-content a { color: var(--color-primary); font-weight: 600; text-decoration: underline; }
+    /* Premium Landing Page Styles */
+    :root {
+      --blog-text: #374151;
+      --blog-heading: #111827;
+    }
+    body {
+      background-color: #fafafa;
+    }
+    .city-hero-wrapper {
+      position: relative;
+      padding: 10rem 20px 8rem 20px;
+      background: linear-gradient(rgba(17, 24, 39, 0.7), rgba(17, 24, 39, 0.85)), url('/modern_kitchen.jpg') center/cover no-repeat;
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    .city-hero-wrapper h1 {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 800;
+      color: #ffffff;
+      max-width: 1000px;
+      margin: 0 auto;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      text-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    .city-hero-wrapper p.subtitle {
+      font-size: 1.35rem;
+      color: rgba(255, 255, 255, 0.9);
+      max-width: 750px;
+      margin: 1.5rem auto 0 auto;
+      font-weight: 400;
+      line-height: 1.6;
+    }
+    .article-container {
+      max-width: 840px;
+      margin: 0 auto;
+      padding: 0 20px 4rem 20px;
+    }
+    .article-body {
+      font-family: 'Lora', serif;
+      font-size: 1.2rem;
+      line-height: 1.8;
+      color: var(--blog-text);
+    }
+    .article-body p { margin-bottom: 2rem; }
+    .article-body p:first-of-type {
+      font-size: 1.35rem; line-height: 1.7; color: #1f2937; font-weight: 400;
+    }
+    .article-body p:first-of-type::first-letter {
+      float: left;
+      font-size: 4.5rem;
+      line-height: 1;
+      font-weight: 700;
+      color: var(--color-primary);
+      margin-right: 12px;
+      margin-top: -6px;
+      font-family: 'Outfit', sans-serif;
+    }
+    .article-body h2 {
+      font-family: 'Outfit', sans-serif; font-size: 2.2rem; font-weight: 800; color: var(--blog-heading); margin-top: 4.5rem; margin-bottom: 1.5rem; letter-spacing: -0.01em; line-height: 1.3;
+      position: relative;
+      padding-bottom: 0.75rem;
+    }
+    .article-body h2::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 60px;
+      height: 4px;
+      background: var(--color-primary);
+      border-radius: 2px;
+    }
+    .article-body h3 {
+      font-family: 'Outfit', sans-serif; font-size: 1.6rem; font-weight: 700; color: var(--blog-heading); margin-top: 2.5rem; margin-bottom: 1rem;
+    }
+    .article-body ul { margin-bottom: 2rem; padding-left: 1.5rem; }
+    .article-body li { margin-bottom: 1rem; }
+    .article-body a { color: var(--color-primary); font-weight: 600; text-decoration: none; border-bottom: 2px solid rgba(13, 148, 136, 0.2); transition: border-color 0.2s; }
+    .article-body a:hover { border-color: var(--color-primary); }
+    
+    /* Table Styling for Cost Guide */
+    table {
+      width: 100%; border-collapse: separate; border-spacing: 0; margin: 3rem 0;
+      border-radius: 12px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+      font-family: 'Outfit', sans-serif;
+      background: white;
+    }
+    th { background: var(--color-primary); color: white; padding: 20px; text-align: left; font-weight: 700; font-size: 1.15rem; letter-spacing: 0.5px; }
+    td { padding: 18px 20px; border-bottom: 1px solid #f3f4f6; color: #4b5563; font-size: 1.1rem; }
+    tr:last-child td { border-bottom: none; }
+    tr:nth-child(even) td { background: #f9fafb; }
+    tr:hover td { background: #f0fdfa; transition: background 0.2s; }
+    
+    /* Premium FAQ Accordion / Cards */
+    .faq-container { margin-top: 3rem; }
+    .faq-item {
+      background: white; border: 1px solid #e5e7eb; border-radius: 12px; padding: 1.5rem 2rem; margin-bottom: 1.5rem;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.02); transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .faq-item:hover { transform: translateY(-3px); box-shadow: 0 12px 24px rgba(0,0,0,0.06); border-color: #d1d5db; }
+    .faq-item h3 { margin: 0 0 0.75rem 0; font-size: 1.35rem; color: var(--blog-heading); font-family: 'Outfit', sans-serif; font-weight: 700; }
+    .faq-item p { margin: 0; font-size: 1.1rem; color: #4b5563; line-height: 1.6; font-family: 'Lora', serif;}
+
+    /* CTA Box */
+    .inline-cta {
+      background: linear-gradient(135deg, var(--color-primary), #0f766e); color: white; padding: 4rem 3rem; border-radius: 24px; text-align: center; margin: 5rem 0 2rem 0;
+      box-shadow: 0 20px 40px rgba(13, 148, 136, 0.25);
+    }
+    .inline-cta h3 { font-size: 2.2rem; color: white; margin-bottom: 1rem; margin-top: 0; font-family: 'Outfit', sans-serif; font-weight: 800; border: none; }
+    .inline-cta p { color: rgba(255, 255, 255, 0.9); font-size: 1.2rem; margin-bottom: 2.5rem; font-family: 'Outfit', sans-serif; }
+    .btn-white {
+      background: white; color: var(--color-primary); padding: 1.2rem 3rem; border-radius: 50px; font-weight: 800; font-size: 1.15rem;
+      border: none; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; display: inline-block;
+      font-family: 'Outfit', sans-serif; text-transform: uppercase; letter-spacing: 1px;
+    }
+    .btn-white:hover { transform: translateY(-4px); box-shadow: 0 15px 30px rgba(0,0,0,0.15); }
   </style>
+
 </head>
 <body>
   <nav class="navbar">
@@ -71,13 +184,14 @@
     </div>
   </nav>
 
-  <header class="page-hero">
-    <div class="container">
-      <h1>Modular Kitchen Cost in Delhi NCR (2026) — Complete Budget Guide</h1>
-    </div>
-  </header>
+  <header class="city-hero-wrapper">
+  <div class="container">
+    <h1>Modular Kitchen Cost in Delhi NCR (2026) — Complete Budget Guide</h1>
+    <p class="subtitle">Get expert interior design, trusted local professionals, and beautifully functional kitchen layouts tailored for your home and budget.</p>
+  </div>
+</header>
 
-  <main class="page-content">
+  <main class="article-container">
     
     <article class="article-body">
       <p>Planning a kitchen renovation in 2026? The most common question homeowners ask is: "What is the actual <strong>modular kitchen cost in Delhi NCR</strong>?" With fluctuating material prices and endless hardware options, getting a straight answer can be frustrating. This comprehensive guide breaks down the exact <strong>modular kitchen price Delhi</strong> residents can expect to pay this year, ensuring you stay well within your budget without sacrificing quality.</p>
@@ -94,26 +208,26 @@
       <h2>2. Detailed Cost Breakdown Table (2026 Estimates)</h2>
       <p>Based on current market rates in Delhi NCR, here is a realistic breakdown of what you can expect to spend:</p>
       
-      <table style="width:100%; text-align:left; border-collapse: collapse; margin: 2rem 0;">
-        <tr style="background:var(--color-primary); color:white;">
-          <th style="padding:12px;">Kitchen Size</th>
-          <th style="padding:12px;">Typical Layout</th>
-          <th style="padding:12px;">Estimated Budget Range</th>
-        </tr>
-        <tr style="border-bottom:1px solid #ddd;">
-          <td style="padding:12px;">Small (50–70 sq ft)</td>
-          <td style="padding:12px;">Straight</td>
-          <td style="padding:12px;">₹1.2L – ₹2L</td>
-        </tr>
-        <tr style="border-bottom:1px solid #ddd;">
-          <td style="padding:12px;">Medium (70–100 sq ft)</td>
-          <td style="padding:12px;">L-Shape</td>
-          <td style="padding:12px;">₹2L – ₹4.5L</td>
+      <table>
+        <tr>
+          <th>Kitchen Size</th>
+          <th>Typical Layout</th>
+          <th>Estimated Budget Range</th>
         </tr>
         <tr>
-          <td style="padding:12px;">Large (100–150 sq ft)</td>
-          <td style="padding:12px;">U-Shape / Parallel</td>
-          <td style="padding:12px;">₹4L – ₹7L</td>
+          <td>Small (50–70 sq ft)</td>
+          <td>Straight</td>
+          <td>₹1.2L – ₹2L</td>
+        </tr>
+        <tr>
+          <td>Medium (70–100 sq ft)</td>
+          <td>L-Shape</td>
+          <td>₹2L – ₹4.5L</td>
+        </tr>
+        <tr>
+          <td>Large (100–150 sq ft)</td>
+          <td>U-Shape / Parallel</td>
+          <td>₹4L – ₹7L</td>
         </tr>
       </table>
 
@@ -135,34 +249,34 @@
       <h2>5. How to Choose the Right Contractor</h2>
       <p>Never rely on a verbal quote. Always insist on a line-item breakdown showing the exact brand of plywood, laminate thickness, and hardware brand being used. At Gharwaala, our verified local professionals provide absolute transparency, ensuring the materials promised are the materials delivered.</p>
 
-      <div class="cta-box" style="margin: 4rem 0;">
-        <h3 style="color: white;">Get Your Free Delhi NCR Kitchen Estimate</h3>
-        <p style="color: rgba(255, 255, 255, 0.95) !important;">Stop guessing your budget. Let our experts provide a transparent, no-obligation quote tailored to your exact floor plan.</p>
-        <button class="btn-white cta-trigger">Get Free Estimate</button>
-      </div>
+      <div class="inline-cta">
+  <h3>Get Your Free Delhi NCR Kitchen Estimate</h3>
+  <p>Stop guessing your budget. Let our experts provide a transparent, no-obligation quote tailored to your exact floor plan.</p>
+  <button class="btn-white cta-trigger">Get Free Estimate</button>
+</div>
 
       <h2>Frequently Asked Questions</h2>
-      <div itemscope itemtype="https://schema.org/FAQPage">
-        <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" style="margin-bottom:1rem;">
-          <h3 itemprop="name" style="font-size:1.1rem; color:var(--color-primary);">What is the average modular kitchen cost in Delhi?</h3>
+      <div class="faq-container" itemscope itemtype="https://schema.org/FAQPage">
+        <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+          <h3 itemprop="name">What is the average modular kitchen cost in Delhi?</h3>
           <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
             <p itemprop="text">The average cost for a standard 2BHK kitchen in Delhi ranges between ₹1.5 Lakhs to ₹3 Lakhs, depending heavily on hardware and finishes.</p>
           </div>
         </div>
-        <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" style="margin-bottom:1rem;">
-          <h3 itemprop="name" style="font-size:1.1rem; color:var(--color-primary);">Which material is best for modular kitchens in Delhi?</h3>
+        <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+          <h3 itemprop="name">Which material is best for modular kitchens in Delhi?</h3>
           <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
             <p itemprop="text">BWP (Boiling Water Proof) Plywood is highly recommended for base cabinets to withstand Indian cooking styles and cleaning habits.</p>
           </div>
         </div>
-        <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" style="margin-bottom:1rem;">
-          <h3 itemprop="name" style="font-size:1.1rem; color:var(--color-primary);">How long does it take to build a modular kitchen in Delhi NCR?</h3>
+        <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+          <h3 itemprop="name">How long does it take to build a modular kitchen in Delhi NCR?</h3>
           <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
             <p itemprop="text">A factory-finished modular kitchen typically takes 3 to 5 weeks from the time of design approval to final installation.</p>
           </div>
         </div>
-        <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" style="margin-bottom:1rem;">
-          <h3 itemprop="name" style="font-size:1.1rem; color:var(--color-primary);">Are there hidden costs in modular kitchen installation?</h3>
+        <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+          <h3 itemprop="name">Are there hidden costs in modular kitchen installation?</h3>
           <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
             <p itemprop="text">Yes, civil work (plumbing/electrical changes), countertops (granite/quartz), and appliances are usually billed separately from the cabinetry.</p>
           </div>
@@ -170,9 +284,7 @@
       </div>
     </article>
   
-    <div style="text-align: center; margin-top: 4rem;">
-      <button class="btn btn-primary cta-trigger">Get Free Estimate in Delhi NCR</button>
-    </div>
+    
   </main>
 
   <footer class="site-footer" id="contact">
