@@ -231,6 +231,35 @@
       box-shadow: 0 10px 20px rgba(0,0,0,0.1);
     }
     @media (max-width: 768px) {
+      .article-container {
+        padding: 3rem 15px;
+      }
+      .article-body {
+        font-size: 1.02rem;
+        line-height: 1.75;
+      }
+      .article-body p:first-of-type {
+        font-size: 1.15rem;
+        line-height: 1.65;
+      }
+      .article-body p:first-of-type::first-letter {
+        float: none;
+        font-size: inherit;
+        line-height: inherit;
+        margin: 0;
+      }
+      .article-body h2 {
+        font-size: 1.65rem;
+        margin-top: 2.75rem;
+      }
+      .article-body h3 {
+        font-size: 1.3rem;
+      }
+      .article-body blockquote {
+        font-size: 1.1rem;
+        margin: 2.25rem 0;
+        padding: 1.25rem 1rem;
+      }
       .article-meta {
         flex-direction: column;
         gap: 8px;
@@ -239,6 +268,19 @@
       .author-box {
         flex-direction: column;
         text-align: center;
+      }
+      .cta-box {
+        padding: 2.5rem 1.25rem;
+      }
+      .cta-box h3 {
+        font-size: 1.6rem;
+      }
+      .cta-box p {
+        font-size: 1rem;
+      }
+      .btn-white {
+        width: 100%;
+        max-width: 280px;
       }
     }
   </style>
@@ -284,8 +326,8 @@
   <!-- Navbar -->
   <nav class="navbar">
     <div class="container nav-container">
-      <a href="/" class="logo" style="display: flex; align-items: center;">
-        <img src="/custom-logo.png" alt="Gharwaala logo - kitchen design service in Delhi NCR" style="height: 38px; transform: scale(2.2) translateY(3px); transform-origin: left center; margin-right: 32px; mix-blend-mode: multiply; object-fit: contain;">
+      <a href="/" class="logo">
+        <img src="/custom-logo.png" alt="Gharwaala logo - kitchen design service in Delhi NCR" class="logo-mark">
         <span style="color: var(--color-primary); font-weight: 800; letter-spacing: -0.5px;">Ghar</span><span style="font-weight: 300; opacity: 0.7;">waala</span><span style="color: var(--color-primary); font-weight: 900;">.</span>
       </a>
       <button class="menu-toggle" id="mobile-menu-btn" aria-label="Toggle navigation">

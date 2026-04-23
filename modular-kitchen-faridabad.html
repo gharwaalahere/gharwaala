@@ -166,14 +166,71 @@
       font-family: 'Outfit', sans-serif; text-transform: uppercase; letter-spacing: 1px;
     }
     .btn-white:hover { transform: translateY(-4px); box-shadow: 0 15px 30px rgba(0,0,0,0.15); }
+    @media (max-width: 768px) {
+      .city-hero-wrapper {
+        padding: 7rem 15px 5rem 15px;
+        margin-bottom: 2.5rem;
+      }
+      .city-hero-wrapper p.subtitle {
+        font-size: 1.05rem;
+      }
+      .article-container {
+        padding: 0 15px 3rem 15px;
+      }
+      .article-body {
+        font-size: 1.02rem;
+        line-height: 1.75;
+      }
+      .article-body p:first-of-type {
+        font-size: 1.15rem;
+        line-height: 1.65;
+      }
+      .article-body p:first-of-type::first-letter {
+        float: none;
+        font-size: inherit;
+        line-height: inherit;
+        margin: 0;
+      }
+      .article-body h2 {
+        font-size: 1.7rem;
+        margin-top: 3rem;
+      }
+      .article-body h3 {
+        font-size: 1.3rem;
+      }
+      .faq-item {
+        padding: 1.25rem;
+      }
+      .faq-item h3 {
+        font-size: 1.15rem;
+      }
+      .faq-item p {
+        font-size: 1rem;
+      }
+      .inline-cta {
+        padding: 2.5rem 1.25rem;
+        margin-top: 3.5rem;
+      }
+      .inline-cta h3 {
+        font-size: 1.65rem;
+      }
+      .inline-cta p {
+        font-size: 1rem;
+      }
+      .btn-white {
+        width: 100%;
+        max-width: 320px;
+        padding: 1rem 1.5rem;
+      }
+    }
   </style>
 
 </head>
 <body>
   <nav class="navbar">
     <div class="container nav-container">
-      <a href="/" class="logo" style="display: flex; align-items: center;">
-        <img src="/custom-logo.png" alt="Gharwaala logo - kitchen design service in Delhi NCR" style="height: 38px; transform: scale(2.2) translateY(3px); transform-origin: left center; margin-right: 32px; mix-blend-mode: multiply; object-fit: contain;">
+      <a href="/" class="logo">
+        <img src="/custom-logo.png" alt="Gharwaala logo - kitchen design service in Delhi NCR" class="logo-mark">
         <span style="color: var(--color-primary); font-weight: 800; letter-spacing: -0.5px;">Ghar</span><span style="font-weight: 300; opacity: 0.7;">waala</span><span style="color: var(--color-primary); font-weight: 900;">.</span>
       </a>
       <button class="menu-toggle" id="mobile-menu-btn" aria-label="Toggle navigation">
