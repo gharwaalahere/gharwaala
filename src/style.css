@@ -1400,7 +1400,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+  border: 3px solid white;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
   z-index: 9999;
   transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   cursor: pointer;
@@ -1409,7 +1410,7 @@
 
 .whatsapp-floating-btn:hover {
   transform: translateY(-50%) scale(1.1);
-  box-shadow: 0 6px 16px rgba(37, 211, 102, 0.5);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
   color: white;
 }
 
