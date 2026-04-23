@@ -35,5 +35,9 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
+          # Increase timeout to 5 minutes to prevent control socket timeouts
+          timeout: 300000
           # The local directory we want to upload (Vite outputs to dist/)
           local-dir: ./dist/
+          # Often required for Hostinger to prevent root permission errors
+          server-dir: ./public_html/
