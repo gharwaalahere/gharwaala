@@ -1372,3 +1372,36 @@
 .popup-content button {
   width: 100%;
 }
+
+/* ==========================================
+   WhatsApp Floating Button
+   ========================================== */
+.whatsapp-floating-btn {
+  position: fixed;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  background-color: #25D366;
+  color: white;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+  z-index: 9999;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.whatsapp-floating-btn:hover {
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 6px 16px rgba(37, 211, 102, 0.5);
+  color: white;
+}
+
+.whatsapp-floating-btn svg {
+  fill: currentColor;
+}

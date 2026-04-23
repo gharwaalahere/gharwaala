@@ -1,24 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Explore our extensive gallery of Indian modular, modern, and minimal kitchen designs.">
-  <title>Gharwaala | All Kitchen Designs</title>
-  <meta property="og:title" content="Gharwaala | Design Gallery" />
-  <meta property="og:description" content="Explore our extensive gallery of Indian modular, modern, and minimal kitchen designs." />
-  <meta property="og:image" content="https://gharwaala.com/modular_kitchen.jpg" />
-  <meta property="og:url" content="https://gharwaala.com/designs.html" />
-  <meta property="og:type" content="website" />
+  <meta name="description" content="Deciding between an open or closed kitchen layout? We weigh the pros and cons for Indian cooking habits.">
+  <title>Gharwaala | Open vs Closed Kitchens: The Verdict</title>
+  <meta property="og:title" content="Gharwaala | Open vs Closed Kitchens: The Verdict" />
+  <meta property="og:description" content="Deciding between an open or closed kitchen layout? We weigh the pros and cons for Indian cooking habits." />
+  <meta property="og:image" content="https://gharwaala.com/modern_kitchen.jpg" />
+  <meta property="og:url" content="https://gharwaala.com/open-vs-closed-kitchens.html" />
+  <meta property="og:type" content="article" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/src/style.css" />
+  <style>
+    .post-content h2 { margin-top: 2.5rem; margin-bottom: 1rem; color: var(--color-text); }
+    .post-content p { color: var(--color-text-light); line-height: 1.8; margin-bottom: 1.5rem; font-size: 1.05rem; }
+    .post-content ul { margin-left: 1.5rem; margin-bottom: 1.5rem; color: var(--color-text-light); line-height: 1.8; font-size: 1.05rem; }
+    .post-content li { margin-bottom: 0.5rem; }
+    .post-hero { padding: 8rem 0 4rem 0; background: url('/modern_kitchen.jpg') center/cover no-repeat; position: relative; }
+    .post-hero-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.6); }
+    .post-hero-content { position: relative; z-index: 2; color: white; text-align: center; }
+  </style>
 </head>
-
 <body>
+  
   <!-- Navbar -->
   <nav class="navbar">
     <div class="container nav-container">
@@ -38,77 +46,36 @@
     </div>
   </nav>
 
-  <!-- All Kitchen Styles -->
-  <section class="styles-section">
-    <div class="container">
-      <h1 class="section-title">Explore All Kitchen Designs</h1>
-      <p class="text-center" style="margin-bottom: 3rem;">Browse through our extensive catalog of budget-friendly,
-        premium kitchen designs built for modern Indian homes.</p>
+  
+  <section class="post-hero">
+    <div class="post-hero-overlay"></div>
+    <div class="container post-hero-content">
+      <h1 style="font-size: 3rem; margin-bottom: 1rem; text-shadow: 0 4px 10px rgba(0,0,0,0.3);">Open vs Closed Kitchens: The Verdict</h1>
+    </div>
+  </section>
 
-      <div class="styles-grid">
-        <!-- Existing 3 -->
-        <div class="style-card" onclick="openGallery('modular')">
-          <img src="/modular_kitchen.jpg" alt="Modular Kitchen" loading="lazy" />
-          <div class="style-badge">Top Choice</div>
-          <div class="style-banner">
-            <h3>Modular Kitchen</h3>
-            <p>Smart, factory-finished units designed for maximum storage and flawless aesthetics in any space.</p>
-            <div class="style-action">Explore Gallery <span>→</span></div>
-          </div>
-        </div>
-        <div class="style-card" onclick="openGallery('modern')">
-          <img src="/modern_kitchen.jpg" alt="Modern Kitchen" loading="lazy" />
-          <div class="style-badge" style="background:#1f2937; color:#fff;">Trending</div>
-          <div class="style-banner">
-            <h3>Modern Kitchen</h3>
-            <p>Clean lines, high-gloss finishes, and seamless built-in appliances for a premium contemporary look.</p>
-            <div class="style-action">Explore Gallery <span>→</span></div>
-          </div>
-        </div>
-        <div class="style-card" onclick="openGallery('minimal')">
-          <img src="/minimal_kitchen.jpg" alt="Minimal Kitchen" loading="lazy" />
-          <div class="style-banner">
-            <h3>Minimal Kitchen</h3>
-            <p>Clutter-free elegance featuring handleless cabinets, neutral tones, and highly practical layouts.</p>
-            <div class="style-action">Explore Gallery <span>→</span></div>
-          </div>
-        </div>
-
-        <!-- New 3 -->
-        <div class="style-card" onclick="openGallery('l_shape')">
-          <img src="/l_shape_kitchen.jpg" alt="L-Shaped Kitchen" loading="lazy" />
-          <div class="style-badge" style="background:#b45309; color:#fff;">Efficient</div>
-          <div class="style-banner">
-            <h3>L-Shaped Kitchen</h3>
-            <p>The ultimate classic layout perfect for Indian homes, maximizing corner space and offering an ideal work triangle.</p>
-            <div class="style-action">Explore Gallery <span>→</span></div>
-          </div>
-        </div>
-        <div class="style-card" onclick="openGallery('u_shape')">
-          <img src="/u_shape_kitchen.jpg" alt="U-Shaped Kitchen" loading="lazy" />
-          <div class="style-banner">
-            <h3>U-Shaped Kitchen</h3>
-            <p>Designed for large families, offering three uninterrupted walls of dense, massive storage capacity.</p>
-            <div class="style-action">Explore Gallery <span>→</span></div>
-          </div>
-        </div>
-        <div class="style-card" onclick="openGallery('open')">
-          <img src="/open_kitchen.jpg" alt="Open Kitchen" loading="lazy" />
-          <div class="style-banner">
-            <h3>Open Kitchen</h3>
-            <p>A beautiful architectural statement that dissolves boundaries, seamlessly integrating into your living and dining rooms.</p>
-            <div class="style-action">Explore Gallery <span>→</span></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="text-center" style="margin-top: 4rem;">
-        <h2>Start your kitchen journey today</h2>
-        <button class="btn btn-primary cta-trigger mt-4">Design My Kitchen</button>
+  <section style="padding: 5rem 0; background: #fafafa;">
+    <div class="container post-content" style="max-width: 800px; margin: 0 auto; background: white; padding: 3rem; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.05);">
+      
+      <p>Are open kitchens practical in India? We explore the pros and cons of spatial layouts and ventilation systems to help you decide which layout suits your lifestyle.</p>
+      <h2>The Open Kitchen Advantage</h2>
+      <p>Open kitchens dissolve the boundary between cooking and living areas. They are perfect for entertaining, allowing the cook to interact with guests or keep an eye on children. They also make the entire home feel larger and more connected.</p>
+      <h2>The Closed Kitchen Reality</h2>
+      <p>Indian cooking often involves heavy spices, frying, and strong aromas. A closed kitchen contains the smoke, smells, and noise, preventing them from permeating the living room. It also hides the inevitable clutter of meal prep from guests.</p>
+      <h2>The Best of Both Worlds: The Semi-Open Kitchen</h2>
+      <p>Many homeowners are opting for a hybrid approach. Installing sliding glass partitions or a large pass-through window offers the visual connectivity of an open layout with the functional isolation of a closed room.</p>
+      <h2>Ventilation is Key</h2>
+      <p>If you choose an open kitchen, investing in a high-suction, low-noise chimney (minimum 1200 m³/hr) is non-negotiable. Proper cross-ventilation will ensure your living room stays fresh.</p>
+    
+      <hr style="margin: 3rem 0; border: none; border-top: 1px solid #e5e7eb;" />
+      <div style="text-align: center;">
+        <h3 style="margin-bottom: 1rem;">Ready to upgrade your kitchen?</h3>
+        <button class="btn btn-primary cta-trigger">Design My Kitchen</button>
       </div>
     </div>
   </section>
 
+  
   <!-- Seamless Contact & Footer -->
   <footer class="site-footer" id="contact">
     <div class="container footer-grid">
@@ -143,7 +110,6 @@
     </div>
   </footer>
 
-  <!-- Lead Generation Form Modal -->
   <div class="modal-overlay" id="leadModal" style="opacity: 0; visibility: hidden;">
     <div class="modal-content">
       <button class="close-btn" id="closeModal">&times;</button>
@@ -174,24 +140,14 @@
           </select>
         </div>
         <button type="submit" class="btn btn-primary w-100" id="submitBtn">Submit Request</button>
+
         <div id="formMsg" class="form-message"></div>
       </form>
     </div>
   </div>
 
-  <!-- Photo Gallery Modal -->
-  <div id="photoGalleryModal" class="modal-overlay">
-    <div class="modal-content photo-gallery-content">
-      <button class="close-btn" id="closeGalleryBtn">✕</button>
-      <h2 id="galleryModeTitle" class="section-title text-center" style="margin-bottom: 2rem;">Gallery</h2>
-      <div id="galleryPhotoGrid" class="photo-gallery-grid">
-        <!-- JS injected photos go here -->
-      </div>
-    </div>
-  </div>
-
   <!-- Scripts -->
   <script type="module" src="/src/main.js"></script>
-</body>
 
+</body>
 </html>
