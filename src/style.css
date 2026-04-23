@@ -1417,3 +1417,17 @@
 .whatsapp-floating-btn svg {
   fill: currentColor;
 }
+
+@media (max-width: 768px) {
+  .whatsapp-floating-btn {
+    top: auto;
+    bottom: 24px;
+    right: 16px;
+    transform: none;
+    width: 52px;
+    height: 52px;
+  }
+  .whatsapp-floating-btn:hover {
+    transform: scale(1.1);
+  }
+}
