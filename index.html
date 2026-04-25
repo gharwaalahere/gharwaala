@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://api.web3forms.com">
   <link rel="preconnect" href="https://qrqsodxscpxzvzgxvixs.supabase.co">
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/src/style.css" />
   <meta name="theme-color" content="#0d9488">
   <script>
@@ -101,60 +101,52 @@
   <!-- 1. Full Width Hero Section -->
   <header class="home-hero">
     <div class="home-hero-overlay"></div>
-    <div class="container home-hero-container">
-      <div class="home-hero-content">
-        <h1 class="hero-title" style="font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 800; line-height: 1.1; margin-bottom: 1.5rem; letter-spacing: -0.03em;">Modular Kitchen Design in Delhi NCR — Within Your Budget</h1>
-        <p class="subtext">Get your kitchen designed and built by trusted local experts &mdash; within your budget, without confusion.</p>
-        
-        <div class="hero-cta-group">
-          <button class="btn btn-primary btn-hero cta-trigger">Design My Kitchen</button>
-          <p class="micro-text text-center mt-2">Takes less than 30 seconds</p>
-        </div>
-
-        <div class="hero-trust-badges">
-          <span>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-              <polyline points="22 4 12 14.01 9 11.01"></polyline>
-            </svg>
-            Trusted Local Experts
-          </span>
-          <span>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-              <polyline points="22 4 12 14.01 9 11.01"></polyline>
-            </svg>
-            Budget-Friendly Solutions
-          </span>
-          <span>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-              <polyline points="22 4 12 14.01 9 11.01"></polyline>
-            </svg>
-            Simple & Hassle-Free Process
-          </span>
-        </div>
+    <div class="container">
+      <div class="hero-badge">Boutique Interior Design Studio</div>
+      <h1>Designer Kitchens,<br>Built for Your Life.</h1>
+      <p>Experience the perfect blend of high-end aesthetics and functional modular design. From concept to installation, we create kitchens that inspire.</p>
+      <div class="hero-cta-group">
+        <a href="#contact" class="btn btn-primary hero-btn cta-trigger">Design My Kitchen</a>
       </div>
     </div>
   </header>
 
+  <!-- Partners Section -->
+  <section class="partners-section" style="padding: 4rem 0; border-bottom: 1px solid var(--color-border); background: var(--color-bg-alt);">
+    <div class="container">
+      <p class="text-center" style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; color: var(--color-text-light); margin-bottom: 2.5rem; font-weight: 600;">As Seen In & Trusted By</p>
+      <div style="display: flex; justify-content: center; align-items: center; gap: 4rem; flex-wrap: wrap; opacity: 0.6; filter: grayscale(1);">
+        <span style="font-weight: 800; font-size: 1.5rem; letter-spacing: -1px;">INTERIORS.</span>
+        <span style="font-weight: 700; font-size: 1.25rem;">ModernHome</span>
+        <span style="font-weight: 900; font-size: 1.5rem; color: #000;">DWELL</span>
+        <span style="font-weight: 600; font-size: 1.25rem; font-family: serif; font-style: italic;">ArchitecturalDigest</span>
+        <span style="font-weight: 800; font-size: 1.4rem;">DESIGN+</span>
+      </div>
+    </div>
+  </section>
+
   <!-- 2. Trust Section -->
-  <section class="trust-section bg-light">
-    <div class="container trust-grid">
-      <div class="trust-card">
-        <div class="trust-icon">💰</div>
-        <h3>Budget-Friendly</h3>
-        <p>Transparent pricing that works for your wallet.</p>
-      </div>
-      <div class="trust-card">
-        <div class="trust-icon">👷</div>
-        <h3>Verified Professionals</h3>
-        <p>We connect you only with vetted local experts.</p>
-      </div>
-      <div class="trust-card">
-        <div class="trust-icon">✨</div>
-        <h3>Design + Execution</h3>
-        <p>End-to-end support for a seamless experience.</p>
+  <!-- Trust Section -->
+  <section class="trust-section section-padding">
+    <div class="container">
+      <h2 class="section-title text-center">Why Choose a Designer-Led Approach?</h2>
+      <p class="text-center" style="max-width: 700px; margin: 0 auto 5rem auto; color: var(--color-text-light);">We bridge the gap between expensive luxury studios and low-quality local contractors.</p>
+      <div class="trust-grid">
+        <div class="trust-card">
+          <div class="trust-icon">✨</div>
+          <h3>Custom Aesthetics</h3>
+          <p>Every kitchen is uniquely designed by our interior experts to match your home's DNA.</p>
+        </div>
+        <div class="trust-card">
+          <div class="trust-icon">🤝</div>
+          <h3>Transparent Pricing</h3>
+          <p>Boutique quality without the boutique markup. No hidden fees, ever.</p>
+        </div>
+        <div class="trust-card">
+          <div class="trust-icon">🏠</div>
+          <h3>Local Mastery</h3>
+          <p>Direct access to Delhi NCR's most skilled craftsmen and premium materials.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -255,33 +247,67 @@
     </div>
   </section>
 
+  <!-- Testimonials Section -->
+  <section class="testimonials-section section-padding" style="background: var(--color-bg-alt);">
+    <div class="container">
+      <h2 class="section-title text-center">What Our Clients Say</h2>
+      <div class="styles-grid">
+        <div class="style-card" style="padding: 3rem; text-align: center; cursor: default;">
+          <p style="font-style: italic; font-size: 1.15rem; margin-bottom: 2rem;">"Gharwaala transformed our cramped kitchen into a modern masterpiece. The process was transparent and the designers really listened to our needs."</p>
+          <h4 style="font-family: 'Outfit', sans-serif; font-weight: 700;">Anjali Sharma</h4>
+          <p style="font-size: 0.85rem; color: var(--color-text-light);">South Delhi</p>
+        </div>
+        <div class="style-card" style="padding: 3rem; text-align: center; cursor: default;">
+          <p style="font-style: italic; font-size: 1.15rem; margin-bottom: 2rem;">"I was worried about the budget, but Gharwaala helped me choose the right materials to get a high-end look without overspending."</p>
+          <h4 style="font-family: 'Outfit', sans-serif; font-weight: 700;">Rahul Verma</h4>
+          <p style="font-size: 0.85rem; color: var(--color-text-light);">Noida Sector 62</p>
+        </div>
+        <div class="style-card" style="padding: 3rem; text-align: center; cursor: default;">
+          <p style="font-style: italic; font-size: 1.15rem; margin-bottom: 2rem;">"The installation was seamless. Their team was professional and the finishing on the cabinets is simply flawless."</p>
+          <h4 style="font-family: 'Outfit', sans-serif; font-weight: 700;">Priya Kapoor</h4>
+          <p style="font-size: 0.85rem; color: var(--color-text-light);">Gurugram</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Seamless Contact & Footer -->
   <footer class="site-footer" id="contact">
     <div class="container footer-grid">
       <div class="footer-brand">
         <h2 class="logo-white" style="display: flex; align-items: center; margin-bottom: 20px;">
           <img src="/custom-logo.webp" alt="Gharwaala logo - kitchen design service in Delhi NCR" style="height: 42px; transform: scale(2.2) translateY(3px); transform-origin: left center; margin-right: 36px; filter: brightness(0) invert(1); mix-blend-mode: screen; object-fit: contain;" loading="lazy" decoding="async">
-          <span style="font-weight: 800; letter-spacing: -0.5px;">Ghar</span><span style="font-weight: 300; opacity: 0.7;">waala</span><span style="color: var(--color-primary); font-weight: 900;">.</span>
+          <span style="font-weight: 800; letter-spacing: -0.5px;">Ghar</span><span style="font-weight: 300; opacity: 0.7;">waala</span><span style="color: var(--color-accent); font-weight: 900;">.</span>
         </h2>
-        <p>Transforming Indian kitchens with transparent pricing, trusted local professionals, and beautifully functional module designs.</p>
+        <p>Creating luxury kitchen experiences through transparent design and local craftsmanship.</p>
       </div>
       
-      <div class="footer-links">
-        <h3>Quick Links</h3>
-        <a href="/about.html">About Us</a>
-        <a href="/designs.html">Designs Gallery</a>
-        <a href="/blog.html">Blog</a>
-        <a href="/modular-kitchen-delhi.html">Modular Kitchens in Delhi</a>
-        <a href="/modular-kitchen-noida.html">Modular Kitchens in Noida</a>
-        <a href="/modular-kitchen-gurugram.html">Modular Kitchens in Gurugram</a>
-        <a href="/modular-kitchen-faridabad.html">Modular Kitchens in Faridabad</a>
-        <a href="/modular-kitchen-ghaziabad.html">Modular Kitchens in Ghaziabad</a>
-        <a href="/modular-kitchen-cost-delhi-ncr-2026.html">Delhi NCR Kitchen Cost Guide</a>
+      <div class="footer-links-group">
+        <div class="footer-col">
+          <h3>Company</h3>
+          <a href="/about.html">Our Story</a>
+          <a href="/designs.html">Design Gallery</a>
+          <a href="/blog.html">Journal</a>
+        </div>
+        <div class="footer-col">
+          <h3>Locations</h3>
+          <a href="/modular-kitchen-delhi.html">Delhi</a>
+          <a href="/modular-kitchen-noida.html">Noida</a>
+          <a href="/modular-kitchen-gurugram.html">Gurugram</a>
+          <a href="/modular-kitchen-faridabad.html">Faridabad</a>
+          <a href="/modular-kitchen-ghaziabad.html">Ghaziabad</a>
+        </div>
+        <div class="footer-col">
+          <h3>Resources</h3>
+          <a href="/modular-kitchen-cost-delhi-ncr-2026.html">Cost Guide</a>
+          <a href="/guide-to-kitchen-laminates-2026.html">Laminate Guide</a>
+          <a href="/#contact">Book Consultation</a>
+        </div>
       </div>
 
       <div class="footer-contact">
-        <h3>Contact Us</h3>
-        <p>Have questions? Reach out instantly.</p>
+        <h3>Concierge</h3>
+        <p>Reach out to our design consultants.</p>
         <a href="mailto:support@gharwaala.com" class="contact-pill">
           <span>📧</span> support@gharwaala.com
         </a>

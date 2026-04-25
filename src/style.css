@@ -2,25 +2,29 @@
    Gharwaala - Kitchen Startup Design System
    ========================================= */
 
-   :root {
-    /* Colors */
-    --color-primary: #0d9488;     /* Soft Teal */
-    --color-primary-dark: #0f766e;
-    --color-text: #2f2a24;        /* Deep Warm Charcoal */
-    --color-text-light: #6e675e;  /* Warm Slate */
-    --color-bg: #f5f2eb;          /* Japanese Japandi Sand Base */
-    --color-bg-light: #eae5d9;    /* Deeper warm contrast */
-    --color-border: #dcd7c9;      /* Taupe borders */
-    --color-card-bg: #ffffff;     /* Explicit interior card pop */
-    
-    /* Typography */
-    --font-primary: 'Outfit', sans-serif;
+:root {
+  /* Premium Designer Palette */
+  --color-primary: #111827; /* Midnight Charcoal */
+  --color-accent: #c5a059;  /* Champagne Gold */
+  --color-accent-soft: #fcf9f2;
+  --color-bg: #ffffff;
+  --color-bg-alt: #f8fafc;
+  --color-text: #374151;
+  --color-text-light: #6b7280;
+  --color-white: #ffffff;
+  --color-border: #e5e7eb;
   
-    /* Spacing & Layout */
-    --container-width: 1100px;
-    --border-radius: 12px;
-    --transition: all 0.3s ease;
-  }
+  /* Elevated Spacing & Shadows */
+  --section-padding: 8rem;
+  --container-width: 1200px;
+  --border-radius: 12px;
+  --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  
+  /* Transition Speed */
+  --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
   
   /* Reset */
   * {
@@ -105,16 +109,18 @@
   }
   
   /* ================= Typography ================= */
-  h1, h2, h3 {
-    font-weight: 700;
+  h1, h2, h3, .serif-heading {
+    font-family: 'Lora', serif;
+    font-weight: 600;
+    color: var(--color-primary);
     line-height: 1.2;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
   }
   
-  h1 { font-size: clamp(2.5rem, 5vw, 4rem); }
-  h2 { font-size: clamp(2rem, 4vw, 2.5rem); }
-  h3 { font-size: 1.25rem; }
-  p { color: var(--color-text-light); }
+  h1 { font-size: clamp(3rem, 7vw, 5rem); }
+  h2 { font-size: clamp(2.25rem, 5vw, 3.5rem); }
+  h3 { font-size: 1.75rem; }
+  p { color: var(--color-text-light); line-height: 1.8; }
   
   .section-title {
     text-align: center;
@@ -148,13 +154,14 @@
   
   /* ================= Navbar ================= */
   .navbar {
-    padding: 20px 0;
+    padding: 24px 0;
     border-bottom: 1px solid var(--color-border);
-    background-color: rgba(255, 255, 255, 0.95);
+    background-color: rgba(255, 255, 255, 0.9);
     position: sticky;
     top: 0;
     z-index: 50;
-    backdrop-filter: blur(8px);
+    backdrop-filter: blur(12px);
+    transition: var(--transition);
   }
   
   .nav-container {
@@ -218,49 +225,89 @@
   /* ================= Full Width Home Hero ================= */
   .home-hero {
     position: relative;
-    min-height: 85vh;
+    min-height: 95vh;
     display: flex;
     align-items: center;
     background-image: url('/indian_family_hero.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    overflow: hidden;
   }
 
   .home-hero-overlay {
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: linear-gradient(90deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.4) 50%, rgba(0,0,0,0) 100%);
+    background: linear-gradient(90deg, rgba(17, 24, 39, 0.9) 0%, rgba(17, 24, 39, 0.4) 60%, rgba(17, 24, 39, 0) 100%);
     z-index: 1;
   }
 
-  .home-hero-container {
+  .home-hero .container {
     position: relative;
     z-index: 2;
-    width: 100%;
+    padding-top: 4rem;
   }
 
-  .home-hero-content {
-    max-width: 850px;
-    color: #fff;
+  .hero-badge {
+    display: inline-block;
+    padding: 0.5rem 1.25rem;
+    background: rgba(197, 160, 89, 0.15);
+    color: var(--color-accent);
+    border: 1px solid rgba(197, 160, 89, 0.3);
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    backdrop-filter: blur(4px);
   }
 
-  .home-hero-content h1 {
-    color: #fff;
+  .home-hero h1 {
+    font-size: clamp(3rem, 7vw, 5rem);
+    color: white;
+    max-width: 800px;
     margin-bottom: 1.5rem;
-    font-size: clamp(2.5rem, 6vw, 4.5rem);
-    font-weight: 800;
+    font-weight: 700;
+    letter-spacing: -0.03em;
     line-height: 1.1;
-    letter-spacing: -1px;
-    text-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    font-family: 'Lora', serif;
   }
 
-  .home-hero-content .subtext {
+  .home-hero p {
     font-size: 1.35rem;
-    margin-bottom: 2.5rem;
-    color: rgba(255, 255, 255, 0.95);
-    line-height: 1.6;
-    max-width: 700px;
+    color: rgba(255, 255, 255, 0.8);
+    max-width: 600px;
+    margin-bottom: 3.5rem;
+    font-weight: 300;
+  }
+
+  .hero-cta-group {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+  }
+
+  .btn-primary.hero-btn {
+    padding: 1.25rem 3.5rem;
+    font-size: 1.15rem;
+    background: var(--color-accent);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-weight: 700;
+    box-shadow: 0 15px 30px rgba(197, 160, 89, 0.3);
+    transform: translateY(0);
+    transition: var(--transition);
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .btn-primary.hero-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(197, 160, 89, 0.4);
+    background: #b08e4d;
+  }
     text-shadow: 0 2px 8px rgba(0,0,0,0.5);
   }
 
@@ -370,70 +417,77 @@
   
   .style-card {
     position: relative;
-    background-color: var(--color-card-bg);
+    background-color: var(--color-white);
     border-radius: var(--border-radius);
     overflow: hidden;
     cursor: pointer;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.06);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+    border: 1px solid var(--color-border);
   }
   
   .style-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--color-accent);
   }
   
   .style-card img {
-    height: 420px;
+    height: 400px;
     width: 100%;
     object-fit: cover;
-    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: var(--transition);
   }
   
   .style-card:hover img {
-    transform: scale(1.08); /* More dramatic zoom */
+    transform: scale(1.05);
   }
   
-  .style-banner {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    padding: 4rem 1.5rem 1.5rem;
-    background: linear-gradient(transparent, rgba(0,0,0,0.6) 30%, rgba(0,0,0,0.95));
-    color: #fff;
-    transition: all 0.4s ease;
-  }
-  
-  .style-card:hover .style-banner {
-    padding-bottom: 2rem; /* Smooth slide up on hover */
-  }
-
-  .style-banner h3 {
-    font-size: 1.35rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-    color: #fff;
-  }
-  
-  .style-banner p {
-    font-size: 0.95rem;
-    color: rgba(255, 255, 255, 0.85);
-    line-height: 1.5;
-    margin: 0;
-  }
-
   .style-badge {
     position: absolute;
     top: 1.5rem;
-    left: 1.5rem;
-    background: rgba(255, 255, 255, 0.95);
-    color: var(--color-text);
-    padding: 0.4rem 1rem;
-    border-radius: 50px;
-    font-size: 0.8rem;
+    right: 1.5rem;
+    padding: 0.5rem 1rem;
+    background: var(--color-primary);
+    color: white;
+    font-size: 0.7rem;
     font-weight: 700;
     text-transform: uppercase;
+    letter-spacing: 1.5px;
+    border-radius: 4px;
+    z-index: 2;
+  }
+
+  .style-banner {
+    padding: 2.5rem;
+    background: white;
+    transition: var(--transition);
+  }
+
+  .style-banner h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+    font-family: 'Lora', serif;
+    font-weight: 600;
+  }
+
+  .style-banner p {
+    color: var(--color-text-light);
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
+
+  .style-action {
+    font-weight: 700;
+    color: var(--color-accent);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+  }
     letter-spacing: 0.5px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.15);
     z-index: 2;
@@ -978,16 +1032,16 @@
   
   /* ================= Seamless Contact & Footer ================= */
   .site-footer {
-    background-color: #111827; /* Dark slate */
-    color: #f9fafb;
-    padding-top: 5rem;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    padding: var(--section-padding) 0 4rem 0;
   }
 
   .footer-grid {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-columns: 1.5fr 2fr 1fr;
     gap: 4rem;
-    margin-bottom: 4rem;
+    margin-bottom: 6rem;
   }
 
   .footer-brand .logo-white {
@@ -999,52 +1053,69 @@
   }
 
   .footer-brand p {
-    color: #9ca3af;
-    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 1rem;
+    font-size: 1rem;
+    line-height: 1.7;
     max-width: 85%;
   }
 
-  .footer-links h3, .footer-contact h3 {
-    color: #fff;
-    font-size: 1.2rem;
-    margin-bottom: 1.5rem;
-    position: relative;
+  .footer-links-group {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
   }
 
-  .footer-links h3::after, .footer-contact h3::after {
-    content: '';
-    position: absolute;
-    left: 0; bottom: -0.5rem;
-    width: 30px; height: 3px;
-    background: var(--color-primary);
+  .footer-col h3, .footer-contact h3 {
+    color: var(--color-white);
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 2rem;
+    font-weight: 700;
   }
 
-  .footer-links a {
+  .footer-col a {
     display: block;
-    color: #9ca3af;
+    color: rgba(255, 255, 255, 0.6);
     text-decoration: none;
-    margin-bottom: 0.8rem;
-    transition: color 0.3s;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+    transition: var(--transition);
   }
 
-  .footer-links a:hover {
-    color: var(--color-primary);
+  .footer-col a:hover {
+    color: var(--color-accent);
+    transform: translateX(5px);
   }
 
   .footer-contact p {
-    color: #9ca3af;
+    color: rgba(255, 255, 255, 0.6);
     margin-bottom: 1.5rem;
   }
 
   .contact-pill {
     display: flex;
     align-items: center;
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.1);
-    padding: 0.8rem 1.2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1rem 1.5rem;
     border-radius: 50px;
-    color: #fff;
+    color: var(--color-white);
     text-decoration: none;
+    margin-bottom: 1rem;
+    transition: var(--transition);
+    font-size: 0.95rem;
+  }
+
+  .contact-pill:hover {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--color-primary);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(197, 160, 89, 0.2);
+  }
     margin-bottom: 1rem;
     transition: all 0.3s;
     width: 100%;
@@ -1098,25 +1169,7 @@
     }
 
     .home-hero-overlay {
-      background: linear-gradient(180deg, rgba(0, 0, 0, 0.8) 0%, rgba(0,0,0,0.3) 100%);
-    }
-
-    .home-hero-content {
-      text-align: center;
-      margin: 0 auto;
-    }
-
-    .hero-img {
-      height: 300px !important;
-    }
-  
-    .hero, .trust-section, .styles-section, .how-it-works, .final-cta {
-      padding: 3rem 0 !important;
-    }
-    
-    .site-footer {
-      padding-top: 3rem !important;
-      padding-bottom: 0 !important;
+      background: linear-gradient(180deg, rgba(17, 24, 39, 0.95) 0%, rgba(17, 24, 39, 0.5) 100%);
     }
 
     .nav-container {
@@ -1124,59 +1177,76 @@
       justify-content: space-between;
       align-items: center;
       position: relative;
-      gap: 0.75rem;
-    }
-
-    .logo {
-      font-size: 1.7rem;
-      max-width: calc(100% - 56px);
     }
 
     .logo-mark {
-      height: 30px;
-      transform: scale(1.55) translateY(2px);
-      margin-right: 18px;
-    }
-
-    .menu-toggle {
-      display: block;
-      flex-shrink: 0;
+      height: 32px;
+      margin-right: 20px;
     }
 
     .nav-links {
-      display: none; /* Hide by default on mobile */
+      display: none;
       position: absolute;
       top: 100%;
       left: 0;
       width: 100%;
-      background: rgba(255, 255, 255, 0.98);
+      background: white;
       flex-direction: column;
-      padding: 1.5rem 0;
-      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-      border-bottom-left-radius: var(--border-radius);
-      border-bottom-right-radius: var(--border-radius);
-      border: 1px solid var(--color-border);
-      border-top: none;
-      text-align: center;
-      z-index: 40;
+      padding: 1rem 0;
+      box-shadow: var(--shadow-lg);
+      border-top: 1px solid var(--color-border);
     }
 
     .nav-links.active {
       display: flex;
     }
 
-    .modal-content {
-      padding: 1.5rem;
-      margin: 1rem;
-      max-height: 90vh;
-      overflow-y: auto;
+    .home-hero {
+      text-align: center;
+      min-height: 80vh;
     }
 
-    /* Footer grid tweaks */
+    .home-hero .container {
+      padding-top: 2rem;
+    }
+
+    .home-hero h1 {
+      font-size: 3rem;
+    }
+
+    .hero-cta-group {
+      justify-content: center;
+      align-items: center;
+    }
+  
+    .hero, .trust-section, .styles-section, .how-it-works, .final-cta {
+      padding: var(--section-padding) 0 !important;
+    }
+    
+    .site-footer {
+      padding: 4rem 0 !important;
+      text-align: center;
+    }
+
     .footer-grid {
       grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    .footer-links-group {
+      grid-template-columns: 1fr;
       gap: 2.5rem;
-      text-align: center;
+    }
+
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .footer-col a:hover {
+      transform: none;
+    }
       margin-bottom: 1.5rem;
     }
     
