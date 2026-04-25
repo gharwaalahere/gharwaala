@@ -29,15 +29,27 @@ jobs:
           VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
           VITE_WEB3FORMS_ACCESS_KEY: ${{ secrets.VITE_WEB3FORMS_ACCESS_KEY }}
 
+      - name: Verify build output
+        run: |
+          echo "=== Files to deploy ==="
+          ls -la ./dist/
+          echo "=== HTML files ==="
+          find ./dist/ -name "*.html" | head -20
+
       - name: Sync via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
+          # Hostinger requires FTPS (FTP over TLS), not plain FTP
+          protocol: ftps
+          port: 21
           # Increase timeout to 5 minutes to prevent control socket timeouts
           timeout: 300000
           # The local directory we want to upload (Vite outputs to dist/)
           local-dir: ./dist/
-          # Often required for Hostinger to prevent root permission errors
+          # Deploy directly into public_html on Hostinger
           server-dir: ./public_html/
+          # Wipe remote clean before uploading to prevent stale/nested files
+          dangerous-clean-slate: true
