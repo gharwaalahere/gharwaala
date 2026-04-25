@@ -98,18 +98,28 @@
     </div>
   </nav>
 
-  <!-- 1. Full Width Hero Section -->
+  <!-- 1. Full Width Experiential Hero Section -->
   <header class="home-hero">
     <div class="home-hero-overlay"></div>
     <div class="container">
-      <div class="hero-badge">Boutique Interior Design Studio</div>
-      <h1>Designer Kitchens,<br>Built for Your Life.</h1>
-      <p>Experience the perfect blend of high-end aesthetics and functional modular design. From concept to installation, we create kitchens that inspire.</p>
-      <div class="hero-cta-group">
+      <div class="hero-badge animate-fade-up">Boutique Interior Design Studio</div>
+      <h1 class="animate-fade-up delay-1">Crafting the Heart<br>of Your Home.</h1>
+      <p class="animate-fade-up delay-2">Experience the perfect blend of high-end aesthetics and functional modular design. We move beyond utility to bring emotional luxury into your everyday life.</p>
+      <div class="hero-cta-group animate-fade-up delay-3">
         <a href="#contact" class="btn btn-primary hero-btn cta-trigger">Design My Kitchen</a>
+        <a href="#contact" class="btn btn-secondary hero-btn cta-trigger" style="background: transparent; border: 1px solid var(--color-white); color: var(--color-white);">Consult an Architect</a>
       </div>
     </div>
   </header>
+
+  <!-- Interactive Persona Quiz Banner -->
+  <section class="persona-quiz" style="background: var(--color-primary); color: var(--color-white); padding: 4rem 0; text-align: center;">
+    <div class="container">
+      <h2 class="serif-heading" style="color: var(--color-white); font-size: 2rem; margin-bottom: 1rem;">Not sure where to begin?</h2>
+      <p style="color: rgba(255,255,255,0.7); font-size: 1.1rem; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">Take our 2-minute architectural styling quiz to discover your true kitchen persona.</p>
+      <button class="btn btn-primary cta-trigger" style="background: var(--color-accent); color: var(--color-white); border: none; padding: 1rem 2rem; font-weight: 700; cursor: pointer; border-radius: 50px;">Find Your Kitchen Persona</button>
+    </div>
+  </section>
 
   <!-- Partners Section -->
   <section class="partners-section" style="padding: 4rem 0; border-bottom: 1px solid var(--color-border); background: var(--color-bg-alt);">
@@ -125,27 +135,33 @@
     </div>
   </section>
 
-  <!-- 2. Trust Section -->
-  <!-- Trust Section -->
-  <section class="trust-section section-padding">
+  <!-- The Gharwaala Signature -->
+  <section class="signature-section section-padding">
     <div class="container">
-      <h2 class="section-title text-center">Why Choose a Designer-Led Approach?</h2>
-      <p class="text-center" style="max-width: 700px; margin: 0 auto 5rem auto; color: var(--color-text-light);">We bridge the gap between expensive luxury studios and low-quality local contractors.</p>
-      <div class="trust-grid">
-        <div class="trust-card">
-          <div class="trust-icon">✨</div>
-          <h3>Custom Aesthetics</h3>
-          <p>Every kitchen is uniquely designed by our interior experts to match your home's DNA.</p>
+      <div class="signature-header" style="max-width: 600px; margin-bottom: 4rem;">
+        <h2 class="serif-heading" style="font-size: 2.5rem; margin-bottom: 1rem;">The Gharwaala Signature</h2>
+        <p style="font-size: 1.1rem; color: var(--color-text-light);">Our designer-led approach guarantees an architectural level of precision and luxury, distinguishing us from standard modular contractors.</p>
+      </div>
+      <div class="signature-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem;">
+        <div class="signature-step">
+          <svg class="thin-icon" style="width: 40px; height: 40px; color: var(--color-accent); margin-bottom: 1.5rem;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          <h4 style="font-family: var(--font-primary); font-size: 1.1rem; margin-bottom: 0.5rem; font-weight: 600;">Architectural Layout</h4>
+          <p style="font-size: 0.95rem; color: var(--color-text-light);">We optimize spatial flow and ergonomics before selecting finishes.</p>
         </div>
-        <div class="trust-card">
-          <div class="trust-icon">🤝</div>
-          <h3>Transparent Pricing</h3>
-          <p>Boutique quality without the boutique markup. No hidden fees, ever.</p>
+        <div class="signature-step">
+          <svg class="thin-icon" style="width: 40px; height: 40px; color: var(--color-accent); margin-bottom: 1.5rem;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+          <h4 style="font-family: var(--font-primary); font-size: 1.1rem; margin-bottom: 0.5rem; font-weight: 600;">Bespoke Materiality</h4>
+          <p style="font-size: 0.95rem; color: var(--color-text-light);">Curated selections of premium quartz, matte laminates, and solid wood.</p>
         </div>
-        <div class="trust-card">
-          <div class="trust-icon">🏠</div>
-          <h3>Local Mastery</h3>
-          <p>Direct access to Delhi NCR's most skilled craftsmen and premium materials.</p>
+        <div class="signature-step">
+          <svg class="thin-icon" style="width: 40px; height: 40px; color: var(--color-accent); margin-bottom: 1.5rem;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <h4 style="font-family: var(--font-primary); font-size: 1.1rem; margin-bottom: 0.5rem; font-weight: 600;">Millimeter Precision</h4>
+          <p style="font-size: 0.95rem; color: var(--color-text-light);">Factory-finished manufacturing ensures zero-gap installations.</p>
+        </div>
+        <div class="signature-step">
+          <svg class="thin-icon" style="width: 40px; height: 40px; color: var(--color-accent); margin-bottom: 1.5rem;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          <h4 style="font-family: var(--font-primary); font-size: 1.1rem; margin-bottom: 0.5rem; font-weight: 600;">White-Glove Handover</h4>
+          <p style="font-size: 0.95rem; color: var(--color-text-light);">Rigorous 5-point quality check by our senior lead designer.</p>
         </div>
       </div>
     </div>
@@ -188,6 +204,54 @@
       </div>
       <div class="text-center" style="margin-top: 3rem;">
         <a href="/designs.html" class="btn btn-outline">Explore All Designs</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Materiality Gallery -->
+  <section class="materiality-section section-padding">
+    <div class="container">
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 4rem;">
+        <div style="max-width: 500px;">
+          <h2 class="serif-heading" style="font-size: 2.5rem; margin-bottom: 1rem;">The Art of Materiality</h2>
+          <p style="color: var(--color-text-light); font-size: 1.1rem;">Experience the tactile difference of premium finishes. We source only the finest quartz, timber, and architectural hardware.</p>
+        </div>
+      </div>
+      <div style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 2rem; align-items: center;">
+        <div>
+          <img src="/materiality_quartz.webp" alt="Premium white quartz countertop" style="width: 100%; height: 500px; object-fit: cover; border-radius: var(--border-radius); box-shadow: var(--shadow-md);">
+        </div>
+        <div style="transform: translateY(40px);">
+          <img src="/materiality_wood.webp" alt="Premium walnut wood cabinetry" style="width: 100%; height: 600px; object-fit: cover; border-radius: var(--border-radius); box-shadow: var(--shadow-lg);">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Case Study -->
+  <section class="case-study-section section-padding" style="background: var(--color-bg-alt);">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;">
+        <div style="position: relative;">
+          <div style="position: absolute; top: -20px; left: -20px; width: 100px; height: 100px; background: var(--color-accent); z-index: 0; opacity: 0.2; border-radius: 50%;"></div>
+          <img src="/sharma_case_study.webp" alt="The Sharma Residence Kitchen Transformation" style="width: 100%; border-radius: var(--border-radius); box-shadow: var(--shadow-lg); position: relative; z-index: 1;">
+        </div>
+        <div>
+          <p style="text-transform: uppercase; letter-spacing: 2px; color: var(--color-accent); font-weight: 700; font-size: 0.85rem; margin-bottom: 1rem;">Featured Transformation</p>
+          <h2 class="serif-heading" style="font-size: 2.5rem; margin-bottom: 1.5rem;">The Sharma Residence</h2>
+          <p style="color: var(--color-text-light); font-size: 1.1rem; margin-bottom: 1.5rem; line-height: 1.8;">"We wanted a space that felt like a high-end European cafe, but functional enough for daily Indian cooking. Gharwaala didn't just build cabinets; they architected a completely new lifestyle for our family."</p>
+          <div style="display: flex; gap: 2rem; margin-bottom: 2rem; border-top: 1px solid var(--color-border); padding-top: 1.5rem;">
+            <div>
+              <span style="display: block; font-weight: 700; color: var(--color-text); font-size: 1.2rem;">Timeline</span>
+              <span style="color: var(--color-text-light); font-size: 0.9rem;">45 Days</span>
+            </div>
+            <div>
+              <span style="display: block; font-weight: 700; color: var(--color-text); font-size: 1.2rem;">Style</span>
+              <span style="color: var(--color-text-light); font-size: 0.9rem;">Modern Transitional</span>
+            </div>
+          </div>
+          <a href="#contact" class="btn btn-outline cta-trigger">Start Your Transformation</a>
+        </div>
       </div>
     </div>
   </section>

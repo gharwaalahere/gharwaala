@@ -4,26 +4,26 @@
 
 :root {
   /* Premium Designer Palette */
-  --color-primary: #111827; /* Midnight Charcoal */
-  --color-accent: #c5a059;  /* Champagne Gold */
-  --color-accent-soft: #fcf9f2;
-  --color-bg: #ffffff;
-  --color-bg-alt: #f8fafc;
-  --color-text: #374151;
-  --color-text-light: #6b7280;
+  --color-primary: #1c1b1a; /* Warm Charcoal */
+  --color-accent: #cda434;  /* Soft Champagne Gold */
+  --color-secondary: #2c4c3b; /* Deep Forest Green */
+  --color-bg: #faf9f6; /* Crisp Paper */
+  --color-bg-alt: #f0ece3;
+  --color-text: #2a2a2a;
+  --color-text-light: #666666;
   --color-white: #ffffff;
-  --color-border: #e5e7eb;
+  --color-border: #e8e4da;
   
   /* Elevated Spacing & Shadows */
   --section-padding: 8rem;
   --container-width: 1200px;
-  --border-radius: 12px;
-  --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
-  --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  --border-radius: 2px; /* Sharper, more architectural */
+  --shadow-sm: 0 20px 40px rgba(0, 0, 0, 0.03);
+  --shadow-md: 0 30px 60px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 40px 80px rgba(0, 0, 0, 0.08);
   
   /* Transition Speed */
-  --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
   
   /* Reset */
@@ -228,18 +228,42 @@
     min-height: 95vh;
     display: flex;
     align-items: center;
-    background-image: url('/indian_family_hero.webp');
-    background-size: cover;
+    background-image: url('/luxury_kitchen_hero.webp');
+    background-size: 110%; /* Zoomed in slightly for pan effect */
     background-position: center;
     background-repeat: no-repeat;
     overflow: hidden;
+    animation: slowPan 30s ease-in-out infinite alternate;
+  }
+
+  @keyframes slowPan {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
   }
 
   .home-hero-overlay {
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: linear-gradient(90deg, rgba(17, 24, 39, 0.9) 0%, rgba(17, 24, 39, 0.4) 60%, rgba(17, 24, 39, 0) 100%);
+    background: linear-gradient(90deg, rgba(28, 27, 26, 0.95) 0%, rgba(28, 27, 26, 0.6) 50%, rgba(28, 27, 26, 0.1) 100%);
     z-index: 1;
+  }
+
+  /* Micro-Animations */
+  .animate-fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .delay-1 { animation-delay: 0.2s; }
+  .delay-2 { animation-delay: 0.4s; }
+  .delay-3 { animation-delay: 0.6s; }
+
+  @keyframes fadeUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   .home-hero .container {
