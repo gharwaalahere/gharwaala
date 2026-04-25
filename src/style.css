@@ -1024,21 +1024,9 @@
     transform: translateY(-3px);
     box-shadow: 0 10px 20px rgba(197, 160, 89, 0.2);
   }
-    margin-bottom: 1rem;
-    transition: all 0.3s;
-    width: 100%;
-  }
-
   .contact-pill span {
     margin-right: 12px;
     font-size: 1.2rem;
-  }
-
-  .contact-pill:hover {
-    background: rgba(255,255,255,0.1);
-    border-color: var(--color-primary);
-    transform: translateY(-3px);
-    box-shadow: 0 4px 12px rgba(13, 148, 136, 0.2);
   }
 
   .footer-bottom {
@@ -1155,8 +1143,7 @@
     .footer-col a:hover {
       transform: none;
     }
-      margin-bottom: 1.5rem;
-    }
+
     
     .footer-brand .logo-white {
       justify-content: center;
