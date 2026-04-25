@@ -221,7 +221,7 @@
     min-height: 85vh;
     display: flex;
     align-items: center;
-    background-image: url('/indian_family_hero.png');
+    background-image: url('/indian_family_hero.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -648,7 +648,7 @@
 
   /* ================= Final CTA Glassmorphism ================= */
   .final-cta {
-    background: url('/modern_kitchen.jpg') center/cover fixed;
+    background: url('/modern_kitchen.webp') center/cover fixed;
     position: relative;
     padding: 6rem 0;
   }
@@ -859,7 +859,7 @@
   .blog-hero {
     position: relative;
     padding: 8rem 0;
-    background: url('/blog_hero_bg.jpg') center/cover no-repeat;
+    background: url('/blog_hero_bg.webp') center/cover no-repeat;
     display: flex;
     align-items: center;
   }

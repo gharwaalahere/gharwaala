@@ -295,64 +295,64 @@ document.addEventListener('DOMContentLoaded', () => {
 // ==========================================
 const galleryData = {
   modular: [
-    { url: "/modular_corner.jpg", title: "Smart Corner Storage", desc: "Magic corner units making use of blind spots." },
-    { url: "/modular_tandem.jpg", title: "Tandem Drawers", desc: "Heavy-duty tandem boxes for large utensils." },
-    { url: "/modular_overhead.jpg", title: "Overhead Cabinets", desc: "Hydraulic lift-ups for easy overhead access." },
-    { url: "/modular_pantry.jpg", title: "Tall Pantry", desc: "Pull-out pantry units for massive grocery storage." },
-    { url: "/modular_wicker.jpg", title: "Wicker Baskets", desc: "Integrated woven wicker baskets for dry vegetables." },
-    { url: "/modular_sink.jpg", title: "Under-Sink Utility", desc: "Detergent racks and bin holders under the sink." },
-    { url: "/modular_shutter.jpg", title: "Rolling Shutters", desc: "Aluminum rolling shutters to hide appliances." },
-    { url: "/modular_cutlery.jpg", title: "Cutlery Trays", desc: "Organized PVC cutlery inserts in the top drawer." }
+    { url: "/modular_corner.webp", title: "Smart Corner Storage", desc: "Magic corner units making use of blind spots." },
+    { url: "/modular_tandem.webp", title: "Tandem Drawers", desc: "Heavy-duty tandem boxes for large utensils." },
+    { url: "/modular_overhead.webp", title: "Overhead Cabinets", desc: "Hydraulic lift-ups for easy overhead access." },
+    { url: "/modular_pantry.webp", title: "Tall Pantry", desc: "Pull-out pantry units for massive grocery storage." },
+    { url: "/modular_wicker.webp", title: "Wicker Baskets", desc: "Integrated woven wicker baskets for dry vegetables." },
+    { url: "/modular_sink.webp", title: "Under-Sink Utility", desc: "Detergent racks and bin holders under the sink." },
+    { url: "/modular_shutter.webp", title: "Rolling Shutters", desc: "Aluminum rolling shutters to hide appliances." },
+    { url: "/modular_cutlery.webp", title: "Cutlery Trays", desc: "Organized PVC cutlery inserts in the top drawer." }
   ],
   modern: [
-    { url: "/modern_handleless.jpg", title: "Handleless Profiles", desc: "Gola profiles for a sleek, handle-free look." },
-    { url: "/modern_builtin.jpg", title: "Built-In Appliances", desc: "Seamlessly integrated ovens and microwaves." },
-    { url: "/modern_acrylic.jpg", title: "Acrylic High Gloss", desc: "Scratch-resistant premium 2mm acrylic finishes." },
-    { url: "/modern_quartz.jpg", title: "Quartz Countertops", desc: "Stain-resistant, pure white engineered quartz." },
-    { url: "/modern_profile.jpg", title: "Profile Lighting", desc: "LED profile strips routed into cabinetry bottoms." },
-    { url: "/modern_island.jpg", title: "Island Kitchen", desc: "Spacious central island with breakfast counter." },
-    { url: "/modern_tinted.jpg", title: "Tinted Glass Flaps", desc: "Black tinted glass with black aluminum frames." },
-    { url: "/modern_pu.jpg", title: "Matte PU Paint", desc: "Luxurious polyurethane matte painted shutters." }
+    { url: "/modern_handleless.webp", title: "Handleless Profiles", desc: "Gola profiles for a sleek, handle-free look." },
+    { url: "/modern_builtin.webp", title: "Built-In Appliances", desc: "Seamlessly integrated ovens and microwaves." },
+    { url: "/modern_acrylic.webp", title: "Acrylic High Gloss", desc: "Scratch-resistant premium 2mm acrylic finishes." },
+    { url: "/modern_quartz.webp", title: "Quartz Countertops", desc: "Stain-resistant, pure white engineered quartz." },
+    { url: "/modern_profile.webp", title: "Profile Lighting", desc: "LED profile strips routed into cabinetry bottoms." },
+    { url: "/modern_island.webp", title: "Island Kitchen", desc: "Spacious central island with breakfast counter." },
+    { url: "/modern_tinted.webp", title: "Tinted Glass Flaps", desc: "Black tinted glass with black aluminum frames." },
+    { url: "/modern_pu.webp", title: "Matte PU Paint", desc: "Luxurious polyurethane matte painted shutters." }
   ],
   minimal: [
-    { url: "/minimal_monochrome.jpg", title: "Monochrome Palette", desc: "Strict adherence to a calming two-tone color scale." },
-    { url: "/minimal_kitchen.jpg", title: "Hidden Hardware", desc: "Push-to-open mechanisms for zero visual noise." },
-    { url: "/minimal_open_shelving.png", title: "Open Shelving", desc: "A single open floating shelf for curated ceramics." },
-    { url: "/minimal_matte.png", title: "Matte Finishes", desc: "Anti-fingerprint ultra-matte laminate surfaces." },
-    { url: "/minimal_integrated_sink.png", title: "Integrated Sink", desc: "Undermount sink for a perfectly flush countertop." },
-    { url: "/minimal_concealed_hood.png", title: "Concealed Hood", desc: "Chimney fully integrated and hidden in overheads." },
-    { url: "/minimal_seamless_backsplash.png", title: "Seamless Backsplash", desc: "Using the same quartz on counters running up the wall." },
-    { url: "/minimal_organized_clutter.png", title: "Organized Clutter", desc: "Zero appliances left on the countertop." }
+    { url: "/minimal_monochrome.webp", title: "Monochrome Palette", desc: "Strict adherence to a calming two-tone color scale." },
+    { url: "/minimal_kitchen.webp", title: "Hidden Hardware", desc: "Push-to-open mechanisms for zero visual noise." },
+    { url: "/minimal_open_shelving.webp", title: "Open Shelving", desc: "A single open floating shelf for curated ceramics." },
+    { url: "/minimal_matte.webp", title: "Matte Finishes", desc: "Anti-fingerprint ultra-matte laminate surfaces." },
+    { url: "/minimal_integrated_sink.webp", title: "Integrated Sink", desc: "Undermount sink for a perfectly flush countertop." },
+    { url: "/minimal_concealed_hood.webp", title: "Concealed Hood", desc: "Chimney fully integrated and hidden in overheads." },
+    { url: "/minimal_seamless_backsplash.webp", title: "Seamless Backsplash", desc: "Using the same quartz on counters running up the wall." },
+    { url: "/minimal_organized_clutter.webp", title: "Organized Clutter", desc: "Zero appliances left on the countertop." }
   ],
   l_shape: [
-    { url: "/l_shape_maximizing.png", title: "Maximizing Space", desc: "The classic L-shape providing perfect work-triangle efficiency." },
-    { url: "/l_shape_corner_carousels.png", title: "Corner Carousels", desc: "Utilizing deep corners effectively with swivel trays." },
-    { url: "/l_shape_wicker.png", title: "Wicker Integration", desc: "Breathable baskets woven right into the layout." },
-    { url: "/l_shape_integrated_ovens.png", title: "Integrated Ovens", desc: "Appliances securely placed at ergonomic eye levels." },
-    { url: "/l_shape_long_counter.png", title: "Long Counter Space", desc: "Uninterrupted quartz counters perfect for heavy meal prep." },
-    { url: "/l_shape_smart_sink.png", title: "Smart Sink Placement", desc: "Strategically located sink for uninterrupted workflow flow." },
-    { url: "/l_shape_handleless.png", title: "Continuous Lines", desc: "Handleless designs keep the L-shape looking long." },
-    { url: "/l_shape_profile_lighting.png", title: "Under-Cabinet Lighting", desc: "Illuminating the entire L-shaped counter evenly." }
+    { url: "/l_shape_maximizing.webp", title: "Maximizing Space", desc: "The classic L-shape providing perfect work-triangle efficiency." },
+    { url: "/l_shape_corner_carousels.webp", title: "Corner Carousels", desc: "Utilizing deep corners effectively with swivel trays." },
+    { url: "/l_shape_wicker.webp", title: "Wicker Integration", desc: "Breathable baskets woven right into the layout." },
+    { url: "/l_shape_integrated_ovens.webp", title: "Integrated Ovens", desc: "Appliances securely placed at ergonomic eye levels." },
+    { url: "/l_shape_long_counter.webp", title: "Long Counter Space", desc: "Uninterrupted quartz counters perfect for heavy meal prep." },
+    { url: "/l_shape_smart_sink.webp", title: "Smart Sink Placement", desc: "Strategically located sink for uninterrupted workflow flow." },
+    { url: "/l_shape_handleless.webp", title: "Continuous Lines", desc: "Handleless designs keep the L-shape looking long." },
+    { url: "/l_shape_profile_lighting.webp", title: "Under-Cabinet Lighting", desc: "Illuminating the entire L-shaped counter evenly." }
   ],
   open: [
-    { url: "/open_living_integration.png", title: "Living Space Integration", desc: "Flows perfectly into the dining and living area." },
-    { url: "/open_breakfast_island.png", title: "Breakfast Island", desc: "The perfect bridge between kitchen and living room." },
-    { url: "/open_bar_seating.png", title: "Bar Seating", desc: "Casual seating for entertaining guests while cooking." },
-    { url: "/open_subtle_tones.png", title: "Subtle Tones", desc: "Colors that match the living room aesthetics seamlessly." },
-    { url: "/open_hidden_chimney.png", title: "Hidden Chimney", desc: "Keeping the visual sightlines clear to the living room." },
-    { url: "/open_display_cabinets.png", title: "Display Cabinets", desc: "Tinted glass flaps for showing off premium glassware." },
-    { url: "/open_tall_storage.png", title: "Tall Storage", desc: "Keeping all clutter hidden away from guests' view." },
-    { url: "/open_premium_finishes.png", title: "Premium Finishes", desc: "High quality edge-banding visibly stunning from any angle." }
+    { url: "/open_living_integration.webp", title: "Living Space Integration", desc: "Flows perfectly into the dining and living area." },
+    { url: "/open_breakfast_island.webp", title: "Breakfast Island", desc: "The perfect bridge between kitchen and living room." },
+    { url: "/open_bar_seating.webp", title: "Bar Seating", desc: "Casual seating for entertaining guests while cooking." },
+    { url: "/open_subtle_tones.webp", title: "Subtle Tones", desc: "Colors that match the living room aesthetics seamlessly." },
+    { url: "/open_hidden_chimney.webp", title: "Hidden Chimney", desc: "Keeping the visual sightlines clear to the living room." },
+    { url: "/open_display_cabinets.webp", title: "Display Cabinets", desc: "Tinted glass flaps for showing off premium glassware." },
+    { url: "/open_tall_storage.webp", title: "Tall Storage", desc: "Keeping all clutter hidden away from guests' view." },
+    { url: "/open_premium_finishes.webp", title: "Premium Finishes", desc: "High quality edge-banding visibly stunning from any angle." }
   ],
   u_shape: [
-    { url: "/u_shape_kitchen.jpg", title: "U-Shape Dominance", desc: "Three uninterrupted walls providing massive storage capacity." },
-    { url: "/u_shape_double_tall_units.png", title: "Double Tall Units", desc: "Space for multiple full-height pantry solutions side-by-side." },
-    { url: "/u_shape_bank_of_drawers.png", title: "Bank of Drawers", desc: "Endless heavy-duty tandem drawers mapped on all three sides." },
-    { url: "/u_shape_reflective_gloss.png", title: "Reflective Gloss", desc: "Acrylic finish to make the dense U-shape feel open and airy." },
-    { url: "/u_shape_window_sink.png", title: "Window Sink", desc: "Classic U-shape trick: the primary sink facing the main window." },
-    { url: "/u_shape_double_blind_corners.png", title: "Double Blind Corners", desc: "Smart hardware to conquer both deep corners effectively." },
-    { url: "/u_shape_massive_organizers.png", title: "Massive Organizers", desc: "Dedicated wide zones for all different utensil types." },
-    { url: "/u_shape_multi_appliance.png", title: "Multi-Appliance Setup", desc: "Room for dishwasher, oven, and microwave fully built-in." }
+    { url: "/u_shape_kitchen.webp", title: "U-Shape Dominance", desc: "Three uninterrupted walls providing massive storage capacity." },
+    { url: "/u_shape_double_tall_units.webp", title: "Double Tall Units", desc: "Space for multiple full-height pantry solutions side-by-side." },
+    { url: "/u_shape_bank_of_drawers.webp", title: "Bank of Drawers", desc: "Endless heavy-duty tandem drawers mapped on all three sides." },
+    { url: "/u_shape_reflective_gloss.webp", title: "Reflective Gloss", desc: "Acrylic finish to make the dense U-shape feel open and airy." },
+    { url: "/u_shape_window_sink.webp", title: "Window Sink", desc: "Classic U-shape trick: the primary sink facing the main window." },
+    { url: "/u_shape_double_blind_corners.webp", title: "Double Blind Corners", desc: "Smart hardware to conquer both deep corners effectively." },
+    { url: "/u_shape_massive_organizers.webp", title: "Massive Organizers", desc: "Dedicated wide zones for all different utensil types." },
+    { url: "/u_shape_multi_appliance.webp", title: "Multi-Appliance Setup", desc: "Room for dishwasher, oven, and microwave fully built-in." }
   ]
 };
 
