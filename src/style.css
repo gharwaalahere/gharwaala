@@ -5,6 +5,7 @@
 :root {
   /* Premium Designer Palette */
   --color-primary: #111827; /* Midnight Charcoal */
+  --color-primary-dark: #1f2937; /* Darker Charcoal for hover states */
   --color-accent: #c5a059;  /* Champagne Gold */
   --color-accent-soft: #fcf9f2;
   --color-bg: #ffffff;
@@ -34,6 +35,10 @@
     padding: 0;
   }
   
+  html, body {
+    height: 100%;
+  }
+
   body {
     font-family: var(--font-primary);
     color: var(--color-text);
@@ -41,6 +46,12 @@
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .site-footer {
+    margin-top: auto;
   }
   
   img {
@@ -153,6 +164,7 @@
   
   .btn-primary:hover {
     background-color: var(--color-primary-dark);
+    color: var(--color-accent);
     transform: translateY(-2px);
     box-shadow: 0 6px 12px rgba(13, 148, 136, 0.3);
   }
@@ -1139,7 +1151,7 @@
     }
     
     .site-footer {
-      padding: 4rem 0 !important;
+      padding: 4rem 0 0 0 !important;
       text-align: center;
     }
 
