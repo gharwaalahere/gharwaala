@@ -364,11 +364,11 @@
     background-color: var(--color-bg-alt);
   }
   
-  .styles-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 3rem;
-  }
+.styles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 350px), 1fr));
+  gap: 3rem;
+}
   
   .style-card {
     position: relative;
@@ -1070,6 +1070,10 @@
       padding: 0 15px;
     }
 
+    .section-padding {
+      padding: 4rem 0;
+    }
+
     .hero-container {
       grid-template-columns: 1fr;
       text-align: center !important;
@@ -1100,11 +1104,18 @@
       justify-content: space-between;
       align-items: center;
       position: relative;
+      gap: 0.75rem;
+    }
+
+    .logo {
+      font-size: 1.7rem;
+      max-width: calc(100% - 56px);
     }
 
     .logo-mark {
-      height: 32px;
-      margin-right: 20px;
+      height: 30px;
+      transform: scale(1.55) translateY(2px);
+      margin-right: 18px;
     }
 
     .nav-links {
@@ -1126,11 +1137,12 @@
 
     .menu-toggle {
       display: block;
+      flex-shrink: 0;
     }
 
     .home-hero {
       text-align: center;
-      min-height: 80vh;
+      min-height: 70vh;
     }
 
     .home-hero .container {
@@ -1138,16 +1150,31 @@
     }
 
     .home-hero h1 {
-      font-size: 3rem;
+      font-size: clamp(2.2rem, 10vw, 3rem);
+      max-width: 100%;
+    }
+
+    .home-hero p {
+      font-size: 1.05rem;
+      max-width: 100%;
+      margin-bottom: 2rem;
     }
 
     .hero-cta-group {
+      flex-direction: column;
       justify-content: center;
       align-items: center;
+      gap: 1rem;
+    }
+
+    .btn-primary.hero-btn {
+      width: 100%;
+      max-width: 320px;
+      padding: 1rem 1.5rem;
     }
   
     .hero, .trust-section, .styles-section, .how-it-works, .final-cta {
-      padding: var(--section-padding) 0 !important;
+      padding: 4rem 0 !important;
     }
     
     .site-footer {
@@ -1163,6 +1190,11 @@
     .footer-links-group {
       grid-template-columns: 1fr;
       gap: 2.5rem;
+    }
+
+    .footer-links {
+      grid-template-columns: 1fr;
+      gap: 0;
     }
 
     .footer-brand {
@@ -1194,6 +1226,9 @@
     }
     .featured-post {
       grid-template-columns: 1fr;
+    }
+    .featured-post img {
+      min-height: 260px;
     }
     .featured-post-text {
       padding: 2rem 1.5rem;
