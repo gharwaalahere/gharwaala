@@ -1097,6 +1097,10 @@
       display: flex;
     }
 
+    .menu-toggle {
+      display: block;
+    }
+
     .home-hero {
       text-align: center;
       min-height: 80vh;
