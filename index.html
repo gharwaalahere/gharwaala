@@ -7,18 +7,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- Preload LCP hero background image for insanely fast rendering -->
   <link rel="preload" as="image" href="/indian_family_hero.png" />
-  
-  
-  
-  
-  
-  
-  
-  <!-- Google Fonts: Outfit -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://api.web3forms.com">
+  <link rel="preconnect" href="https://qrqsodxscpxzvzgxvixs.supabase.co">
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/src/style.css" />
+  <meta name="theme-color" content="#0d9488">
   <script>
     // Only bypass the splash screen if a hash anchor (like #contact) is used to navigate directly
     if (window.location.hash) {
@@ -79,7 +74,7 @@
   <!-- Splash Screen -->
   <div id="splash-screen" class="splash-screen">
     <div class="splash-logo" style="display: flex; align-items: center;">
-      <img src="/custom-logo.png" alt="Gharwaala logo - kitchen design service in Delhi NCR" style="height: 50px; transform: scale(2.2) translateY(3px); transform-origin: left center; margin-right: 40px; mix-blend-mode: multiply; object-fit: contain;">
+      <img src="/custom-logo.png" alt="Gharwaala logo - kitchen design service in Delhi NCR" style="height: 50px; transform: scale(2.2) translateY(3px); transform-origin: left center; margin-right: 40px; mix-blend-mode: multiply; object-fit: contain;" decoding="async">
       <div><span style="color: var(--color-primary); font-weight: 800; letter-spacing: -1px;">Ghar</span><span style="font-weight: 300; opacity: 0.7;">waala</span><span style="color: var(--color-primary); font-weight: 900;">.</span></div>
     </div>
   </div>
@@ -88,7 +83,7 @@
   <nav class="navbar">
     <div class="container nav-container">
       <a href="/" class="logo">
-        <img src="/custom-logo.png" alt="Gharwaala logo - kitchen design service in Delhi NCR" class="logo-mark">
+        <img src="/custom-logo.png" alt="Gharwaala logo - kitchen design service in Delhi NCR" class="logo-mark" decoding="async">
         <span style="color: var(--color-primary); font-weight: 800; letter-spacing: -0.5px;">Ghar</span><span style="font-weight: 300; opacity: 0.7;">waala</span><span style="color: var(--color-primary); font-weight: 900;">.</span>
       </a>
       <button class="menu-toggle" id="mobile-menu-btn" aria-label="Toggle navigation">
@@ -173,7 +168,7 @@
       </div>
       <div class="styles-grid staggered-grid">
         <div class="style-card" onclick="openGallery('modular')">
-          <img src="/modular_kitchen.jpg" alt="Modular kitchen design with smart storage in Delhi NCR" loading="lazy" />
+          <img src="/modular_kitchen.jpg" alt="Modular kitchen design with smart storage in Delhi NCR" loading="lazy" decoding="async" />
           <div class="style-badge">Top Choice</div>
           <div class="style-banner">
             <h3>Modular Kitchen</h3>
@@ -182,7 +177,7 @@
           </div>
         </div>
         <div class="style-card" onclick="openGallery('modern')">
-          <img src="/modern_kitchen.jpg" alt="Modern kitchen interior design with sleek cabinets for Indian homes" loading="lazy" />
+          <img src="/modern_kitchen.jpg" alt="Modern kitchen interior design with sleek cabinets for Indian homes" loading="lazy" decoding="async" />
           <div class="style-badge" style="background:#1f2937; color:#fff;">Trending</div>
           <div class="style-banner">
             <h3>Modern Kitchen</h3>
@@ -191,7 +186,7 @@
           </div>
         </div>
         <div class="style-card" onclick="openGallery('minimal')">
-          <img src="/minimal_kitchen.jpg" alt="Minimal handleless kitchen design with neutral tones in Delhi apartment" loading="lazy" />
+          <img src="/minimal_kitchen.jpg" alt="Minimal handleless kitchen design with neutral tones in Delhi apartment" loading="lazy" decoding="async" />
           <div class="style-banner">
             <h3>Minimal Kitchen</h3>
             <p>Clutter-free elegance featuring handleless cabinets, neutral tones, and highly practical layouts.</p>
@@ -265,7 +260,7 @@
     <div class="container footer-grid">
       <div class="footer-brand">
         <h2 class="logo-white" style="display: flex; align-items: center; margin-bottom: 20px;">
-          <img src="/custom-logo.png" alt="Gharwaala logo - kitchen design service in Delhi NCR" style="height: 42px; transform: scale(2.2) translateY(3px); transform-origin: left center; margin-right: 36px; filter: brightness(0) invert(1); mix-blend-mode: screen; object-fit: contain;">
+          <img src="/custom-logo.png" alt="Gharwaala logo - kitchen design service in Delhi NCR" style="height: 42px; transform: scale(2.2) translateY(3px); transform-origin: left center; margin-right: 36px; filter: brightness(0) invert(1); mix-blend-mode: screen; object-fit: contain;" loading="lazy" decoding="async">
           <span style="font-weight: 800; letter-spacing: -0.5px;">Ghar</span><span style="font-weight: 300; opacity: 0.7;">waala</span><span style="color: var(--color-primary); font-weight: 900;">.</span>
         </h2>
         <p>Transforming Indian kitchens with transparent pricing, trusted local professionals, and beautifully functional module designs.</p>

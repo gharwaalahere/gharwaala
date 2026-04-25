@@ -48,7 +48,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const timelineSteps = document.querySelectorAll('.timeline-step');
 
   if (timelineContainer && scrollLine) {
-    window.addEventListener('scroll', () => {
+    let ticking = false;
+
+    const updateTimeline = () => {
       // Calculate continuous scroll progress mapped to the container height
       const containerRect = timelineContainer.getBoundingClientRect();
       const viewportCenter = window.innerHeight * 0.65; // triggering point
@@ -62,18 +64,25 @@ document.addEventListener('DOMContentLoaded', () => {
       // Activate step cards exactly when the scroll line hits them
       timelineSteps.forEach(step => {
         const stepRect = step.getBoundingClientRect();
-        // If the element has scrolled up into the active viewport zone
         if (stepRect.top < viewportCenter) {
           step.classList.add('active');
         } else {
-          // Removes active state if scrolled back up (optional dynamic feel)
           step.classList.remove('active');
         }
       });
-    });
+
+      ticking = false;
+    };
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateTimeline);
+        ticking = true;
+      }
+    }, { passive: true });
 
     // Initialize state instantly on load
-    window.dispatchEvent(new Event('scroll'));
+    window.requestAnimationFrame(updateTimeline);
   }
 
   // Open Modal
