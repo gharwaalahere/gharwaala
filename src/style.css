@@ -426,35 +426,8 @@
     text-transform: uppercase;
     letter-spacing: 1.5px;
   }
-    letter-spacing: 0.5px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-    z-index: 2;
-  }
-
-  .style-action {
-    display: flex;
-    align-items: center;
-    margin-top: 1.2rem;
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: #34d399; /* Vibrant green-teal for contrast */
-    opacity: 0;
-    transform: translateY(15px);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .style-action span {
-    margin-left: 6px;
-    transition: transform 0.3s ease;
-  }
-
-  .style-card:hover .style-action {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
   .style-card:hover .style-action span {
-    transform: translateX(8px);
+    transform: translateX(5px);
   }
 
   /* Staggered Grid Effect */
@@ -463,10 +436,7 @@
       transform: translateY(40px);
     }
     .staggered-grid .style-card:nth-child(2):hover {
-      transform: translateY(32px); /* Maintain stagger on hover lift */
-    }
-    .styles-section {
-      padding-bottom: 8rem; /* Extra padding to absorb the staggered card */
+      transform: translateY(32px);
     }
   }
   
