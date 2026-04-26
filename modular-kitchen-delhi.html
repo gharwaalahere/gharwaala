@@ -54,7 +54,7 @@
   <style>
     /* Premium Landing Page Styles */
     :root {
-      --blog-text: #374151;
+      --blog-text: #1f2937;
       --blog-heading: #111827;
     }
     .city-hero-wrapper {
@@ -151,7 +151,7 @@
     }
     .faq-item:hover { transform: translateY(-3px); box-shadow: 0 12px 24px rgba(0,0,0,0.06); border-color: #d1d5db; }
     .faq-item h3 { margin: 0 0 0.75rem 0; font-size: 1.35rem; color: var(--blog-heading); font-family: 'Outfit', sans-serif; font-weight: 700; }
-    .faq-item p { margin: 0; font-size: 1.1rem; color: #4b5563; line-height: 1.6; font-family: 'Lora', serif;}
+    .faq-item p { margin: 0; font-size: 1.1rem; color: #374151; line-height: 1.6; font-family: 'Lora', serif;}
 
     /* CTA Box */
     .inline-cta {
@@ -159,13 +159,14 @@
       box-shadow: 0 20px 40px rgba(13, 148, 136, 0.25);
     }
     .inline-cta h3 { font-size: 2.2rem; color: white; margin-bottom: 1rem; margin-top: 0; font-family: 'Outfit', sans-serif; font-weight: 800; border: none; }
-    .inline-cta p { color: rgba(255, 255, 255, 0.9); font-size: 1.2rem; margin-bottom: 2.5rem; font-family: 'Outfit', sans-serif; }
+    .inline-cta p { color: #ffffff !important; font-size: 1.2rem; margin-bottom: 2.5rem; font-family: 'Outfit', sans-serif; }
     .btn-white {
       background: white; color: var(--color-primary); padding: 1.2rem 3rem; border-radius: 50px; font-weight: 800; font-size: 1.15rem;
       border: none; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; display: inline-block;
       font-family: 'Outfit', sans-serif; text-transform: uppercase; letter-spacing: 1px;
     }
     .btn-white:hover { transform: translateY(-4px); box-shadow: 0 15px 30px rgba(0,0,0,0.15); }
+    .inline-cta p::first-letter { float: none !important; font-size: inherit !important; line-height: inherit !important; font-weight: inherit !important; color: #ffffff !important; margin: 0 !important; }
     @media (max-width: 768px) {
       .city-hero-wrapper {
         padding: 7rem 15px 5rem 15px;

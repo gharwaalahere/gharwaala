@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const updateTimeline = () => {
       // Calculate continuous scroll progress mapped to the container height
       const containerRect = timelineContainer.getBoundingClientRect();
-      const viewportCenter = window.innerHeight * 0.65; // triggering point
+      const viewportCenter = window.innerHeight * 0.85; // triggering point - reveal earlier
 
       const progressPixels = Math.max(0, viewportCenter - containerRect.top);
       let percentage = (progressPixels / containerRect.height) * 100;

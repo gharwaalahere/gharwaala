@@ -73,9 +73,11 @@
 <body>
   <!-- Splash Screen -->
   <div id="splash-screen" class="splash-screen">
-    <div class="splash-logo" style="display: flex; align-items: center;">
-      <img src="/custom-logo.webp" alt="Gharwaala logo - kitchen design service in Delhi NCR" style="height: 50px; transform: scale(2.2) translateY(3px); transform-origin: left center; margin-right: 40px; mix-blend-mode: multiply; object-fit: contain;" decoding="async">
-      <div><span style="color: var(--color-accent); font-weight: 800; letter-spacing: -1px;">Ghar</span><span style="font-weight: 300; opacity: 0.7;">waala</span><span style="color: var(--color-primary); font-weight: 900;">.</span></div>
+    <div class="splash-logo">
+      <div class="splash-logo-inner">
+        <img src="/custom-logo.webp" alt="Gharwaala logo" class="splash-logo-img" decoding="async">
+        <div class="splash-logo-text"><span style="color: var(--color-accent); font-weight: 800; letter-spacing: -1px;">Ghar</span><span style="font-weight: 300; opacity: 0.7;">waala</span><span style="color: var(--color-primary); font-weight: 900;">.</span></div>
+      </div>
     </div>
   </div>
 
@@ -102,7 +104,7 @@
   <header class="home-hero">
     <div class="home-hero-overlay"></div>
     <div class="container">
-      <div class="hero-badge">Boutique Interior Design Studio</div>
+      <div class="hero-badge">Trusted Modular Kitchen Experts • Delhi NCR</div>
       <h1>Designer Kitchens,<br>Built for Your Life.</h1>
       <p>Experience the perfect blend of high-end aesthetics and functional modular design. From concept to installation, we create kitchens that inspire.</p>
       <div class="hero-cta-group">
@@ -110,20 +112,6 @@
       </div>
     </div>
   </header>
-
-  <!-- Partners Section -->
-  <section class="partners-section" style="padding: 4rem 0; border-bottom: 1px solid var(--color-border); background: var(--color-bg-alt);">
-    <div class="container">
-      <p class="text-center" style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; color: var(--color-text-light); margin-bottom: 2.5rem; font-weight: 600;">As Seen In & Trusted By</p>
-      <div style="display: flex; justify-content: center; align-items: center; gap: 4rem; flex-wrap: wrap; opacity: 0.6; filter: grayscale(1);">
-        <span style="font-weight: 800; font-size: 1.5rem; letter-spacing: -1px;">INTERIORS.</span>
-        <span style="font-weight: 700; font-size: 1.25rem;">ModernHome</span>
-        <span style="font-weight: 900; font-size: 1.5rem; color: #000;">DWELL</span>
-        <span style="font-weight: 600; font-size: 1.25rem; font-family: serif; font-style: italic;">ArchitecturalDigest</span>
-        <span style="font-weight: 800; font-size: 1.4rem;">DESIGN+</span>
-      </div>
-    </div>
-  </section>
 
   <!-- 2. Trust Section -->
   <!-- Trust Section -->
@@ -193,46 +181,43 @@
   </section>
 
   <!-- 4. How It Works -->
-  <section class="how-it-works bg-light">
+  <section class="how-it-works-visible">
     <div class="container">
-      <h2 class="section-title">How It Works</h2>
-      <div class="timeline-container">
-        <!-- Background Track -->
-        <div class="timeline-track"></div>
-        <!-- Animated Fill Line -->
-        <div class="timeline-line-fill" id="timeline-scroll-line"></div>
+      <h2 class="section-title how-it-works-visible-title">How It Works</h2>
+      <div class="how-it-works-visible-timeline">
+        <div class="how-it-works-visible-line"></div>
 
-        <!-- Step 1 -->
-        <div class="timeline-step left-step">
-          <div class="step-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-          </div>
-          <div class="step-card">
+        <div class="how-it-works-visible-row how-it-works-visible-row-left">
+          <div class="how-it-works-visible-card">
             <h3>Submit Request</h3>
             <p>Tell us your requirements and budget securely.</p>
           </div>
+          <div class="how-it-works-visible-node" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+          </div>
+          <div class="how-it-works-visible-spacer"></div>
         </div>
 
-        <!-- Step 2 -->
-        <div class="timeline-step right-step">
-          <div class="step-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+        <div class="how-it-works-visible-row how-it-works-visible-row-right">
+          <div class="how-it-works-visible-spacer"></div>
+          <div class="how-it-works-visible-node" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
           </div>
-          <div class="step-card">
+          <div class="how-it-works-visible-card">
             <h3>Get Connected</h3>
             <p>We match you with trusted, vetted local professionals.</p>
           </div>
         </div>
 
-        <!-- Step 3 -->
-        <div class="timeline-step left-step">
-          <div class="step-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-          </div>
-          <div class="step-card">
+        <div class="how-it-works-visible-row how-it-works-visible-row-left">
+          <div class="how-it-works-visible-card">
             <h3>Build Your Kitchen</h3>
             <p>Get your dream kitchen designed and executed stress-free.</p>
           </div>
+          <div class="how-it-works-visible-node" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+          </div>
+          <div class="how-it-works-visible-spacer"></div>
         </div>
       </div>
     </div>
@@ -244,30 +229,6 @@
       <h2 style="color: #fff;">Ready to build your dream kitchen?</h2>
       <p style="color: rgba(255,255,255,0.9);">Join hundreds of homeowners who have transformed their spaces with us.</p>
       <button class="btn btn-primary cta-trigger mt-4">Design My Kitchen</button>
-    </div>
-  </section>
-
-  <!-- Testimonials Section -->
-  <section class="testimonials-section section-padding" style="background: var(--color-bg-alt);">
-    <div class="container">
-      <h2 class="section-title text-center">What Our Clients Say</h2>
-      <div class="styles-grid">
-        <div class="style-card" style="padding: 3rem; text-align: center; cursor: default;">
-          <p style="font-style: italic; font-size: 1.15rem; margin-bottom: 2rem;">"Gharwaala transformed our cramped kitchen into a modern masterpiece. The process was transparent and the designers really listened to our needs."</p>
-          <h4 style="font-family: 'Outfit', sans-serif; font-weight: 700;">Anjali Sharma</h4>
-          <p style="font-size: 0.85rem; color: var(--color-text-light);">South Delhi</p>
-        </div>
-        <div class="style-card" style="padding: 3rem; text-align: center; cursor: default;">
-          <p style="font-style: italic; font-size: 1.15rem; margin-bottom: 2rem;">"I was worried about the budget, but Gharwaala helped me choose the right materials to get a high-end look without overspending."</p>
-          <h4 style="font-family: 'Outfit', sans-serif; font-weight: 700;">Rahul Verma</h4>
-          <p style="font-size: 0.85rem; color: var(--color-text-light);">Noida Sector 62</p>
-        </div>
-        <div class="style-card" style="padding: 3rem; text-align: center; cursor: default;">
-          <p style="font-style: italic; font-size: 1.15rem; margin-bottom: 2rem;">"The installation was seamless. Their team was professional and the finishing on the cabinets is simply flawless."</p>
-          <h4 style="font-family: 'Outfit', sans-serif; font-weight: 700;">Priya Kapoor</h4>
-          <p style="font-size: 0.85rem; color: var(--color-text-light);">Gurugram</p>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -305,7 +266,7 @@
       </div>
 
       <div class="footer-contact">
-        <h3>Concierge</h3>
+        <h3>Contact Us</h3>
         <p>Reach out to our design consultants.</p>
         <a href="mailto:support@gharwaala.com" class="contact-pill">
           <span>📧</span> support@gharwaala.com
