@@ -43,9 +43,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const closeBtn = document.getElementById('closeModal');
 
   // --- Timeline Dynamic Scroll Animation Logic ---
-  const timelineContainer = document.querySelector('.timeline-container');
-  const scrollLine = document.getElementById('timeline-scroll-line');
-  const timelineSteps = document.querySelectorAll('.timeline-step');
+  const timelineContainer = document.querySelector('.how-it-works-visible-timeline');
+  const scrollLine = document.querySelector('.how-it-works-visible-line');
+  const timelineSteps = document.querySelectorAll('.how-it-works-visible-row');
 
   if (timelineContainer && scrollLine) {
     let ticking = false;
