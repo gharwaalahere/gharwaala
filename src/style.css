@@ -309,17 +309,35 @@
   .home-hero-bg {
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    background-image: url('/indian_family_hero.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    animation: kenBurns 20s infinite alternate ease-in-out;
     z-index: 0;
+    opacity: 0;
+    animation: slideFade 18s infinite linear;
   }
 
-  @keyframes kenBurns {
-    0% { transform: scale(1); }
-    100% { transform: scale(1.08); }
+  .slide-1 {
+    background-image: url('/indian_family_hero.webp');
+    animation-delay: 0s;
+  }
+  
+  .slide-2 {
+    background-image: url('/indian_couple_kitchen_hero.webp');
+    animation-delay: 6s;
+  }
+  
+  .slide-3 {
+    background-image: url('/indian_mother_daughter_kitchen.webp');
+    animation-delay: 12s;
+  }
+
+  @keyframes slideFade {
+    0% { opacity: 0; transform: scale(1); }
+    5% { opacity: 1; transform: scale(1.02); }
+    33.33% { opacity: 1; transform: scale(1.05); }
+    38% { opacity: 0; transform: scale(1.06); }
+    100% { opacity: 0; transform: scale(1); }
   }
 
   .home-hero-overlay {
