@@ -1547,7 +1547,24 @@
     .trust-card-overlay {
       padding: 1.5rem;
     }
+
+    /* Form Modal Mobile Fixes */
+    .modal-overlay {
+      padding: 1rem;
+      align-items: flex-start; /* Allows scrolling if modal is taller than screen */
+      overflow-y: auto;
+    }
+
+    .modal-content {
+      padding: 2rem 1.5rem !important; /* Reduce excessive padding on small screens */
+      margin: 2rem auto; /* Add margin so it doesn't touch top/bottom when scrolling */
+      width: 100%;
+    }
     
+    .form-group input, 
+    .form-group select {
+      font-size: 16px !important; /* Prevent iOS zoom on focus */
+    }
     .site-footer {
       padding: 2.5rem 0 0 0 !important;
       text-align: left;
