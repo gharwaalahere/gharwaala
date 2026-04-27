@@ -88,7 +88,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // Open Modal
   if (triggerBtns.length > 0 && modal) {
     triggerBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
         modal.classList.add('active');
       });
     });
