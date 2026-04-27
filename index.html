@@ -76,7 +76,7 @@
     <div class="splash-logo">
       <div class="splash-logo-inner">
         <img src="/custom-logo.webp" alt="Gharwaala logo" class="splash-logo-img" decoding="async">
-        <div class="splash-logo-text"><span style="color: var(--color-accent); font-weight: 800; letter-spacing: -1px;">Ghar</span><span style="font-weight: 300; opacity: 0.7;">waala</span><span style="color: var(--color-primary); font-weight: 900;">.</span></div>
+        <div class="splash-logo-text"><span style="color: #c59b0f; font-weight: 800; letter-spacing: -1px;">Ghar</span><span style="font-weight: 400; opacity: 0.85;">waala</span><span style="color: var(--color-primary); font-weight: 900;">.</span></div>
       </div>
     </div>
   </div>
@@ -86,7 +86,12 @@
     <div class="container nav-container">
       <a href="/" class="logo">
         <img src="/custom-logo.webp" alt="Gharwaala logo - kitchen design service in Delhi NCR" class="logo-mark" decoding="async">
-        <span style="color: var(--color-accent); font-weight: 800; letter-spacing: -0.5px;">Ghar</span><span style="font-weight: 300; opacity: 0.7;">waala</span><span style="color: var(--color-primary); font-weight: 900;">.</span>
+        <div class="logo-text-wrapper">
+          <div class="logo-title">
+            <span style="color: #c59b0f; font-weight: 800; letter-spacing: -0.5px;">Ghar</span><span style="font-weight: 400; opacity: 0.85;">waala</span><span style="color: var(--color-primary); font-weight: 900;">.</span>
+          </div>
+          <div class="logo-tagline">Plan. Design. Build.</div>
+        </div>
       </a>
       <button class="menu-toggle" id="mobile-menu-btn" aria-label="Toggle navigation">
         <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
@@ -102,13 +107,21 @@
 
   <!-- 1. Full Width Hero Section -->
   <header class="home-hero">
+    <div class="home-hero-bg"></div>
     <div class="home-hero-overlay"></div>
     <div class="container">
-      <div class="hero-badge">Trusted Modular Kitchen Experts • Delhi NCR</div>
-      <h1>Designer Kitchens,<br>Built for Your Life.</h1>
-      <p>Experience the perfect blend of high-end aesthetics and functional modular design. From concept to installation, we create kitchens that inspire.</p>
-      <div class="hero-cta-group">
-        <a href="#contact" class="btn btn-primary hero-btn cta-trigger">Design My Kitchen</a>
+      <div class="hero-content">
+        <div class="hero-badge">Trusted Modular Kitchen Experts • Delhi NCR</div>
+        <h1>Designer Kitchens,<br>Built for <span class="text-accent">Your Life.</span></h1>
+        <p>Experience the perfect blend of high-end aesthetics and functional modular design. From concept to installation, we create kitchens that inspire.</p>
+        <div class="hero-cta-group">
+          <a href="#contact" class="btn btn-primary hero-btn cta-trigger">Design My Kitchen</a>
+          <a href="/designs.html" class="btn btn-outline hero-btn-secondary">Explore Designs</a>
+        </div>
+        <div class="hero-trust">
+          <div class="stars">⭐⭐⭐⭐⭐</div>
+          <p class="trust-text">Trusted by <strong>500+</strong> families in Delhi NCR</p>
+        </div>
       </div>
     </div>
   </header>
@@ -118,22 +131,28 @@
   <section class="trust-section section-padding">
     <div class="container">
       <h2 class="section-title text-center">Why Choose a Designer-Led Approach?</h2>
-      <p class="text-center" style="max-width: 700px; margin: 0 auto 5rem auto; color: var(--color-text-light);">We bridge the gap between expensive luxury studios and low-quality local contractors.</p>
+      <p class="text-center section-subtitle">We bridge the gap between expensive luxury studios and low-quality local contractors.</p>
       <div class="trust-grid">
-        <div class="trust-card">
-          <div class="trust-icon">✨</div>
-          <h3>Custom Aesthetics</h3>
-          <p>Every kitchen is uniquely designed by our interior experts to match your home's DNA.</p>
+        <div class="trust-card" style="background-image: url('/modern_kitchen.webp');">
+          <div class="trust-card-overlay">
+            <div class="trust-number">01</div>
+            <h3>Custom Aesthetics</h3>
+            <p>Every kitchen is uniquely designed by our interior experts to match your home's DNA. No copy-paste templates.</p>
+          </div>
         </div>
-        <div class="trust-card">
-          <div class="trust-icon">🤝</div>
-          <h3>Transparent Pricing</h3>
-          <p>Boutique quality without the boutique markup. No hidden fees, ever.</p>
+        <div class="trust-card" style="background-image: url('/hero_kitchen.webp');">
+          <div class="trust-card-overlay">
+            <div class="trust-number">02</div>
+            <h3>Transparent Pricing</h3>
+            <p>Experience boutique quality without the boutique markup. We promise absolute transparency with no hidden fees.</p>
+          </div>
         </div>
-        <div class="trust-card">
-          <div class="trust-icon">🏠</div>
-          <h3>Local Mastery</h3>
-          <p>Direct access to Delhi NCR's most skilled craftsmen and premium materials.</p>
+        <div class="trust-card" style="background-image: url('/premium_modular_kitchen_v4.webp');">
+          <div class="trust-card-overlay">
+            <div class="trust-number">03</div>
+            <h3>Local Mastery</h3>
+            <p>Get direct access to Delhi NCR's most skilled craftsmen and premium materials, managed entirely by our team.</p>
+          </div>
         </div>
       </div>
     </div>
