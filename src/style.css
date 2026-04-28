@@ -239,6 +239,7 @@
 
   .logo-mark {
     height: 38px;
+    width: auto;
     transform: scale(2.6) translateY(4.5px);
     transform-origin: left center;
     margin-right: 44px;
@@ -1321,6 +1322,10 @@
     font-weight: 700;
     margin-bottom: 1rem;
     display: inline-block;
+  }
+  
+  .footer-brand .logo-white img {
+    width: auto !important;
   }
 
   .footer-brand p {
