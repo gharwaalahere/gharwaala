@@ -429,3 +429,80 @@ document.addEventListener('DOMContentLoaded', () => {
   `;
   document.body.appendChild(waButton);
 });
+
+// ==========================================
+// Advanced Animations & Interactions
+// ==========================================
+
+document.addEventListener('DOMContentLoaded', () => {
+  // 1. Scroll Reveal Animations
+  const revealOptions = {
+    threshold: 0.15,
+    rootMargin: "0px 0px -50px 0px"
+  };
+
+  const revealObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+        observer.unobserve(entry.target); // Only animate once
+      }
+    });
+  }, revealOptions);
+
+  const revealElements = document.querySelectorAll('.reveal');
+  revealElements.forEach(el => revealObserver.observe(el));
+
+  // 2. Dynamic Number Counters
+  const counterOptions = {
+    threshold: 0.5,
+    rootMargin: "0px"
+  };
+
+  const animateCounter = (el) => {
+    const target = parseInt(el.getAttribute('data-target'));
+    const duration = 2000; // ms
+    const step = target / (duration / 16); // 60fps
+    let current = 0;
+
+    const updateCounter = () => {
+      current += step;
+      if (current < target) {
+        el.innerText = Math.ceil(current);
+        requestAnimationFrame(updateCounter);
+      } else {
+        el.innerText = target;
+      }
+    };
+    updateCounter();
+  };
+
+  const counterObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateCounter(entry.target);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, counterOptions);
+
+  const counterElements = document.querySelectorAll('.counter');
+  counterElements.forEach(el => counterObserver.observe(el));
+
+  // 3. Parallax Backgrounds
+  const parallaxElements = document.querySelectorAll('.parallax-bg');
+  if (parallaxElements.length > 0) {
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      parallaxElements.forEach(el => {
+        const speed = el.getAttribute('data-speed') || 0.4;
+        // offset from top of screen
+        const rect = el.getBoundingClientRect();
+        if (rect.top <= window.innerHeight && rect.bottom >= 0) {
+          const yPos = -(scrolled * speed);
+          el.style.backgroundPosition = `center ${yPos}px`;
+        }
+      });
+    }, { passive: true });
+  }
+});
