@@ -505,4 +505,15 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }, { passive: true });
   }
+
+  // 4. Before/After Slider Logic
+  const baSliders = document.querySelectorAll('.ba-slider');
+  baSliders.forEach(slider => {
+    slider.addEventListener('input', (e) => {
+      const container = e.target.closest('.ba-slider-container');
+      if (container) {
+        container.style.setProperty('--position', `${e.target.value}%`);
+      }
+    });
+  });
 });
