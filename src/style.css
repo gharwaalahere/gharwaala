@@ -238,11 +238,11 @@
   }
 
   .logo-mark {
-    height: 38px;
+    height: 70px;
     width: auto;
-    transform: scale(2.6) translateY(4.5px);
-    transform-origin: left center;
-    margin-right: 44px;
+    margin-top: -8px;
+    margin-bottom: -8px;
+    margin-right: -2px;
     mix-blend-mode: multiply;
     object-fit: contain;
     flex-shrink: 0;
