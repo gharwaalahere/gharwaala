@@ -517,4 +517,16 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+
+  // 5. Dynamic Glassmorphic Navbar
+  const navbar = document.querySelector('.navbar');
+  if (navbar) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    }, { passive: true });
+  }
 });
