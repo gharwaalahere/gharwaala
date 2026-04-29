@@ -181,8 +181,8 @@ document.addEventListener('DOMContentLoaded', () => {
         finalPhone = finalPhone.substring(1);
       }
 
-      if (!/^[6-9]\d{9}$/.test(finalPhone)) {
-        formMsg.textContent = "Please enter a valid 10-digit Indian mobile number.";
+      if (!/^\d{10}$/.test(finalPhone)) {
+        formMsg.textContent = "Please enter a valid 10-digit mobile number.";
         formMsg.classList.add('error');
         return; // halt submission if invalid
       }
