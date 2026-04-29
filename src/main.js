@@ -196,7 +196,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const budget = formData.get('budget');
 
       // UI Feedback: Loading
-      submitBtn.textContent = 'Submitting...';
+      const originalBtnContent = submitBtn.innerHTML;
+      submitBtn.innerHTML = `<svg class="spinner" viewBox="0 0 50 50" style="width:20px;height:20px;margin-right:8px;vertical-align:middle;animation:spin 1s linear infinite;"><circle cx="25" cy="25" r="20" fill="none" stroke="currentColor" stroke-width="5" stroke-dasharray="31.4 31.4" stroke-linecap="round"></circle></svg> Submitting...`;
       submitBtn.disabled = true;
 
       try {
@@ -275,7 +276,7 @@ document.addEventListener('DOMContentLoaded', () => {
         formMsg.classList.add('error');
       } finally {
         // Revert UI
-        submitBtn.textContent = 'Submit Request';
+        submitBtn.innerHTML = originalBtnContent;
         submitBtn.disabled = false;
 
         // Auto close modal on success after 3 seconds
