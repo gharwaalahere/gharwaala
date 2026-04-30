@@ -181,10 +181,15 @@ document.addEventListener('DOMContentLoaded', () => {
         finalPhone = finalPhone.substring(1);
       }
 
-      if (!/^\d{10}$/.test(finalPhone)) {
-        formMsg.textContent = "Please enter a valid 10-digit mobile number.";
+      // Strict Anti-Spam Validation
+      const isIndianMobile = /^[6-9]\d{9}$/.test(finalPhone);
+      const isRepeated = /^(.)\1{9}$/.test(finalPhone); // Blocks 9999999999, 8888888888
+      const isSequential = finalPhone === '9876543210' || finalPhone === '8765432109';
+
+      if (!isIndianMobile || isRepeated || isSequential) {
+        formMsg.textContent = "Please enter a genuine, active 10-digit mobile number.";
         formMsg.classList.add('error');
-        return; // halt submission if invalid
+        return; // halt submission if spam/fake
       }
       phone = finalPhone; // use clean 10-digit number for db/email
 
