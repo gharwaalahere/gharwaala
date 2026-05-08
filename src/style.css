@@ -2053,11 +2053,12 @@
   border-radius: var(--border-radius);
   box-shadow: var(--shadow-lg);
   --position: 50%;
+  touch-action: pan-y; /* Prevent page swipe on horizontal slide */
 }
 
 @media (max-width: 768px) {
   .ba-slider-container {
-    aspect-ratio: 1/1;
+    aspect-ratio: 4/3; /* Much better than 1/1 for landscape images */
   }
 }
 
@@ -2086,6 +2087,8 @@
 }
 
 .ba-slider {
+  -webkit-appearance: none;
+  appearance: none;
   position: absolute;
   inset: 0;
   z-index: 10;
@@ -2094,6 +2097,7 @@
   width: 100%;
   height: 100%;
   margin: 0;
+  touch-action: pan-y;
 }
 
 .ba-slider-line {
@@ -2146,4 +2150,22 @@
 .ba-label-after {
   right: 20px;
   z-index: 1; 
+}
+
+@media (max-width: 480px) {
+  .ba-label {
+    font-size: 0.75rem;
+    padding: 4px 10px;
+    bottom: 12px;
+  }
+  .ba-label-before {
+    left: 12px;
+  }
+  .ba-label-after {
+    right: 12px;
+  }
+  .ba-slider-button {
+    width: 36px;
+    height: 36px;
+  }
 }
