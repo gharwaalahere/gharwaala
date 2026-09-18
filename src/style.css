@@ -1026,51 +1026,74 @@
   }
   }
 
-  /* ================= Final CTA Glassmorphism ================= */
-  .final-cta {
+  /* ================= Final CTA Redesigned ================= */
+  .final-cta-redesigned {
+    background-color: var(--color-bg);
+    padding: 4rem 0 8rem 0;
+  }
+  
+  .cta-glass-wrapper {
+    position: relative;
+    width: 100%;
+    border-radius: 32px;
+    overflow: hidden;
     background-image: url('/premium_modular_kitchen_v4.webp');
     background-size: cover;
     background-position: center;
-    position: relative;
-    padding: 6rem 0;
-  }
-  
-  .final-cta::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 1;
-  }
-  
-  .glass-box {
-    position: relative;
-    z-index: 2;
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    padding: 4rem 2rem;
-    border-radius: 20px;
-    color: white;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-    max-width: 800px;
-    margin: 0 auto;
-  }
-  
-  .glass-box h2 {
-    color: #ffffff !important;
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    box-shadow: var(--shadow-lg);
+    display: flex;
+    align-items: center;
+    min-height: 500px;
+    padding: 4rem;
   }
 
-  .glass-box p {
-    color: rgba(255,255,255,0.95) !important;
-    font-size: 1.15rem;
-    margin-bottom: 1.5rem;
-    text-shadow: 0 2px 6px rgba(0,0,0,0.4);
+  .cta-glass-wrapper::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 100%);
+    z-index: 1;
+  }
+
+  .cta-glass-content {
+    position: relative;
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 24px;
+    padding: 3rem;
+    max-width: 550px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+  }
+
+  @media (max-width: 768px) {
+    .final-cta-redesigned {
+      padding: 2rem 0 4rem 0;
+    }
+    .cta-glass-wrapper {
+      padding: 1.5rem;
+      min-height: 450px;
+      align-items: flex-end;
+      border-radius: 20px;
+    }
+    .cta-glass-wrapper::before {
+      background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.1) 100%);
+    }
+    .cta-glass-content {
+      padding: 2rem 1.5rem;
+      width: 100%;
+      max-width: 100%;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.12);
+    }
+    .cta-glass-content h2 {
+      font-size: 2rem !important;
+    }
+    .cta-glass-content p {
+      margin: 0 auto 2rem auto !important;
+    }
   }
   
   .footer {
