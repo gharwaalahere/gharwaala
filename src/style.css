@@ -2485,15 +2485,17 @@
 
 @media (max-width: 768px) {
   .carousel-btn {
-    width: 36px;
-    height: 36px;
-    font-size: 1rem;
+    display: none;
   }
-  .carousel-btn.prev-btn {
-    left: 8px;
+  
+  .transformations-carousel-track {
+    gap: 1rem;
+    padding: 1rem 0;
   }
-  .carousel-btn.next-btn {
-    right: 8px;
+
+  .carousel-slide {
+    flex: 0 0 85%; /* 85% width so next slide peeks out */
+    scroll-snap-align: center;
   }
 }
 
