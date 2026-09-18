@@ -1794,6 +1794,19 @@
     padding-bottom: 2rem;
   }
   
+  .step-block {
+    opacity: 0.35;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    border-left: 3px solid transparent;
+    padding-left: 1.5rem;
+    margin-left: -1.5rem;
+  }
+  
+  .step-block.active {
+    opacity: 1;
+    border-left-color: var(--color-primary);
+  }
+  
   .experience-visuals {
     flex: 1;
     display: flex;

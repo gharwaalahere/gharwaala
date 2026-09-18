@@ -701,10 +701,34 @@ document.addEventListener('DOMContentLoaded', () => {
         startSlideshow();
       } else {
         clearInterval(slideInterval);
-        // Reset classes for desktop layout
-        slideSteps.forEach(s => s.classList.remove('active'));
-        slideImgs.forEach(i => i.classList.remove('active'));
+        // We handle desktop active state via IntersectionObserver now
       }
     });
+  }
+
+  // --- Desktop Scroll Spy Logic ---
+  if (slideSteps.length > 0 && slideImgs.length > 0) {
+    const observerOptions = {
+      root: null,
+      rootMargin: '-30% 0px -40% 0px', // Trigger when image is roughly in the center
+      threshold: 0
+    };
+
+    const scrollSpyObserver = new IntersectionObserver((entries) => {
+      if (window.innerWidth <= 992) return; // Only run on desktop
+
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Find index of the intersecting image
+          const index = Array.from(slideImgs).indexOf(entry.target);
+          if (index !== -1) {
+            slideSteps.forEach(s => s.classList.remove('active'));
+            if (slideSteps[index]) slideSteps[index].classList.add('active');
+          }
+        }
+      });
+    }, observerOptions);
+
+    slideImgs.forEach(img => scrollSpyObserver.observe(img));
   }
 });
