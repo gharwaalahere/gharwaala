@@ -462,7 +462,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const card = document.createElement('div');
       card.className = 'photo-card';
       card.innerHTML = `
-        <img src="${item.url}" alt="${item.title}" loading="lazy" />
+        <img src="${item.url}" alt="${item.title}" />
         <div class="photo-info">
           <h4>${item.title}</h4>
           <p>${item.desc}</p>
