@@ -637,6 +637,52 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // 4b. Transformations Carousel Logic
+  const transTrack = document.getElementById('transformationsTrack');
+  const transSlides = document.querySelectorAll('#transformationsTrack .carousel-slide');
+  const transDotsContainer = document.getElementById('transformationsDots');
+  const prevBtn = document.querySelector('.prev-btn');
+  const nextBtn = document.querySelector('.next-btn');
+
+  if (transTrack && transSlides.length > 0) {
+    // Generate dots
+    transSlides.forEach((_, idx) => {
+      const dot = document.createElement('div');
+      dot.className = `dot ${idx === 0 ? 'active' : ''}`;
+      dot.addEventListener('click', () => {
+        transTrack.scrollTo({
+          left: transSlides[idx].offsetLeft - transTrack.offsetLeft,
+          behavior: 'smooth'
+        });
+      });
+      transDotsContainer.appendChild(dot);
+    });
+
+    const dots = transDotsContainer.querySelectorAll('.dot');
+
+    // Update active dot on scroll
+    transTrack.addEventListener('scroll', () => {
+      const scrollPosition = transTrack.scrollLeft;
+      const slideWidth = transSlides[0].offsetWidth;
+      const activeIndex = Math.round(scrollPosition / slideWidth);
+      
+      dots.forEach(dot => dot.classList.remove('active'));
+      if (dots[activeIndex]) {
+        dots[activeIndex].classList.add('active');
+      }
+    });
+
+    // Arrow Buttons
+    if (prevBtn && nextBtn) {
+      prevBtn.addEventListener('click', () => {
+        transTrack.scrollBy({ left: -transSlides[0].offsetWidth, behavior: 'smooth' });
+      });
+      nextBtn.addEventListener('click', () => {
+        transTrack.scrollBy({ left: transSlides[0].offsetWidth, behavior: 'smooth' });
+      });
+    }
+  }
+
   // 5. Dynamic Glassmorphic Navbar
   const navbar = document.querySelector('.navbar');
   if (navbar) {
