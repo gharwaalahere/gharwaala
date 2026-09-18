@@ -253,9 +253,7 @@
   
   .navbar.scrolled {
     padding: 12px 0;
-    background-color: rgba(251, 249, 246, 0.75); /* Translucent Ivory */
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    background-color: var(--color-bg); /* Solid color instead of transparent */
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
   }
