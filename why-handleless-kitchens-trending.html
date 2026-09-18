@@ -430,8 +430,8 @@
       <div class="footer-contact">
         <h3>Contact Us</h3>
         <p>Have questions? Reach out instantly.</p>
-        <a href="mailto:support@gharwaala.com" class="contact-pill">
-          <span>📧</span> support@gharwaala.com
+        <a href="mailto:gharwaalahere@gmail.com" class="contact-pill">
+          <span>📧</span> gharwaalahere@gmail.com
         </a>
         <a href="tel:+918810627815" class="contact-pill">
           <span>📞</span> +91 88106 27815
@@ -452,29 +452,58 @@
       <p class="modal-subtext">Fill in your details and our experts will reach out to you.</p>
 
       <form id="leadForm">
-        <div class="form-group">
-          <label for="name">Full Name</label>
-          <input type="text" id="name" name="name" required placeholder="Ex. Rahul Kumar">
+        <!-- Step 1: Name & Phone -->
+        <div id="formStep1">
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" required placeholder="Ex. Rahul Kumar">
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" required pattern="[0-9]{10}" maxlength="10" title="Please enter a valid 10-digit mobile number" placeholder="10-digit mobile number">
+          </div>
+          
+          <p class="micro-copy" style="font-size: 0.8rem; color: var(--color-text-light); text-align: center; margin-bottom: 1rem;">No spam, just beautiful designs.</p>
+          <button type="button" class="btn btn-primary w-100" id="nextStepBtn">Next Step →</button>
         </div>
-        <div class="form-group">
-          <label for="phone">Phone Number</label>
-          <input type="tel" id="phone" name="phone" required pattern="[0-9]{10}" maxlength="10" title="Please enter a valid 10-digit mobile number" placeholder="10-digit mobile number">
+
+        <!-- Step 2: City, Area & Budget -->
+        <div id="formStep2" style="display: none;">
+          <button type="button" id="prevStepBtn" style="background: none; border: none; cursor: pointer; color: var(--color-text-light); margin-bottom: 1.5rem; font-size: 0.9rem; font-weight: 600; padding: 0;">← Back</button>
+          
+          <div class="form-group">
+            <label for="city">City</label>
+            <select id="city" name="city" required>
+              <option value="" disabled selected>Select your city...</option>
+              <option value="Delhi">Delhi</option>
+              <option value="Noida">Noida</option>
+              <option value="Gurugram">Gurugram</option>
+              <option value="Faridabad">Faridabad</option>
+              <option value="Ghaziabad">Ghaziabad</option>
+              <option value="Other">Other City...</option>
+            </select>
+          </div>
+          <div class="form-group" id="localityGroup">
+            <label for="locality">Area / Pincode</label>
+            <input type="text" id="locality" name="locality" required placeholder="Ex. Lajpat Nagar, 110024">
+          </div>
+          <div class="form-group">
+            <label for="budget">Estimated Budget</label>
+            <select id="budget" name="budget" required>
+              <option value="" disabled selected>Select your budget</option>
+              <option value="Under ₹1 Lakh">Under ₹1 Lakh</option>
+              <option value="₹1 Lakh - ₹3 Lakhs">₹1 Lakh - ₹3 Lakhs</option>
+              <option value="₹3 Lakhs - ₹5 Lakhs">₹3 Lakhs - ₹5 Lakhs</option>
+              <option value="Above ₹5 Lakhs">Above ₹5 Lakhs</option>
+            </select>
+          </div>
+          
+          <p id="waitlistNote" style="display: none; color: #b45309; font-size: 0.85rem; margin-bottom: 1.25rem; line-height: 1.4; padding: 0.75rem; background: #fffbeb; border-radius: 6px; border: 1px solid #fde68a;">
+            📍 We currently only operate in Delhi NCR. Join our waitlist and we'll notify you the moment we launch in your city!
+          </p>
+
+          <button type="submit" class="btn btn-primary w-100" id="submitBtn">Submit Request</button>
         </div>
-        <div class="form-group">
-          <label for="location">City / Location</label>
-          <input type="text" id="location" name="location" required placeholder="Ex. Pune">
-        </div>
-        <div class="form-group">
-          <label for="budget">Estimated Budget</label>
-          <select id="budget" name="budget" required>
-            <option value="" disabled selected>Select your budget</option>
-            <option value="Under ₹1 Lakh">Under ₹1 Lakh</option>
-            <option value="₹1 Lakh - ₹3 Lakhs">₹1 Lakh - ₹3 Lakhs</option>
-            <option value="₹3 Lakhs - ₹5 Lakhs">₹3 Lakhs - ₹5 Lakhs</option>
-            <option value="Above ₹5 Lakhs">Above ₹5 Lakhs</option>
-          </select>
-        </div>
-        <button type="submit" class="btn btn-primary w-100" id="submitBtn">Submit Request</button>
 
         <div id="formMsg" class="form-message"></div>
       </form>

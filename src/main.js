@@ -183,17 +183,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (nextStepBtn && step1 && step2) {
     nextStepBtn.addEventListener('click', () => {
-      // Basic HTML5 validation for step 1
-      if (!citySelect.reportValidity()) return;
-      if (citySelect.value !== 'Other' && !localityInput.reportValidity()) return;
-      const budgetSelect = document.getElementById('budget');
-      if (!budgetSelect.reportValidity()) return;
-
-      // If 'Other' city is selected, we don't go to step 2, we just submit the waitlist
-      if (citySelect.value === 'Other') {
-        leadForm.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
-        return;
-      }
+      const nameInput = document.getElementById('name');
+      const phoneInput = document.getElementById('phone');
+      
+      // Validate Step 1 (Name & Phone)
+      if (nameInput && !nameInput.reportValidity()) return;
+      if (phoneInput && !phoneInput.reportValidity()) return;
 
       step1.style.display = 'none';
       step2.style.display = 'block';
@@ -207,17 +202,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  if (citySelect && localityGroup && nextStepBtn) {
+  if (citySelect && localityGroup && submitBtn) {
     citySelect.addEventListener('change', (e) => {
       if (e.target.value === 'Other') {
         localityGroup.style.display = 'none';
         localityInput.required = false;
-        nextStepBtn.textContent = 'Join Waitlist';
+        submitBtn.textContent = 'Join Waitlist';
         if (waitlistNote) waitlistNote.style.display = 'block';
       } else {
         localityGroup.style.display = 'block';
         localityInput.required = true;
-        nextStepBtn.textContent = 'Next Step →';
+        submitBtn.textContent = 'Submit Request';
         if (waitlistNote) waitlistNote.style.display = 'none';
       }
     });
