@@ -1957,61 +1957,63 @@
     }
   }
   
-  .footer-col h3 {
-      font-size: 0.7rem !important;
-      letter-spacing: 1.5px;
-      margin-bottom: 0.8rem;
-    }
+  @media (max-width: 768px) {
+    .footer-col h3 {
+        font-size: 0.7rem !important;
+        letter-spacing: 1.5px;
+        margin-bottom: 0.8rem;
+      }
 
-    .footer-col a {
-      font-size: 0.8rem !important;
-      margin-bottom: 0.5rem !important;
-    }
+      .footer-col a {
+        font-size: 0.8rem !important;
+        margin-bottom: 0.5rem !important;
+      }
 
-    .footer-col a:hover {
-      transform: none;
-    }
+      .footer-col a:hover {
+        transform: none;
+      }
 
-    /* Contact section goes below with more space */
-    .footer-contact {
-      text-align: center;
-      padding-top: 2rem;
-      margin-top: 1.5rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-    }
+      /* Contact section goes below with more space */
+      .footer-contact {
+        text-align: center;
+        padding-top: 2rem;
+        margin-top: 1.5rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
 
-    .footer-contact h3 {
-      margin-bottom: 0.8rem;
-    }
+      .footer-contact h3 {
+        margin-bottom: 0.8rem;
+      }
 
-    .footer-contact p {
-      font-size: 0.85rem;
-      margin-bottom: 1rem;
-    }
+      .footer-contact p {
+        font-size: 0.85rem;
+        margin-bottom: 1rem;
+      }
 
-    .contact-pill {
-      justify-content: center;
-      font-size: 0.85rem !important;
-      padding: 0.75rem 1.2rem !important;
-    }
+      .contact-pill {
+        justify-content: center;
+        font-size: 0.85rem !important;
+        padding: 0.75rem 1.2rem !important;
+      }
 
-    .footer-links h3::after, .footer-contact h3::after {
-      left: 50%;
-      transform: translateX(-50%);
-    }
-    
-    .blog-hero {
-      padding: 5rem 0 !important;
-    }
-    .featured-post {
-      grid-template-columns: 1fr;
-    }
-    .featured-post img {
-      min-height: 260px;
-    }
-    .featured-post-text {
-      padding: 2rem 1.5rem;
-    }
+      .footer-links h3::after, .footer-contact h3::after {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      
+      .blog-hero {
+        padding: 5rem 0 !important;
+      }
+      .featured-post {
+        grid-template-columns: 1fr;
+      }
+      .featured-post img {
+        min-height: 260px;
+      }
+      .featured-post-text {
+        padding: 2rem 1.5rem;
+      }
+  }
 .photo-gallery-content {
   max-width: 1200px !important;
   max-height: 90vh;
