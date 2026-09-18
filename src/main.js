@@ -741,6 +741,41 @@ document.addEventListener('DOMContentLoaded', () => {
       startSlideshow();
     }
     
+    // --- Touch Swipe Support ---
+    let touchStartX = 0;
+    let touchEndX = 0;
+    const swipeThreshold = 50;
+    
+    const expVisualsContainer = document.querySelector('.experience-visuals');
+    if (expVisualsContainer) {
+      expVisualsContainer.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+      }, { passive: true });
+      
+      expVisualsContainer.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+      }, { passive: true });
+    }
+    
+    const handleSwipe = () => {
+      if (window.innerWidth > 992) return; // Only process on mobile
+      
+      const swipeDistance = touchEndX - touchStartX;
+      if (Math.abs(swipeDistance) > swipeThreshold) {
+        if (swipeDistance < 0) {
+          // Swiped left, go to next
+          const next = (currentSlide + 1) % mobileDots.length;
+          goToSlide(next);
+        } else {
+          // Swiped right, go to prev
+          const prev = (currentSlide - 1 + mobileDots.length) % mobileDots.length;
+          goToSlide(prev);
+        }
+        startSlideshow(); // Reset timer on manual interaction
+      }
+    };
+
     // Listen for resize to start/stop
     window.addEventListener('resize', () => {
       if (window.innerWidth <= 992) {
