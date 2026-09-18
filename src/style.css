@@ -2485,7 +2485,15 @@
 
 @media (max-width: 768px) {
   .carousel-btn {
-    display: none; /* Hide arrows on mobile, let them swipe */
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+  }
+  .carousel-btn.prev-btn {
+    left: 8px;
+  }
+  .carousel-btn.next-btn {
+    right: 8px;
   }
 }
 
