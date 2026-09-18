@@ -13,6 +13,38 @@ if (supabaseUrl && supabaseAnonKey) {
 
 // Ensure DOM is fully loaded
 document.addEventListener('DOMContentLoaded', () => {
+  
+  // --- Initialize Lenis Smooth Scroll ---
+  let lenis;
+  if (typeof window.Lenis !== 'undefined') {
+    lenis = new window.Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      direction: 'vertical',
+      gestureDirection: 'vertical',
+      smooth: true,
+      mouseMultiplier: 1,
+      smoothTouch: false,
+      touchMultiplier: 2,
+      infinite: false,
+    });
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+  }
+
+  // --- Splash Screen Cleanup ---
+  setTimeout(() => {
+    const splash = document.getElementById('splash-screen');
+    if (splash) {
+      splash.remove();
+    }
+  }, 2800);
+
+
   // --- Mobile Menu Toggle ---
   const mobileMenuBtn = document.getElementById('mobile-menu-btn');
   const navLinks = document.getElementById('nav-links');
@@ -95,6 +127,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Explore Designs button → smooth scroll to kitchen styles section
+  const exploreBtn = document.getElementById('exploreDesignsBtn');
+  const designsSection = document.getElementById('designs');
+  if (exploreBtn && designsSection) {
+    exploreBtn.addEventListener('click', () => {
+      designsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  }
+
   // Success Popup Close globally accessible
   window.closeSuccessPopup = function () {
     const popup = document.getElementById('successPopup');
@@ -133,18 +174,50 @@ document.addEventListener('DOMContentLoaded', () => {
   const localityGroup = document.getElementById('localityGroup');
   const localityInput = document.getElementById('locality');
   const waitlistNote = document.getElementById('waitlistNote');
+  
+  // Multi-step logic
+  const step1 = document.getElementById('formStep1');
+  const step2 = document.getElementById('formStep2');
+  const nextStepBtn = document.getElementById('nextStepBtn');
+  const prevStepBtn = document.getElementById('prevStepBtn');
 
-  if (citySelect && localityGroup && submitBtn) {
+  if (nextStepBtn && step1 && step2) {
+    nextStepBtn.addEventListener('click', () => {
+      // Basic HTML5 validation for step 1
+      if (!citySelect.reportValidity()) return;
+      if (citySelect.value !== 'Other' && !localityInput.reportValidity()) return;
+      const budgetSelect = document.getElementById('budget');
+      if (!budgetSelect.reportValidity()) return;
+
+      // If 'Other' city is selected, we don't go to step 2, we just submit the waitlist
+      if (citySelect.value === 'Other') {
+        leadForm.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
+        return;
+      }
+
+      step1.style.display = 'none';
+      step2.style.display = 'block';
+    });
+  }
+
+  if (prevStepBtn && step1 && step2) {
+    prevStepBtn.addEventListener('click', () => {
+      step2.style.display = 'none';
+      step1.style.display = 'block';
+    });
+  }
+
+  if (citySelect && localityGroup && nextStepBtn) {
     citySelect.addEventListener('change', (e) => {
       if (e.target.value === 'Other') {
         localityGroup.style.display = 'none';
         localityInput.required = false;
-        submitBtn.textContent = 'Join Waitlist';
+        nextStepBtn.textContent = 'Join Waitlist';
         if (waitlistNote) waitlistNote.style.display = 'block';
       } else {
         localityGroup.style.display = 'block';
         localityInput.required = true;
-        submitBtn.textContent = 'Submit Request';
+        nextStepBtn.textContent = 'Next Step →';
         if (waitlistNote) waitlistNote.style.display = 'none';
       }
     });
@@ -274,6 +347,12 @@ document.addEventListener('DOMContentLoaded', () => {
           formMsg.classList.add('success');
         }
         leadForm.reset();
+        
+        // Reset multi-step on success
+        if (step1 && step2) {
+          step2.style.display = 'none';
+          step1.style.display = 'block';
+        }
 
       } catch (err) {
         console.error("Supabase Error:", err);
@@ -426,15 +505,33 @@ document.addEventListener('DOMContentLoaded', () => {
   waContainer.className = 'whatsapp-wrapper';
 
   const waTooltip = document.createElement('div');
-  waTooltip.className = 'whatsapp-tooltip';
-  waTooltip.innerText = 'Need a quick estimate?';
+  waTooltip.className = 'whatsapp-chat-bubble';
+  
+  const generateWaLink = (msg) => `https://wa.me/918810627815?text=${encodeURIComponent(msg)}`;
 
-  const waButton = document.createElement('a');
-  const waMsg = "Hi Gharwaala Team! ✨ I loved your designs and would like to get a free estimate for my kitchen. Can we connect?";
-  waButton.href = `https://wa.me/918810627815?text=${encodeURIComponent(waMsg)}`;
-  waButton.target = '_blank';
+  waTooltip.innerHTML = `
+    <div class="chat-header">
+      <div class="chat-avatar"><img src="/custom-logo.webp" alt="Gharwaala Support"></div>
+      <div class="chat-title">
+        <h4>Gharwaala Support</h4>
+        <span class="online-status">Typically replies instantly</span>
+      </div>
+      <button class="chat-close-btn" aria-label="Close chat">&times;</button>
+    </div>
+    <div class="chat-body">
+      <p>Hi there! 👋 How can we help you build your dream kitchen?</p>
+      <div class="chat-options">
+        <a href="${generateWaLink('Hi Gharwaala Team! ✨ I would like to get a free estimate for my kitchen.')}" target="_blank" class="chat-option-btn">Get a Free Estimate</a>
+        <a href="${generateWaLink('Hi! I would like to book a free consultation for my kitchen.')}" target="_blank" class="chat-option-btn">Book a Consultation</a>
+        <a href="${generateWaLink('Hi! Can you share some of your previous designs and portfolio?')}" target="_blank" class="chat-option-btn">See Portfolio</a>
+        <a href="${generateWaLink('Hi! I want to know more about the materials you use and your warranty.')}" target="_blank" class="chat-option-btn">Materials & Warranty</a>
+      </div>
+    </div>
+  `;
+
+  const waButton = document.createElement('button');
   waButton.className = 'whatsapp-floating-btn';
-  waButton.setAttribute('aria-label', 'Chat with us on WhatsApp');
+  waButton.setAttribute('aria-label', 'Open WhatsApp Chat');
   waButton.innerHTML = `
     <svg viewBox="0 0 24 24" width="34" height="34" fill="currentColor">
       <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
@@ -445,20 +542,22 @@ document.addEventListener('DOMContentLoaded', () => {
   waContainer.appendChild(waButton);
   document.body.appendChild(waContainer);
 
-  // Show tooltip after 4 seconds to grab attention
+  const toggleChat = () => waTooltip.classList.toggle('visible');
+  waButton.addEventListener('click', toggleChat);
+  waTooltip.querySelector('.chat-close-btn').addEventListener('click', toggleChat);
+
+  // Show tooltip after 30 seconds (non-intrusive, let user explore first)
   setTimeout(() => {
-    waTooltip.classList.add('visible');
-  }, 4000);
-  
-  // Hide tooltip on hover
-  waContainer.addEventListener('mouseenter', () => {
-    waTooltip.classList.remove('visible');
-  });
+    if(!waTooltip.classList.contains('visible')) {
+      waTooltip.classList.add('visible');
+    }
+  }, 30000);
 });
 
 // ==========================================
-// Advanced Animations & Interactions
-// ==========================================
+// ============================================
+// 1. Intersection Observer for Scroll Animations
+// ============================================
 
 document.addEventListener('DOMContentLoaded', () => {
   // 1. Scroll Reveal Animations
@@ -553,5 +652,64 @@ document.addEventListener('DOMContentLoaded', () => {
         navbar.classList.remove('scrolled');
       }
     }, { passive: true });
+  }
+
+  // --- Mobile Slideshow Logic ---
+  const mobileDots = document.querySelectorAll('.mobile-slideshow-dots .dot');
+  const slideSteps = document.querySelectorAll('.step-block');
+  const slideImgs = document.querySelectorAll('.experience-step-img');
+  
+  if (mobileDots.length > 0) {
+    let currentSlide = 0;
+    let slideInterval;
+
+    const goToSlide = (index) => {
+      // Don't run on desktop where dots are hidden
+      if (window.innerWidth > 992) return;
+
+      mobileDots.forEach(d => d.classList.remove('active'));
+      slideSteps.forEach(s => s.classList.remove('active'));
+      slideImgs.forEach(i => i.classList.remove('active'));
+      
+      if (mobileDots[index]) mobileDots[index].classList.add('active');
+      if (slideSteps[index]) slideSteps[index].classList.add('active');
+      if (slideImgs[index]) slideImgs[index].classList.add('active');
+      currentSlide = index;
+    };
+
+    const nextSlide = () => {
+      if (window.innerWidth > 992) return;
+      const next = (currentSlide + 1) % mobileDots.length;
+      goToSlide(next);
+    };
+
+    const startSlideshow = () => {
+      clearInterval(slideInterval);
+      slideInterval = setInterval(nextSlide, 4000); // 4 seconds per slide
+    };
+
+    mobileDots.forEach((dot, idx) => {
+      dot.addEventListener('click', () => {
+        goToSlide(idx);
+        startSlideshow(); // Reset timer on manual click
+      });
+    });
+
+    // Only start slideshow if on mobile
+    if (window.innerWidth <= 992) {
+      startSlideshow();
+    }
+    
+    // Listen for resize to start/stop
+    window.addEventListener('resize', () => {
+      if (window.innerWidth <= 992) {
+        startSlideshow();
+      } else {
+        clearInterval(slideInterval);
+        // Reset classes for desktop layout
+        slideSteps.forEach(s => s.classList.remove('active'));
+        slideImgs.forEach(i => i.classList.remove('active'));
+      }
+    });
   }
 });

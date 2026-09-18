@@ -107,9 +107,9 @@
 
   <!-- 1. Full Width Hero Section -->
   <header class="home-hero">
-    <div class="home-hero-bg slide-1"></div>
-    <div class="home-hero-bg slide-2"></div>
-    <div class="home-hero-bg slide-3"></div>
+    <video class="home-hero-video" autoplay loop muted playsinline>
+      <source src="/hero.mp4" type="video/mp4">
+    </video>
     <div class="home-hero-overlay"></div>
     <div class="container">
       <div class="hero-content">
@@ -117,10 +117,10 @@
         <h1>Designer Kitchens,<br>Built for <span class="text-accent">Your Life.</span></h1>
         <p>Experience the perfect blend of high-end aesthetics and functional modular design. From concept to installation, we create kitchens that inspire.</p>
         <div class="hero-cta-group">
-          <a href="#contact" class="btn btn-primary hero-btn cta-trigger">Design My Kitchen</a>
-          <a href="/designs.html" class="btn btn-outline hero-btn-secondary">Explore Designs</a>
+          <button class="btn btn-primary hero-btn cta-trigger">Start My Design</button>
+          <button class="btn btn-outline hero-btn-secondary" id="exploreDesignsBtn">Explore Kitchen Styles</button>
         </div>
-        <div class="hero-trust">
+        <div class="hero-trust glass-pill">
           <div class="stars">⭐⭐⭐⭐⭐</div>
           <p class="trust-text">Trusted by <strong class="counter" data-target="500">0</strong><strong>+</strong> families in Delhi NCR</p>
         </div>
@@ -160,6 +160,39 @@
     </div>
   </section>
 
+  <!-- Signature Materials Section -->
+  <section class="materials-section section-padding reveal">
+    <div class="container">
+      <div class="materials-header text-center" style="max-width: 700px; margin: 0 auto 5rem auto;">
+        <h2 class="serif-heading" style="font-size: 2.5rem; margin-bottom: 1rem;">The Art of Craftsmanship</h2>
+        <p style="color: var(--color-text-light); font-size: 1.15rem; line-height: 1.6;">We source only the finest materials globally. From premium quartz to German precision hardware, every detail is meticulously chosen for endurance and elegance.</p>
+      </div>
+      <div class="materials-grid">
+        <div class="material-item item-large">
+          <img src="/modern_acrylic.webp" alt="Premium Acrylic Finish" loading="lazy">
+          <div class="material-caption">
+            <h3>Premium Acrylics</h3>
+            <p>High-gloss, scratch-resistant perfection.</p>
+          </div>
+        </div>
+        <div class="material-item item-tall">
+          <img src="/modern_quartz.webp" alt="Quartz Countertops" loading="lazy">
+          <div class="material-caption">
+            <h3>Quartz & Marble</h3>
+            <p>Stunning, non-porous luxury surfaces.</p>
+          </div>
+        </div>
+        <div class="material-item item-wide">
+          <img src="/modern_pu.webp" alt="PU Paint Finish" loading="lazy">
+          <div class="material-caption">
+            <h3>Matte PU Finishes</h3>
+            <p>Soft-touch, fingerprint-resistant elegance.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Before/After Slider Section -->
   <section class="before-after-section section-padding reveal">
     <div class="container">
@@ -185,7 +218,7 @@
   </section>
 
   <!-- 3. Popular Kitchen Styles -->
-  <section class="styles-section">
+  <section id="designs" class="styles-section">
     <div class="container">
       <div class="text-center reveal" style="max-width: 600px; margin: 0 auto 4rem auto;">
         <h2 class="section-title" style="margin-bottom: 0.8rem;">Popular Kitchen Styles</h2>
@@ -225,45 +258,46 @@
     </div>
   </section>
 
-  <!-- 4. How It Works -->
-  <section class="how-it-works-visible">
-    <div class="container">
-      <h2 class="section-title how-it-works-visible-title reveal">How It Works</h2>
-      <div class="how-it-works-visible-timeline">
-        <div class="how-it-works-visible-line"></div>
-
-        <div class="how-it-works-visible-row how-it-works-visible-row-left reveal">
-          <div class="how-it-works-visible-card">
-            <h3>Submit Request</h3>
-            <p>Tell us your requirements and budget securely.</p>
+  <!-- The Gharwaala Experience (Sticky Scroll Desktop / Slideshow Mobile) -->
+  <section class="experience-section section-padding" style="background-color: var(--color-bg);">
+    <div class="container experience-container">
+      <div class="experience-text reveal">
+        <h2 class="serif-heading" style="font-size: 2.8rem; margin-bottom: 1rem;">The Gharwaala Experience</h2>
+        <p style="color: var(--color-text-light); font-size: 1.15rem; line-height: 1.6; margin-bottom: 2.5rem;">A bespoke journey from the first sketch to the final polish. We manage every single detail.</p>
+        
+        <div class="step-details">
+          <div class="step-block active">
+            <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--color-primary);">1. Private Consultation</h3>
+            <p style="color: var(--color-text-light);">We discuss your lifestyle, cooking habits, and design preferences in detail.</p>
           </div>
-          <div class="how-it-works-visible-node" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+          
+          <div class="step-block" style="margin-top: 2.5rem;">
+            <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--color-primary);">2. 3D Visualization</h3>
+            <p style="color: var(--color-text-light);">See your kitchen in photorealistic 3D before a single board is cut.</p>
           </div>
-          <div class="how-it-works-visible-spacer"></div>
+          
+          <div class="step-block" style="margin-top: 2.5rem;">
+            <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--color-primary);">3. Precision Craftsmanship</h3>
+            <p style="color: var(--color-text-light);">Factory-finished modules built with millimeter precision by master craftsmen.</p>
+          </div>
+          
+          <div class="step-block" style="margin-top: 2.5rem;">
+            <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--color-primary);">4. White-Glove Handover</h3>
+            <p style="color: var(--color-text-light);">Installed flawlessly, cleaned thoroughly, and ready for your first meal.</p>
+          </div>
         </div>
-
-        <div class="how-it-works-visible-row how-it-works-visible-row-right reveal">
-          <div class="how-it-works-visible-spacer"></div>
-          <div class="how-it-works-visible-node" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-          </div>
-          <div class="how-it-works-visible-card">
-            <h3>Get Connected</h3>
-            <p>We match you with trusted, vetted local professionals.</p>
-          </div>
-        </div>
-
-        <div class="how-it-works-visible-row how-it-works-visible-row-left reveal">
-          <div class="how-it-works-visible-card">
-            <h3>Build Your Kitchen</h3>
-            <p>Get your dream kitchen designed and executed stress-free.</p>
-          </div>
-          <div class="how-it-works-visible-node" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-          </div>
-          <div class="how-it-works-visible-spacer"></div>
-        </div>
+      </div>
+      <div class="experience-visuals">
+        <img src="/step1_consultation.jpg" alt="Consultation" class="experience-step-img active reveal">
+        <img src="/step2_3d_design.jpg" alt="3D Design" class="experience-step-img reveal" style="margin-top: 4rem;">
+        <img src="/step3_craftsmanship.jpg" alt="Craftsmanship" class="experience-step-img reveal" style="margin-top: 4rem;">
+        <img src="/premium_modular_kitchen_v4.webp" alt="Handover" class="experience-step-img reveal" style="margin-top: 4rem;">
+      </div>
+      <div class="mobile-slideshow-dots">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
       </div>
     </div>
   </section>
@@ -336,46 +370,58 @@
       <p class="modal-subtext">Fill in your details and our experts will reach out to you.</p>
 
       <form id="leadForm">
-        <div class="form-group">
-          <label for="name">Full Name</label>
-          <input type="text" id="name" name="name" required placeholder="Ex. Rahul Kumar">
+        <!-- Step 1: Name & Phone -->
+        <div id="formStep1">
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" required placeholder="Ex. Rahul Kumar">
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" required pattern="[0-9]{10}" maxlength="10" title="Please enter a valid 10-digit mobile number" placeholder="10-digit mobile number">
+          </div>
+          
+          <p class="micro-copy" style="font-size: 0.8rem; color: var(--color-text-light); text-align: center; margin-bottom: 1rem;">No spam, just beautiful designs.</p>
+          <button type="button" class="btn btn-primary w-100" id="nextStepBtn">Next Step →</button>
         </div>
-        <div class="form-group">
-          <label for="phone">Phone Number</label>
-          <input type="tel" id="phone" name="phone" required pattern="[0-9]{10}" maxlength="10" title="Please enter a valid 10-digit mobile number" placeholder="10-digit mobile number">
-        </div>
-        <div class="form-group">
-          <label for="city">City</label>
-          <select id="city" name="city" required>
-            <option value="" disabled selected>Select your city...</option>
-            <option value="Delhi">Delhi</option>
-            <option value="Noida">Noida</option>
-            <option value="Gurugram">Gurugram</option>
-            <option value="Faridabad">Faridabad</option>
-            <option value="Ghaziabad">Ghaziabad</option>
-            <option value="Other">Other City...</option>
-          </select>
-        </div>
-        <div class="form-group" id="localityGroup">
-          <label for="locality">Area / Pincode</label>
-          <input type="text" id="locality" name="locality" required placeholder="Ex. Lajpat Nagar, 110024">
-        </div>
-        <div class="form-group">
-          <label for="budget">Estimated Budget</label>
-          <select id="budget" name="budget" required>
-            <option value="" disabled selected>Select your budget</option>
-            <option value="Under ₹1 Lakh">Under ₹1 Lakh</option>
-            <option value="₹1 Lakh - ₹3 Lakhs">₹1 Lakh - ₹3 Lakhs</option>
-            <option value="₹3 Lakhs - ₹5 Lakhs">₹3 Lakhs - ₹5 Lakhs</option>
-            <option value="Above ₹5 Lakhs">Above ₹5 Lakhs</option>
-          </select>
-        </div>
-        
-        <p id="waitlistNote" style="display: none; color: #b45309; font-size: 0.85rem; margin-bottom: 1.25rem; line-height: 1.4; padding: 0.75rem; background: #fffbeb; border-radius: 6px; border: 1px solid #fde68a;">
-          📍 We currently only operate in Delhi NCR. Join our waitlist and we'll notify you the moment we launch in your city!
-        </p>
 
-        <button type="submit" class="btn btn-primary w-100" id="submitBtn">Submit Request</button>
+        <!-- Step 2: City, Area & Budget -->
+        <div id="formStep2" style="display: none;">
+          <button type="button" id="prevStepBtn" style="background: none; border: none; cursor: pointer; color: var(--color-text-light); margin-bottom: 1.5rem; font-size: 0.9rem; font-weight: 600; padding: 0;">← Back</button>
+          
+          <div class="form-group">
+            <label for="city">City</label>
+            <select id="city" name="city" required>
+              <option value="" disabled selected>Select your city...</option>
+              <option value="Delhi">Delhi</option>
+              <option value="Noida">Noida</option>
+              <option value="Gurugram">Gurugram</option>
+              <option value="Faridabad">Faridabad</option>
+              <option value="Ghaziabad">Ghaziabad</option>
+              <option value="Other">Other City...</option>
+            </select>
+          </div>
+          <div class="form-group" id="localityGroup">
+            <label for="locality">Area / Pincode</label>
+            <input type="text" id="locality" name="locality" required placeholder="Ex. Lajpat Nagar, 110024">
+          </div>
+          <div class="form-group">
+            <label for="budget">Estimated Budget</label>
+            <select id="budget" name="budget" required>
+              <option value="" disabled selected>Select your budget</option>
+              <option value="Under ₹1 Lakh">Under ₹1 Lakh</option>
+              <option value="₹1 Lakh - ₹3 Lakhs">₹1 Lakh - ₹3 Lakhs</option>
+              <option value="₹3 Lakhs - ₹5 Lakhs">₹3 Lakhs - ₹5 Lakhs</option>
+              <option value="Above ₹5 Lakhs">Above ₹5 Lakhs</option>
+            </select>
+          </div>
+          
+          <p id="waitlistNote" style="display: none; color: #b45309; font-size: 0.85rem; margin-bottom: 1.25rem; line-height: 1.4; padding: 0.75rem; background: #fffbeb; border-radius: 6px; border: 1px solid #fde68a;">
+            📍 We currently only operate in Delhi NCR. Join our waitlist and we'll notify you the moment we launch in your city!
+          </p>
+
+          <button type="submit" class="btn btn-primary w-100" id="submitBtn">Submit Request</button>
+        </div>
 
         <div id="formMsg" class="form-message"></div>
       </form>
@@ -409,6 +455,8 @@
   </div>
 
   <!-- Scripts -->
+  <!-- Lenis Smooth Scroll -->
+  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
   <script type="module" src="/src/main.js"></script>
 </body>
 
