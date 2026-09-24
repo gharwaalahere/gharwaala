@@ -35,7 +35,69 @@
     @media(max-width:850px){.container{width:min(100% - 36px,1240px)}.navbar{padding:17px 0}.menu-toggle{display:block}.nav-links{position:absolute;top:74px;left:18px;right:18px;background:#171714;padding:18px;display:none;flex-direction:column;align-items:flex-start;gap:18px;border:1px solid #333}.nav-links.active{display:flex}.logo-mark{width:36px;height:36px}.logo-title{font-size:21px}.home-hero{min-height:760px}.home-hero-overlay{background:linear-gradient(0deg,rgba(12,12,10,.86) 3%,rgba(12,12,10,.3) 65%),linear-gradient(90deg,rgba(12,12,10,.22),transparent)}.home-hero .container{padding-bottom:52px}.hero-content h1{font-size:52px;letter-spacing:-2.5px}.hero-content>p{font-size:15px}.hero-meta{gap:15px;flex-wrap:wrap}.proof-grid{grid-template-columns:repeat(2,1fr);gap:20px}.proof-item{padding:0 16px;border-left:1px solid var(--line)}.proof-item:nth-child(3){border-left:0}.split-head{display:block}.split-head .section-lead{margin-top:20px}.story-grid,.process-grid{grid-template-columns:1fr;gap:40px}.story-image{height:470px}.process-image{position:relative;top:auto;height:430px;order:-1}.style-grid{grid-template-columns:1fr;grid-template-rows:330px 330px 330px}.style-card:first-child{grid-row:auto}.material-grid{grid-template-columns:1fr 1fr}.material:last-child{grid-column:span 2}.transform-frame{grid-template-columns:1fr}.transform-half{height:320px}.transform-half:first-child{display:none}.cta-inner{display:block}.cta .btn{margin-top:28px}.footer-grid{grid-template-columns:1fr;gap:35px}.footer-links{grid-template-columns:1fr 1fr}}
     @media(max-width:520px){section{padding:76px 0}.hero-content h1{font-size:44px}.hero-cta-group .btn{width:100%}.hero-meta{font-size:10px}.proof-grid{grid-template-columns:1fr 1fr}.proof-item{padding:0 10px}.story-image{height:360px}.material-grid{grid-template-columns:1fr}.material:last-child{grid-column:auto}.transform-half{height:260px}.modal-content{padding:30px 22px}.footer-links{grid-template-columns:1fr}}
   </style>
-</head>
+<style>
+/* Final contrast pass — homepage */
+.process .section-title,
+.process .process-item h3,
+.cta h2 { color:#fff !important; }
+
+.process .section-lead,
+.process .process-item p { color:#c4c0b8 !important; }
+
+.styles .section-title,
+.materials .section-title,
+.transform .section-title,
+.editorial .section-title { color:#1d1c19 !important; }
+
+.style-info h3,
+.style-info p,
+.material-copy h3,
+.material-copy p { color:#fff !important; }
+
+.hero-cta-group .btn-outline {
+  color:#fff !important;
+  border-color:rgba(255,255,255,.62) !important;
+  background:rgba(17,17,15,.12) !important;
+}
+.hero-cta-group .btn-outline:hover {
+  color:#fff !important;
+  background:rgba(255,255,255,.12) !important;
+  border-color:#fff !important;
+}
+.hero-cta-group .btn-primary {
+  color:#1d1c19 !important;
+  background:#fff !important;
+}
+.hero-cta-group .btn-primary:hover {
+  color:#1d1c19 !important;
+  background:#f0ece3 !important;
+}
+.cta .btn {
+  color:#171714 !important;
+  background:#d5b45f !important;
+  border-color:#d5b45f !important;
+  font-weight:700;
+}
+.cta .btn:hover {
+  color:#171714 !important;
+  background:#e2c477 !important;
+}
+.process-item .num { color:#d5b45f !important; }
+
+.section-lead { color:#6e6a63 !important; }
+.transform-caption p { color:#6e6a63 !important; }
+
+.footer-brand p,
+.footer-contact p,
+.footer-col a,
+.contact-pill { color:#aaa69d !important; }
+.footer-col h3,
+.footer-contact h3 { color:#fff !important; }
+
+@media (max-width:850px) {
+  .nav-links a { color:#fff !important; }
+}
+</style></head>
 <body>
   <div id="splash-screen" style="display:none"></div>
 
