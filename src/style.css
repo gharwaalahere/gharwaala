@@ -2770,11 +2770,12 @@
 .brand-waala { color:#fff !important; font-weight:700 !important; transition: color 0.3s ease; }
 .brand-dot { color:#e8c448 !important; font-weight:900 !important; }
 
-.navbar.scrolled .brand-waala { color:#fff !important; text-shadow:none !important; }
+.navbar.scrolled .brand-waala { color:#1C1917 !important; text-shadow:none !important; }
 .navbar.scrolled .logo { text-shadow:none !important; }
-.navbar.scrolled .logo-mark { filter:brightness(0) invert(1) !important; }
-.navbar.scrolled .logo-tagline { color:rgba(255,255,255,0.8) !important; }
-.navbar.scrolled .nav-links a { color:#fff !important; text-shadow:none !important; }
+.navbar.scrolled .logo-mark { filter:brightness(0) !important; }
+.navbar.scrolled .logo-tagline { color:rgba(28,25,23,0.7) !important; text-shadow:none !important; }
+.navbar.scrolled .nav-links a { color:#1C1917 !important; text-shadow:none !important; }
+.navbar.scrolled .menu-toggle { color:#1C1917 !important; }
 
 .menu-toggle {
   display:none;
@@ -2786,8 +2787,8 @@
 }
 
 @media (max-width:850px) {
-  .nav-links a { color:#fff !important; }
-  .navbar.scrolled .nav-links a { color:#fff !important; }
+  .nav-links a { color:#1C1917 !important; text-shadow:none !important; }
+  .navbar.scrolled .nav-links a { color:#1C1917 !important; text-shadow:none !important; }
   .navbar { padding:17px 0; }
   .menu-toggle { display:block; }
   .nav-links {
