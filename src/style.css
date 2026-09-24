@@ -2930,3 +2930,27 @@
 .image-zoom-hover:hover img {
   transform: scale(1.04);
 }
+
+/* Hero Entrance Animations */
+@keyframes heroGlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-anim {
+  opacity: 0;
+  animation: heroGlideUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.hero-anim-1 { animation-delay: 0.15s; }
+.hero-anim-2 { animation-delay: 0.35s; }
+.hero-anim-3 { animation-delay: 0.55s; }
+.hero-anim-4 { animation-delay: 0.70s; }
+.hero-anim-5 { animation-delay: 0.85s; }
+
