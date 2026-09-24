@@ -248,14 +248,17 @@
   .navbar {
     padding: 24px 0;
     border-bottom: 1px solid transparent;
-    background-color: var(--color-bg);
-    position: sticky;
+    background-color: transparent;
+    position: fixed;
     top: 0;
+    left: 0;
+    width: 100%;
     z-index: 50;
     transition: padding 0.4s ease, background-color 0.4s ease, backdrop-filter 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
   }
   
   .navbar.scrolled {
+    position: fixed;
     padding: 12px 0;
     background-color: var(--color-bg); /* Solid color instead of transparent */
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
