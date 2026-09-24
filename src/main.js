@@ -13,7 +13,11 @@ if (supabaseUrl && supabaseAnonKey) {
 
 // Ensure DOM is fully loaded
 document.addEventListener('DOMContentLoaded', () => {
-  
+  // Trigger hero entrance animations after page fully paints
+  window.addEventListener('load', () => {
+    document.body.classList.add('page-loaded');
+  });
+
   // --- Initialize Lenis Smooth Scroll ---
   let lenis;
   if (typeof window.Lenis !== 'undefined') {
