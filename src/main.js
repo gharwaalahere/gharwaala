@@ -685,14 +685,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 5. Dynamic Glassmorphic Navbar
   const navbar = document.querySelector('.navbar');
+  const homeHero = document.querySelector('.home-hero');
   if (navbar) {
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
-      } else {
-        navbar.classList.remove('scrolled');
-      }
-    }, { passive: true });
+    if (!homeHero) {
+      // If there's no dark hero image at the top (inner pages), 
+      // the navbar should be permanently in the 'scrolled' (dark) state.
+      navbar.classList.add('scrolled');
+    } else {
+      // Only apply scroll transparency logic if there's a dark hero image
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
+        }
+      }, { passive: true });
+    }
   }
 
   // --- Mobile Slideshow Logic ---
