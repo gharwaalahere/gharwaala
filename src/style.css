@@ -3,20 +3,24 @@
    ========================================= */
 
 :root {
-  /* Luxury Minimalist Palette */
-  --color-primary: #0f1115; /* Obsidian Black */
-  --color-primary-dark: #000000; /* Deepest Black */
-  --color-accent: #d4af37;  /* Champagne Gold */
-  --color-accent-dark: #a68825; /* Dark Champagne */
-  --color-accent-soft: #fbf8f1;
-  --color-bg: #fafafa; /* Gallery Off-White */
-  --color-bg-alt: #f2f2f2; /* Subtle Grey Contrast */
-  --color-bg-light: #eaeaea;
-  --color-text: #2c2f33;
-  --color-text-light: #73777d;
+  /* Premium Tech Architecture Palette (Liquid Glass / UX Pro Max) */
+  --color-primary: #1C1917; /* Dark Stone */
+  --color-primary-dark: #0C0A09; /* Deepest Black */
+  --color-accent: #A16207;  /* Deep Gold */
+  --color-accent-dark: #713F12;
+  --color-accent-soft: #FEF3C7;
+  --color-bg: #FAFAF9; /* Warm Off-White */
+  --color-bg-alt: #F5F5F4;
+  --color-bg-light: #E8ECF0;
+  --color-text: #292524;
+  --color-text-light: #78716C;
   --color-white: #ffffff;
-  --color-border: #e2e2e2;
+  --color-border: #D6D3D1;
   --color-card-bg: #ffffff;
+  
+  /* UI UX Pro Max Typography */
+  --font-heading: 'Cinzel', serif;
+  --font-primary: 'Josefin Sans', sans-serif;
   
   /* Elevated Spacing & Shadows */
   --section-padding: 8rem;
@@ -192,7 +196,7 @@
   
   /* ================= Typography ================= */
   h1, h2, h3, .serif-heading {
-    font-family: 'Lora', serif;
+    font-family: var(--font-heading);
     font-weight: 400; /* Lighter weight for elegance */
     color: var(--color-primary);
     line-height: 1.15;
@@ -425,7 +429,7 @@
     font-weight: 700;
     letter-spacing: -0.02em;
     line-height: 1.15;
-    font-family: 'Lora', serif;
+    font-family: var(--font-heading);
     text-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
   }
 
@@ -588,7 +592,7 @@
   }
 
   .trust-number {
-    font-family: 'Outfit', sans-serif;
+    font-family: var(--font-primary);
     font-size: 2.5rem;
     font-weight: 800;
     color: var(--color-accent);
@@ -674,7 +678,7 @@
   .style-banner h3 {
     font-size: 1.5rem;
     margin-bottom: 0.75rem;
-    font-family: 'Lora', serif;
+    font-family: var(--font-heading);
     font-weight: 600;
   }
 
@@ -777,7 +781,7 @@
 .how-it-works-visible-card h3 {
   margin-bottom: 0.9rem;
   color: var(--color-primary);
-  font-family: 'Lora', serif;
+  font-family: var(--font-heading);
   font-size: 1.7rem;
   font-weight: 600;
 }
@@ -869,7 +873,7 @@
 .process-card h3 {
   margin-bottom: 0.9rem;
   color: var(--color-primary);
-  font-family: 'Lora', serif;
+  font-family: var(--font-heading);
   font-size: 1.7rem;
   font-weight: 600;
 }
@@ -1456,7 +1460,7 @@
 
   .footer-col h3, .footer-contact h3, .footer-links h3 {
     color: var(--color-white);
-    font-family: 'Outfit', sans-serif;
+    font-family: var(--font-primary);
     font-size: 0.9rem;
     text-transform: uppercase;
     letter-spacing: 2px;
