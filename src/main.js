@@ -40,6 +40,47 @@ document.addEventListener('DOMContentLoaded', () => {
     requestAnimationFrame(raf);
   }
 
+  // --- Hero Rotating Text Animation ---
+  const changingText = document.querySelector('.changing-text');
+  if (changingText) {
+    const words = ["like yours.", "timeless.", "effortless.", "premium.", "inspiring."];
+    let wordIndex = 0;
+    
+    // Start rotating after the initial load animation finishes
+    setTimeout(() => {
+      setInterval(() => {
+        // Animate out (fade out and move up)
+        changingText.style.opacity = '0';
+        changingText.style.transform = 'translateY(-15px)';
+        
+        // Wait for fade out to complete
+        setTimeout(() => {
+          // Change text
+          wordIndex = (wordIndex + 1) % words.length;
+          changingText.textContent = words[wordIndex];
+          
+          // Reset position to bottom instantly without transition
+          changingText.style.transition = 'none';
+          changingText.style.transform = 'translateY(15px)';
+          
+          // Force a browser reflow so the instant move takes effect
+          changingText.offsetHeight; 
+          
+          // Animate back in (fade in and move to normal position)
+          changingText.style.transition = 'opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
+          changingText.style.opacity = '1';
+          changingText.style.transform = 'translateY(0)';
+          
+          // Reset standard transition for next time out
+          setTimeout(() => {
+            changingText.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+          }, 600);
+          
+        }, 500); // 500ms for fade out to finish
+      }, 3500); // Rotate every 3.5 seconds
+    }, 2000);
+  }
+
   // --- Splash Screen Cleanup ---
   setTimeout(() => {
     const splash = document.getElementById('splash-screen');
