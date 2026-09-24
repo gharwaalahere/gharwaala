@@ -11,6 +11,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Josefin+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/src/style.css">
+  <script>
+    if (sessionStorage.getItem('splashSeen')) {
+      document.documentElement.classList.add('skip-splash');
+    } else {
+      sessionStorage.setItem('splashSeen', 'true');
+    }
+  </script>
   <style>
     :root{--ink:#1d1c19;--muted:#6e6a63;--paper:#f6f4ef;--cream:#ebe7dd;--line:#d9d4ca;--gold:#b68a32;--deep:#292823;--white:#fff}
     *{box-sizing:border-box}html{scroll-behavior:smooth;overflow-x:hidden}body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font-primary);-webkit-font-smoothing:antialiased;overflow-x:hidden;width:100%}
