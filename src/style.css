@@ -2788,11 +2788,7 @@
 .navbar.scrolled .brand-waala { color:#1C1917 !important; text-shadow:none !important; }
 .navbar.scrolled .logo { text-shadow:none !important; }
 .navbar.scrolled .logo-mark { 
-  height: 38px;
   filter: none !important;
-  transform: scale(2.0) translateY(2.5px);
-  margin-right: 30px;
-  margin-left: -8px;
 }
 .navbar.scrolled .logo-tagline { color:rgba(28,25,23,0.7) !important; text-shadow:none !important; }
 .navbar.scrolled .nav-links a { color:#1C1917 !important; text-shadow:none !important; }
