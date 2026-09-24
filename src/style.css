@@ -2758,3 +2758,19 @@
     height: 180px;
   }
 }
+
+/* ================= Navbar Overrides ================= */
+.brand-ghar { color:#e8c448 !important; font-weight:800 !important; }
+.brand-waala { color:#fff !important; font-weight:700 !important; transition: color 0.3s ease; }
+.brand-dot { color:#e8c448 !important; font-weight:900 !important; }
+
+.navbar.scrolled .brand-waala { color:#1f2937 !important; text-shadow:none !important; }
+.navbar.scrolled .logo { text-shadow:none !important; }
+.navbar.scrolled .logo-mark { filter:brightness(0) !important; }
+.navbar.scrolled .logo-tagline { color:rgba(0,0,0,0.6) !important; }
+.navbar.scrolled .nav-links a { color:#1f2937 !important; text-shadow:none !important; }
+
+@media (max-width:850px) {
+  .nav-links a { color:#fff !important; }
+  .navbar.scrolled .nav-links a { color:#1f2937 !important; }
+}
