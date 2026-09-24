@@ -2830,9 +2830,9 @@
   .logo-mark { 
     height: 36px; 
     width: auto;
-    transform: scale(2.8) translateY(2px);
-    margin-right: 44px;
-    margin-left: -26px;
+    transform: scale(2.3) translateY(2px);
+    margin-right: 28px;
+    margin-left: -20px;
   }
   .logo-title { font-size:21px; }
   .logo-tagline { font-size: 7px; letter-spacing: 2.1px; margin-top: 1px; }
