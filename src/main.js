@@ -820,4 +820,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
     slideImgs.forEach(img => scrollSpyObserver.observe(img));
   }
+
+  // --- Process Image Swap Logic ---
+  const processItems = document.querySelectorAll('.process-item');
+  const processDisplayImage = document.getElementById('process-display-image');
+
+  if (processItems.length > 0 && processDisplayImage) {
+    processItems.forEach(item => {
+      item.addEventListener('mouseenter', () => {
+        // Remove active class from all
+        processItems.forEach(p => p.classList.remove('active'));
+        // Add active class to current
+        item.classList.add('active');
+        
+        // Swap image with fade effect
+        const newSrc = item.getAttribute('data-image');
+        if (newSrc && processDisplayImage.getAttribute('src') !== newSrc) {
+          processDisplayImage.style.opacity = 0;
+          setTimeout(() => {
+            processDisplayImage.setAttribute('src', newSrc);
+            processDisplayImage.style.opacity = 1;
+          }, 150); // wait half of transition time
+        }
+      });
+    });
+  }
+
 });
