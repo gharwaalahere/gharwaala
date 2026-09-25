@@ -203,7 +203,9 @@
           <button class="btn btn-primary cta-trigger mobile-pill-btn">Start a conversation <span style="margin-left:9px">↗</span></button>
           <a class="btn btn-outline mobile-text-link" href="#designs">Explore our kitchens <span style="margin-left:4px">↓</span></a>
         </div>
-        <div class="hero-meta hero-anim hero-anim-5"><span><b>01</b> Design-led</span><span class="mobile-divider">|</span><span><b>02</b> Delhi NCR</span><span class="mobile-divider">|</span><span><b>03</b> From sketch to install</span></div>
+      </div>
+      <div class="hero-meta-wrapper hero-anim hero-anim-5">
+        <div class="hero-meta"><span><b>01</b> Design-led</span><span class="mobile-divider">|</span><span><b>02</b> Delhi NCR</span><span class="mobile-divider">|</span><span><b>03</b> From sketch to install</span></div>
       </div>
     </div>
   </header>
@@ -257,12 +259,15 @@
         font-weight: 400;
         letter-spacing: 0.5px;
       }
-      .hero-meta {
+      .hero-meta-wrapper {
         position: absolute;
         bottom: 0; 
         left: 0; 
         right: 0;
         width: 100%;
+        z-index: 20;
+      }
+      .hero-meta {
         background: rgba(62, 53, 41, 0.95);
         border-top: 1px solid rgba(255,255,255,0.1);
         padding: 14px 12px !important;
@@ -273,7 +278,6 @@
         font-size: 7.5px !important;
         letter-spacing: 0.5px;
         white-space: nowrap;
-        z-index: 20;
       }
       .hero-meta span { display: inline-flex; }
       .hero-meta b { color: #d5b45f !important; margin-right: 4px; }
@@ -306,6 +310,13 @@
       
       .hero-meta {
         justify-content: center;
+      }
+      
+      .hero-meta-wrapper {
+        margin-top: 2rem;
+        display: flex;
+        justify-content: center;
+        width: 100%;
       }
     }
   </style>
