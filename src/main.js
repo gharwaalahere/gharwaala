@@ -81,13 +81,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 2000);
   }
 
-  // --- Splash Screen Cleanup ---
-  setTimeout(() => {
-    const splash = document.getElementById('splash-screen');
-    if (splash) {
-      splash.remove();
-    }
-  }, 2800);
 
 
   // --- Mobile Menu Toggle ---
