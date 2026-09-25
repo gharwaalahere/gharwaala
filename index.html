@@ -212,8 +212,9 @@
     @media (max-width: 850px) {
       .home-hero .container {
         padding-top: 60px;
-        padding-bottom: 70px;
+        padding-bottom: 90px;
         align-items: flex-start;
+        position: static !important; /* Force absolute children to anchor to full-width home-hero */
       }
       .hero-content {
         text-align: left;
