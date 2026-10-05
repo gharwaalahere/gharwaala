@@ -2900,31 +2900,31 @@
 
 /* Navbar CTA Button */
 .navbar .nav-links a.nav-cta-btn {
-  background: var(--gold);
-  color: #111 !important;
+  background: var(--color-accent);
+  color: #fff !important;
   padding: 8px 20px;
   border-radius: 50px;
   font-weight: 700;
   text-shadow: none !important;
   transition: 0.3s;
   display: inline-block;
-  border: 1px solid var(--gold);
+  border: 1px solid var(--color-accent);
 }
 
 .navbar .nav-links a.nav-cta-btn:hover {
   background: transparent;
-  color: var(--gold) !important;
+  color: var(--color-accent) !important;
   transform: translateY(-2px);
 }
 
 .navbar.scrolled .nav-links a.nav-cta-btn {
   background: var(--color-primary);
-  color: var(--gold) !important;
+  color: var(--color-accent) !important;
   border-color: var(--color-primary);
 }
 
 .navbar.scrolled .nav-links a.nav-cta-btn:hover {
-  background: var(--gold);
-  color: #111 !important;
-  border-color: var(--gold);
+  background: var(--color-accent);
+  color: #fff !important;
+  border-color: var(--color-accent);
 }
