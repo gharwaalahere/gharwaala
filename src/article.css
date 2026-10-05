@@ -97,7 +97,7 @@
 .news-hero { margin: 0 0 3rem; }
 .news-hero img {
   width: 100%;
-  aspect-ratio: 16 / 8;
+  height: 420px;
   object-fit: cover;
   border-radius: 16px;
   display: block;
@@ -108,8 +108,9 @@
   font-family: 'Outfit', sans-serif;
   font-size: 0.85rem;
   color: var(--ink-4);
-  margin-top: 0.7rem;
+  margin-top: 0.8rem;
   line-height: 1.5;
+  text-align: center;
 }
 
 /* ---------- Layout ---------- */
@@ -221,8 +222,16 @@
   border-bottom: 1px solid rgba(13, 148, 136, 0.35);
 }
 .news-body a:hover { border-bottom-color: var(--color-primary); }
-.news-body figure { margin: 2.5rem 0; }
-.news-body figure img { width: 100%; height: auto; border-radius: 12px; display: block; }
+.news-body figure { margin: 3rem 0; text-align: center; }
+.news-body figure img { 
+  max-width: 100%; 
+  width: auto;
+  max-height: 500px;
+  height: auto; 
+  border-radius: 12px; 
+  display: block; 
+  margin: 0 auto;
+}
 .news-body blockquote,
 .news-body .pullquote {
   font-family: 'Outfit', sans-serif;
@@ -372,7 +381,7 @@
 .related-card { text-decoration: none; color: inherit; font-family: 'Outfit', sans-serif; display: block; }
 .related-card img {
   width: 100%;
-  aspect-ratio: 16 / 10;
+  height: 220px;
   object-fit: cover;
   border-radius: 12px;
   margin-bottom: 0.9rem;
@@ -391,7 +400,7 @@
 }
 @media (max-width: 768px) {
   .news-wrap { padding: 6rem 16px 3rem; }
-  .news-hero img { aspect-ratio: 4 / 3; border-radius: 12px; }
+  .news-hero img { height: 260px; border-radius: 12px; }
   .news-body { font-size: 1.04rem; line-height: 1.78; }
   .news-body .lede { font-size: 1.12rem; }
   .news-body h2 { font-size: 1.5rem; margin-top: 2.6rem; }
@@ -399,7 +408,7 @@
   .news-body blockquote, .news-body .pullquote { font-size: 1.18rem; }
   .related-grid { grid-template-columns: 1fr; }
   .related-card { display: grid; grid-template-columns: 110px 1fr; gap: 1rem; align-items: center; }
-  .related-card img { margin: 0; aspect-ratio: 1; }
+  .related-card img { margin: 0; height: 110px; width: 100%; }
   .news-cta { padding: 2.25rem 1.25rem; }
   .news-cta h2 { font-size: 1.45rem; }
   .news-author { flex-direction: column; }
