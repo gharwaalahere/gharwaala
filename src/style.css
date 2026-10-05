@@ -1301,6 +1301,7 @@
     text-transform: uppercase;
     letter-spacing: 1px;
   }
+  .blog-card-content h3,
   .blog-card-content h4 {
     font-size: 1.3rem;
     margin-bottom: 1rem;
@@ -1331,6 +1332,7 @@
     .blog-card img {
       height: 120px;
     }
+    .blog-card-content h3,
     .blog-card-content h4 {
       font-size: 1rem;
       margin-bottom: 0.5rem;
