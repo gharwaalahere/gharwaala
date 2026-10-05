@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kitchen Cost Estimator | Gharwaala</title>
+  <meta name="description" content="Calculate the exact cost of your premium modular kitchen in Delhi NCR in just 60 seconds with our interactive estimator." />
+  
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Josefin+Sans:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/style.css" />
+
+  <style>
+    .calc-container {
+      max-width: 800px;
+      margin: -60px auto 100px;
+      background: #fff;
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+      position: relative;
+      z-index: 10;
+    }
+
+    .step-indicator {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 40px;
+      position: relative;
+    }
+    .step-indicator::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: #e5e7eb;
+      z-index: 1;
+      transform: translateY(-50%);
+    }
+    .step-dot {
+      width: 32px;
+      height: 32px;
+      background: #e5e7eb;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-weight: 600;
+      color: #6b7280;
+      z-index: 2;
+      transition: 0.3s;
+    }
+    .step-dot.active {
+      background: var(--color-gold);
+      color: #fff;
+      box-shadow: 0 0 0 4px rgba(213, 180, 95, 0.2);
+    }
+    .step-dot.completed {
+      background: var(--color-primary);
+      color: #fff;
+    }
+
+    .calc-step {
+      display: none;
+      animation: fadeIn 0.4s ease forwards;
+    }
+    .calc-step.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .step-title {
+      font-family: var(--font-heading);
+      font-size: 28px;
+      color: var(--color-primary);
+      margin-bottom: 10px;
+      text-align: center;
+    }
+    .step-desc {
+      text-align: center;
+      color: #6b7280;
+      margin-bottom: 30px;
+    }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    .option-card {
+      border: 2px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 24px;
+      text-align: center;
+      cursor: pointer;
+      transition: 0.2s;
+      background: #f9fafb;
+    }
+    .option-card:hover {
+      border-color: var(--color-gold);
+      background: #fff;
+      transform: translateY(-2px);
+    }
+    .option-card.selected {
+      border-color: var(--color-gold);
+      background: rgba(213, 180, 95, 0.05);
+      box-shadow: 0 4px 12px rgba(213, 180, 95, 0.15);
+    }
+    
+    .option-card h3 {
+      font-size: 18px;
+      color: var(--color-primary);
+      margin-bottom: 8px;
+    }
+    .option-card p {
+      font-size: 14px;
+      color: #6b7280;
+      margin: 0;
+    }
+
+    .btn-row {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid #e5e7eb;
+    }
+
+    .btn-calc {
+      padding: 12px 32px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: 0.2s;
+    }
+    .btn-prev {
+      background: #f3f4f6;
+      color: #374151;
+    }
+    .btn-prev:hover { background: #e5e7eb; }
+    
+    .btn-next {
+      background: var(--color-primary);
+      color: #fff;
+    }
+    .btn-next:hover { background: #111827; }
+    .btn-next:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    /* Lead Form Styling */
+    .lead-form input {
+      width: 100%;
+      padding: 16px;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-size: 16px;
+    }
+    
+    /* Result Screen */
+    .result-box {
+      text-align: center;
+      padding: 40px;
+      background: #f8fafc;
+      border-radius: 12px;
+      border: 2px dashed var(--color-gold);
+    }
+    .price-range {
+      font-size: 48px;
+      font-family: var(--font-heading);
+      color: var(--color-primary);
+      font-weight: 700;
+      margin: 20px 0;
+    }
+
+    @media (max-width: 600px) {
+      .calc-container { margin: -40px 15px 60px; padding: 24px; }
+      .options-grid { grid-template-columns: 1fr; }
+      .price-range { font-size: 32px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container nav-container">
+      <a class="logo" href="/">
+        <img class="logo-mark" src="/custom-logo.webp" alt="Gharwaala">
+        <div class="logo-text-wrapper">
+          <span class="logo-title"><span class="brand-ghar">Ghar</span><span class="brand-waala">waala</span><span class="brand-dot">.</span></span>
+          <span class="logo-tagline">PLAN · DESIGN · BUILD</span>
+        </div>
+      </a>
+      <button class="menu-toggle" id="mobile-menu-btn" aria-label="Open menu">☰</button>
+      <div class="nav-links" id="nav-links">
+        <a href="/#designs">Kitchens</a>
+        <a href="/#process">How it works</a>
+        <a href="/designs.html">Gallery</a>
+        <a href="/blog.html">Journal</a>
+        <a href="/about.html">About</a>
+        <a href="/contact.html">Contact</a>
+        <a href="/calculator.html" style="color: var(--color-gold); font-weight: 600;">Calculate Cost</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <header class="page-header" style="background: linear-gradient(rgba(17, 24, 39, 0.7), rgba(17, 24, 39, 0.9)), url('/blog_hero_bg.webp') center/cover no-repeat; padding: 180px 0 140px 0;">
+    <div class="container">
+      <h1 class="section-title" style="margin-bottom:0; color:#fff;">Cost Estimator</h1>
+      <p style="color: rgba(255,255,255,0.8); margin-top: 15px;">Answer 3 quick questions to get an instant estimate for your premium kitchen.</p>
+    </div>
+  </header>
+
+  <!-- Calculator App -->
+  <section class="calculator-section">
+    <div class="container">
+      <div class="calc-container">
+        
+        <div class="step-indicator">
+          <div class="step-dot active" data-step="1">1</div>
+          <div class="step-dot" data-step="2">2</div>
+          <div class="step-dot" data-step="3">3</div>
+          <div class="step-dot" data-step="4">4</div>
+        </div>
+
+        <!-- Step 1: Layout -->
+        <div class="calc-step active" id="step1">
+          <h2 class="step-title">What is your kitchen layout?</h2>
+          <p class="step-desc">Select the shape that closest matches your kitchen space.</p>
+          <div class="options-grid">
+            <div class="option-card" onclick="selectOption('layout', 'straight')">
+              <h3>Straight / Parallel</h3>
+              <p>Ideal for compact spaces</p>
+            </div>
+            <div class="option-card" onclick="selectOption('layout', 'lshape')">
+              <h3>L-Shape</h3>
+              <p>The most popular Indian layout</p>
+            </div>
+            <div class="option-card" onclick="selectOption('layout', 'ushape')">
+              <h3>U-Shape</h3>
+              <p>Maximum storage & countertop</p>
+            </div>
+            <div class="option-card" onclick="selectOption('layout', 'island')">
+              <h3>Island Kitchen</h3>
+              <p>Luxurious open-plan design</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 2: Size -->
+        <div class="calc-step" id="step2">
+          <h2 class="step-title">How large is your kitchen?</h2>
+          <p class="step-desc">Choose a rough estimate of the floor area.</p>
+          <div class="options-grid">
+            <div class="option-card" onclick="selectOption('size', 'small')">
+              <h3>Small</h3>
+              <p>Under 70 Sq.Ft</p>
+            </div>
+            <div class="option-card" onclick="selectOption('size', 'medium')">
+              <h3>Medium</h3>
+              <p>70 - 110 Sq.Ft</p>
+            </div>
+            <div class="option-card" onclick="selectOption('size', 'large')">
+              <h3>Large</h3>
+              <p>Over 110 Sq.Ft</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3: Material -->
+        <div class="calc-step" id="step3">
+          <h2 class="step-title">Choose your preferred finish</h2>
+          <p class="step-desc">This defines the look and feel of your kitchen cabinets.</p>
+          <div class="options-grid">
+            <div class="option-card" onclick="selectOption('material', 'laminate')">
+              <h3>High-Gloss Laminate</h3>
+              <p>Durable & budget-friendly</p>
+            </div>
+            <div class="option-card" onclick="selectOption('material', 'acrylic')">
+              <h3>Premium Acrylic</h3>
+              <p>Scratch-proof, mirror-like finish</p>
+            </div>
+            <div class="option-card" onclick="selectOption('material', 'pu')">
+              <h3>PU Paint / Duco</h3>
+              <p>Seamless, ultra-luxurious matte</p>
+            </div>
+            <div class="option-card" onclick="selectOption('material', 'veneer')">
+              <h3>Natural Veneer</h3>
+              <p>Rich, textured real wood feel</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 4: Lead Capture -->
+        <div class="calc-step" id="step4">
+          <h2 class="step-title">Your estimate is ready!</h2>
+          <p class="step-desc">Enter your details to view the full cost breakdown and receive a copy on WhatsApp.</p>
+          <div class="lead-form" style="max-width: 400px; margin: 0 auto;">
+            <input type="text" id="calcName" placeholder="Your Full Name" required>
+            <input type="tel" id="calcPhone" placeholder="WhatsApp Number" required>
+            <input type="email" id="calcEmail" placeholder="Email Address (Optional)">
+          </div>
+        </div>
+
+        <!-- Step 5: Result -->
+        <div class="calc-step" id="step5">
+          <h2 class="step-title">Your Custom Estimate</h2>
+          <p class="step-desc">Based on Delhi NCR market rates for premium materials.</p>
+          <div class="result-box">
+            <p style="text-transform: uppercase; letter-spacing: 1px; font-size: 13px; font-weight: 600; color: #6b7280;">Estimated Cost Range</p>
+            <div class="price-range" id="priceDisplay">₹0 - ₹0</div>
+            <p style="font-size: 14px; color: #4b5563; max-width: 400px; margin: 0 auto;">
+              This includes premium woodwork, core materials, standard hardware, and installation. It excludes civil work and appliances.
+            </p>
+            <br>
+            <button class="btn btn-primary" style="padding: 15px 30px;" onclick="window.location.href='/contact.html'">Book a Free Design Consultation</button>
+          </div>
+        </div>
+
+        <div class="btn-row" id="btnContainer">
+          <button class="btn-calc btn-prev" id="prevBtn" onclick="nextPrev(-1)" style="visibility: hidden;">Back</button>
+          <button class="btn-calc btn-next" id="nextBtn" onclick="nextPrev(1)" disabled>Next Step →</button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <script src="/src/main.js"></script>
+  <script>
+    let currentStep = 1;
+    const totalSteps = 4;
+    const selections = {
+      layout: null,
+      size: null,
+      material: null
+    };
+
+    // Pricing Logic
+    const baseRates = { laminate: 1400, acrylic: 2200, pu: 2800, veneer: 3500 };
+    const areaMultipliers = {
+      straight: 1.0, lshape: 1.2, ushape: 1.5, island: 1.8
+    };
+    const sizeSqft = { small: 65, medium: 100, large: 150 };
+
+    function selectOption(category, value) {
+      selections[category] = value;
+      
+      // Update UI
+      const stepDiv = document.getElementById('step' + currentStep);
+      const cards = stepDiv.querySelectorAll('.option-card');
+      cards.forEach(c => c.classList.remove('selected'));
+      event.currentTarget.classList.add('selected');
+
+      // Enable next button
+      document.getElementById('nextBtn').disabled = false;
+    }
+
+    function nextPrev(n) {
+      const x = document.getElementsByClassName("calc-step");
+      
+      // Validation for step 4 (form)
+      if (currentStep === 4 && n === 1) {
+        const name = document.getElementById('calcName').value;
+        const phone = document.getElementById('calcPhone').value;
+        if(name === '' || phone === '') {
+          alert('Please enter your name and WhatsApp number to see the estimate.');
+          return;
+        }
+        calculatePrice();
+        // Here you would normally trigger Web3Forms submission via fetch API
+      }
+
+      x[currentStep - 1].classList.remove("active");
+      currentStep = currentStep + n;
+
+      if (currentStep > totalSteps) {
+        currentStep = 5; // Result step
+        document.getElementById("btnContainer").style.display = "none";
+        document.querySelector(".step-indicator").style.display = "none";
+      }
+      
+      x[currentStep - 1].classList.add("active");
+      
+      // Update dots
+      if(currentStep <= totalSteps) {
+        const dots = document.getElementsByClassName("step-dot");
+        for (let i = 0; i < dots.length; i++) {
+          dots[i].classList.remove("active");
+          dots[i].classList.remove("completed");
+          if (i < currentStep - 1) dots[i].classList.add("completed");
+          if (i === currentStep - 1) dots[i].classList.add("active");
+        }
+      }
+
+      // Buttons visibility
+      document.getElementById("prevBtn").style.visibility = (currentStep === 1) ? "hidden" : "visible";
+      
+      if (currentStep === 4) {
+        document.getElementById("nextBtn").innerHTML = "See My Estimate →";
+        document.getElementById("nextBtn").disabled = false;
+      } else if (currentStep < 5) {
+        document.getElementById("nextBtn").innerHTML = "Next Step →";
+        document.getElementById("nextBtn").disabled = selections[getCategoryForStep(currentStep)] === null;
+      }
+    }
+
+    function getCategoryForStep(step) {
+      if(step === 1) return 'layout';
+      if(step === 2) return 'size';
+      if(step === 3) return 'material';
+      return null;
+    }
+
+    function calculatePrice() {
+      const rate = baseRates[selections.material];
+      const sqft = sizeSqft[selections.size] * areaMultipliers[selections.layout];
+      
+      const minPrice = rate * sqft;
+      const maxPrice = minPrice * 1.35; // 35% margin for hardware/accessories variance
+
+      document.getElementById('priceDisplay').innerText = 
+        `₹${(minPrice/100000).toFixed(1)}L - ₹${(maxPrice/100000).toFixed(1)}L`;
+    }
+  </script>
+</body>
+</html>
