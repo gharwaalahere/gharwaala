@@ -723,14 +723,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 5. Dynamic Glassmorphic Navbar
   const navbar = document.querySelector('.navbar');
+  const hasDarkHeader = document.querySelector('.home-hero') || document.querySelector('.page-header');
   if (navbar) {
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
-      } else {
-        navbar.classList.remove('scrolled');
-      }
-    }, { passive: true });
+    if (!hasDarkHeader) {
+      // If there is no dark header at the top (like on blog article pages),
+      // we must permanently use the scrolled state (dark text, frosted background)
+      // otherwise white text is invisible against the white page background.
+      navbar.classList.add('scrolled');
+    } else {
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
+        }
+      }, { passive: true });
+    }
   }
 
   // --- Mobile Slideshow Logic ---
