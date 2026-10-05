@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- Hero Rotating Text Animation ---
   const changingText = document.querySelector('.changing-text');
   if (changingText) {
-    const words = ["like yours.", "timeless.", "effortless.", "premium.", "inspiring."];
+    const words = ["Delhi NCR.", "Gurugram.", "Noida.", "Faridabad."];
     let wordIndex = 0;
     
     // Start rotating after the initial load animation finishes
