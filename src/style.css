@@ -174,9 +174,11 @@
   .navbar.scrolled {
     position: fixed;
     padding: 12px 0;
-    background-color: var(--color-bg); /* Solid color instead of transparent */
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+    background-color: rgba(17, 24, 39, 0.98);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
   }
   
   .nav-container {
@@ -2701,14 +2703,7 @@
 .brand-waala { color:#fff !important; font-weight:700 !important; transition: color 0.3s ease; }
 .brand-dot { color:#e8c448 !important; font-weight:900 !important; }
 
-.navbar.scrolled .brand-waala { color:#1C1917 !important; text-shadow:none !important; }
-.navbar.scrolled .logo { text-shadow:none !important; }
-.navbar.scrolled .logo-mark { 
-  filter: none !important;
-}
-.navbar.scrolled .logo-tagline { color:rgba(28,25,23,0.7) !important; text-shadow:none !important; }
-.navbar.scrolled .nav-links a { color:#1C1917 !important; text-shadow:none !important; }
-.navbar.scrolled .menu-toggle { color:#1C1917 !important; }
+/* Removed dark text overrides for scrolled navbar so it stays consistent with homepage */
 
 .menu-toggle {
   display:none;
