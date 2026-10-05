@@ -182,7 +182,7 @@
   }
   
   .page-header {
-    background: var(--color-primary);
+    background: linear-gradient(rgba(17, 24, 39, 0.7), rgba(17, 24, 39, 0.9)), url('/hero_kitchen_bg_v3.webp') center/cover no-repeat;
     padding: 160px 0 80px 0;
     text-align: center;
     position: relative;
