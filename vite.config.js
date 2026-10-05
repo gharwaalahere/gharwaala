@@ -24,6 +24,7 @@ export default defineConfig({
         city4: resolve(__dirname, 'modular-kitchen-faridabad.html'),
         city5: resolve(__dirname, 'modular-kitchen-ghaziabad.html'),
         post5: resolve(__dirname, 'modular-kitchen-cost-delhi-ncr-2026.html'),
+        calculator: resolve(__dirname, 'calculator.html'),
       },
     },
   },
