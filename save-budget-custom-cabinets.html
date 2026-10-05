@@ -15,307 +15,131 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/src/style.css" />
-  <style>
-    /* Premium Editorial Blog Styles */
-    :root {
-      --blog-text: #1f2937;
-      --blog-heading: #111827;
-    }
-    .article-container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 4rem 20px;
-    }
-    .article-header {
-      text-align: center;
-      margin-bottom: 3rem;
-    }
-    .article-category {
-      display: inline-block;
-      background: rgba(13, 148, 136, 0.1);
-      color: var(--color-primary);
-      padding: 6px 16px;
-      border-radius: 50px;
-      font-size: 0.85rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      margin-bottom: 1.5rem;
-    }
-    .article-title {
-      font-size: clamp(2.2rem, 5vw, 3.5rem);
-      font-weight: 800;
-      line-height: 1.15;
-      color: var(--blog-heading);
-      margin-bottom: 1.5rem;
-      letter-spacing: -0.02em;
-    }
-    .article-meta {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      color: #6b7280;
-      font-size: 1rem;
-      font-weight: 500;
-      flex-wrap: wrap;
-    }
-    .author-avatar {
-      width: 52px;
-      height: 52px;
-      border-radius: 12px;
-      object-fit: contain;
-      background: #f0fdfa;
-      padding: 6px;
-      border: 2px solid #e0f2f1;
-      flex-shrink: 0;
-    }
-    .meta-divider {
-      color: #d1d5db;
-    }
-    .article-hero {
-      width: 100%;
-      border-radius: 20px;
-      overflow: hidden;
-      margin-bottom: 4rem;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-      position: relative;
-    }
-    .article-hero img {
-      width: 100%;
-      height: auto;
-      aspect-ratio: 16/9;
-      object-fit: cover;
-      display: block;
-    }
-    .article-body {
-      max-width: 680px;
-      margin: 0 auto;
-      font-family: 'Lora', serif;
-      font-size: 1.15rem;
-      line-height: 1.8;
-      color: var(--blog-text);
-    }
-    .article-body p {
-      margin-bottom: 2rem;
-    }
-    .article-body p:first-of-type {
-      font-size: 1.35rem;
-      line-height: 1.7;
-      color: #1f2937;
-      font-weight: 400;
-    }
-    /* Drop Cap */
-    .article-body p:first-of-type::first-letter {
-      float: left;
-      font-size: 4.5rem;
-      line-height: 1;
-      font-weight: 700;
-      color: var(--color-primary);
-      margin-right: 12px;
-      margin-top: -6px;
-      font-family: 'Outfit', sans-serif;
-    }
-    .article-body h2 {
-      font-family: 'Outfit', sans-serif;
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--blog-heading);
-      margin-top: 3.5rem;
-      margin-bottom: 1.25rem;
-      letter-spacing: -0.01em;
-      line-height: 1.3;
-    }
-    .article-body h3 {
-      font-family: 'Outfit', sans-serif;
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: var(--blog-heading);
-      margin-top: 2.5rem;
-      margin-bottom: 1rem;
-    }
-    .article-body ul {
-      margin-bottom: 2rem;
-      padding-left: 1.5rem;
-    }
-    .article-body li {
-      margin-bottom: 0.8rem;
-    }
-    .article-body blockquote {
-      font-size: 1.3rem;
-      font-style: italic;
-      border-left: 4px solid var(--color-primary);
-      margin: 3rem 0;
-      padding: 1.5rem 2rem;
-      background: #f3f4f6;
-      border-radius: 0 16px 16px 0;
-      color: #4b5563;
-    }
-    
-    .article-footer {
-      max-width: 680px;
-      margin: 4rem auto 0 auto;
-    }
-    .author-box {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-      padding: 2rem;
-      background: white;
-      border-radius: 16px;
-      border: 1px solid #e5e7eb;
-      margin-bottom: 3rem;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.02);
-    }
-    .author-box img {
-      width: 72px;
-      height: 72px;
-      border-radius: 14px;
-      object-fit: contain;
-      background: #f0fdfa;
-      padding: 8px;
-      border: 2px solid #e0f2f1;
-      flex-shrink: 0;
-    }
-    .author-box h4 {
-      font-family: 'Outfit', sans-serif;
-      font-size: 1.2rem;
-      margin-bottom: 0.4rem;
-      color: var(--blog-heading);
-      font-weight: 700;
-    }
-    .author-box p {
-      font-family: 'Outfit', sans-serif;
-      font-size: 0.95rem;
-      color: #6b7280;
-      margin: 0;
-      line-height: 1.5;
-    }
-    .cta-box {
-      background: var(--color-primary);
-      color: white;
-      padding: 3.5rem 2rem;
-      border-radius: 20px;
-      text-align: center;
-      box-shadow: 0 15px 30px rgba(13, 148, 136, 0.2);
-    }
-    .cta-box h3 {
-      font-size: 2rem;
-      font-family: 'Outfit', sans-serif;
-      margin-bottom: 1rem;
-      color: white;
-    }
-    .cta-box p {
-      font-family: 'Outfit', sans-serif;
-      font-size: 1.15rem;
-      margin-bottom: 2rem;
-      color: rgba(255, 255, 255, 0.95) !important;
-    }
-    .btn-white {
-      background: white;
-      color: var(--color-primary);
-      border: none;
-      font-weight: 700;
-      padding: 0.8rem 2rem;
-      font-size: 1.1rem;
-      border-radius: 50px;
-      cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .btn-white:hover {
-      background: #f9fafb;
-      transform: translateY(-2px);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    }
-    @media (max-width: 768px) {
-      .article-container {
-        padding: 3rem 15px;
-      }
-      .article-body {
-        font-size: 1.02rem;
-        line-height: 1.75;
-      }
-      .article-body p:first-of-type {
-        font-size: 1.15rem;
-        line-height: 1.65;
-      }
-      .article-body p:first-of-type::first-letter {
-        float: none;
-        font-size: inherit;
-        line-height: inherit;
-        margin: 0;
-      }
-      .article-body h2 {
-        font-size: 1.65rem;
-        margin-top: 2.75rem;
-      }
-      .article-body h3 {
-        font-size: 1.3rem;
-      }
-      .article-body blockquote {
-        font-size: 1.1rem;
-        margin: 2.25rem 0;
-        padding: 1.25rem 1rem;
-      }
-      .article-meta {
-        flex-direction: column;
-        gap: 8px;
-      }
-      .meta-divider { display: none; }
-      .author-box {
-        flex-direction: column;
-        text-align: center;
-      }
-      .cta-box {
-        padding: 2.5rem 1.25rem;
-      }
-      .cta-box h3 {
-        font-size: 1.6rem;
-      }
-      .cta-box p {
-        font-size: 1rem;
-      }
-      .btn-white {
-        width: 100%;
-        max-width: 280px;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="/src/article.css" />
 
-  <title>5 Ways to Save Budget on Custom Kitchen Cabinets in Delhi | Gharwaala</title>
-  <meta name="description" content="Discover 5 proven ways to cut costs on custom kitchen cabinets without sacrificing quality. Real savings tips for Delhi NCR homeowners.">
+  <title>5 Ways to Save Money on Custom Kitchen Cabinets (2026) | Gharwaala</title>
+  <meta name="description" content="Practical ways to cut the cost of custom modular kitchen cabinets without cutting quality: smarter materials, standard modules, hardware priorities and quote checks.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
   <link rel="canonical" href="https://gharwaala.com/save-budget-custom-cabinets.html" />
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="Gharwaala" />
-  <meta property="og:title" content="5 Ways to Save Budget on Custom Kitchen Cabinets in Delhi | Gharwaala" />
-  <meta property="og:description" content="Discover 5 proven ways to cut costs on custom kitchen cabinets without sacrificing quality. Real savings tips for Delhi NCR homeowners." />
+  <meta property="og:locale" content="en_IN" />
+  <meta property="og:title" content="5 Ways to Save Money on Custom Kitchen Cabinets" />
+  <meta property="og:description" content="Practical ways to cut the cost of custom modular kitchen cabinets without cutting quality: smarter materials, standard modules, hardware priorities and quote checks." />
   <meta property="og:url" content="https://gharwaala.com/save-budget-custom-cabinets.html" />
-  <meta property="og:image" content="https://gharwaala.com/custom-logo.webp" />
+  <meta property="og:image" content="https://gharwaala.com/blog_budget_cabinets.webp" />
+  <meta property="article:published_time" content="2026-03-14" />
+  <meta property="article:modified_time" content="2026-10-06" />
+  <meta property="article:section" content="Cost &amp; Budgeting" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="5 Ways to Save Budget on Custom Kitchen Cabinets in Delhi | Gharwaala" />
-  <meta name="twitter:description" content="Discover 5 proven ways to cut costs on custom kitchen cabinets without sacrificing quality. Real savings tips for Delhi NCR homeowners." />
-  
+  <meta name="twitter:title" content="5 Ways to Save Money on Custom Kitchen Cabinets" />
+  <meta name="twitter:description" content="Practical ways to cut the cost of custom modular kitchen cabinets without cutting quality: smarter materials, standard modules, hardware priorities and quote checks." />
+  <meta name="twitter:image" content="https://gharwaala.com/blog_budget_cabinets.webp" />
+  <link rel="preload" as="image" href="/blog_budget_cabinets.webp" fetchpriority="high">
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": "5 Ways to Save Budget on Custom Kitchen Cabinets",
-    "description": "Discover 5 proven ways to cut costs on custom kitchen cabinets without sacrificing quality. Real savings tips for Delhi NCR homeowners.",
-    "author": {
-      "@type": "Organization",
-      "name": "Gharwaala"
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "Gharwaala",
-      "logo": {
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BlogPosting",
+      "@id": "https://gharwaala.com/save-budget-custom-cabinets.html#article",
+      "headline": "5 Ways to Save Money on Custom Kitchen Cabinets",
+      "description": "Practical ways to cut the cost of custom modular kitchen cabinets without cutting quality: smarter materials, standard modules, hardware priorities and quote checks.",
+      "image": {
         "@type": "ImageObject",
-        "url": "https://gharwaala.com/custom-logo.webp"
+        "url": "https://gharwaala.com/blog_budget_cabinets.webp",
+        "width": 1024,
+        "height": 1024
+      },
+      "datePublished": "2026-03-14",
+      "dateModified": "2026-10-06",
+      "author": {
+        "@type": "Organization",
+        "name": "Gharwaala Design Team",
+        "url": "https://gharwaala.com/about.html"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Gharwaala",
+        "url": "https://gharwaala.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://gharwaala.com/custom-logo.webp"
+        }
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://gharwaala.com/save-budget-custom-cabinets.html"
+      },
+      "articleSection": "Cost & Budgeting",
+      "wordCount": 778,
+      "inLanguage": "en-IN",
+      "isPartOf": {
+        "@id": "https://gharwaala.com/blog.html#blog"
       }
     },
-    "datePublished": "2026-03-14",
-    "url": "https://gharwaala.com/save-budget-custom-cabinets.html"
-  }
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://gharwaala.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Journal",
+          "item": "https://gharwaala.com/blog.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "5 Ways to Save Money on Custom Kitchen Cabinets",
+          "item": "https://gharwaala.com/save-budget-custom-cabinets.html"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How can I reduce the cost of a modular kitchen?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Use BWP plywood only in wet zones and HDHMR elsewhere, design around standard module sizes, prioritise everyday hardware over specialised gadgets, use high-gloss laminate instead of acrylic, and finalise appliances before production to avoid costly changes."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is HDHMR good for kitchen cabinets?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "HDHMR is a good, cost-effective choice for overhead and dry-zone cabinets. For the sink base and areas exposed to regular water, BWP plywood is the safer choice."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which kitchen accessories are worth the money?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Branded soft-close hinges and good-quality drawer channels give the best value because they are used constantly. Deep drawers for utensils are usually more useful than complex corner mechanisms."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Are open shelves cheaper than kitchen cabinets?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Open shelves need no shutters, hinges or handles, so replacing a few wall cabinets with shelves can lower costs. Keep them away from the hob to avoid grease build-up."
+          }
+        }
+      ]
+    }
+  ]
+}
   </script>
 </head>
 <body>
@@ -342,78 +166,196 @@
     </div>
   </nav>
 
+  <main class="news-wrap">
+    <nav class="news-crumbs" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li><a href="/blog.html">Journal</a></li>
+        <li><span aria-current="page">5 Ways to Save Money on Custom Kitchen Cabinets</span></li>
+      </ol>
+    </nav>
 
-  <main class="article-container">
-    <header class="article-header">
-      <div class="article-category">Budget & Planning</div>
-      <h1 class="article-title">5 Ways to Save Budget on Custom Cabinets</h1>
-      <div class="article-meta">
-        <img src="/custom-logo.webp" alt="Gharwaala Logo" class="author-avatar" width="500" height="500">
-        <span>By Gharwaala Design Team</span>
-        <span class="meta-divider">•</span>
-        <span>March 14, 2026</span>
-        <span class="meta-divider">•</span>
-        <span>5 min read</span>
+    <article>
+      <header class="news-header">
+        <div class="news-kicker">Cost &amp; Budgeting</div>
+        <h1 class="news-title">5 Ways to Save Money on Custom Kitchen Cabinets</h1>
+        <p class="news-dek">Cabinets are the biggest single cost in a modular kitchen. These five decisions can trim the bill noticeably, without leaving you with a kitchen that sags, swells or squeaks in three years.</p>
+        <div class="news-byline">
+          <img src="/custom-logo.webp" alt="" width="44" height="44">
+          <span>By <strong>Gharwaala Design Team</strong></span>
+          <span class="sep">|</span>
+          <span>Published <time datetime="2026-03-14">March 14, 2026</time></span>
+          <span class="sep">|</span>
+          <span>Updated <time datetime="2026-10-06">October 6, 2026</time></span>
+          <span class="sep">|</span>
+          <span>4 min read</span>
+        </div>
+      </header>
+
+      <figure class="news-hero">
+        <img src="/blog_budget_cabinets.webp" alt="Budget-friendly custom kitchen cabinets with smart storage" width="1024" height="1024" fetchpriority="high" decoding="async">
+        <figcaption>Smart planning, not cheaper materials everywhere, is what keeps cabinet costs under control.</figcaption>
+      </figure>
+
+      <div class="news-layout">
+        <div class="news-body">
+          <section class="news-takeaways" aria-labelledby="takeaways-heading">
+            <h2 id="takeaways-heading">Key takeaways</h2>
+            <ul>
+            <li>Use BWP plywood only where water is a real risk; HDHMR is fine for overhead cabinets.</li>
+            <li>Standard module sizes are cheaper and faster to produce than fully bespoke dimensions.</li>
+            <li>Spend on the hardware you touch daily (hinges, drawer channels); skip gadgets you won't use.</li>
+            <li>High-gloss laminate can deliver an acrylic-like look for less.</li>
+            <li>Freeze your design and appliance list before production. Changes later are expensive.</li>
+            </ul>
+          </section>
+
+<p class="lede">Cutting costs on a kitchen is easy. Cutting costs <em>without regretting it</em> is the hard part. The cheapest quote often hides thinner boards, unbranded channels and edge banding that peels within a monsoon or two.</p>
+
+<p>The trick is knowing which parts of a cabinet carry the load and which are mostly cosmetic. Here are five places where homeowners can save, and one list of things you should never cut.</p>
+
+<h2 id="way-1-materials">1. Put premium materials only where they're needed</h2>
+<p>Not every cabinet faces the same conditions. The sink base deals with leaks and daily splashing; a wall cabinet above the counter almost never gets wet.</p>
+<ul>
+  <li><strong>BWP plywood</strong> for the sink unit and other base cabinets near water.</li>
+  <li><strong>HDHMR or good-quality commercial ply</strong> for overhead and tall units in dry zones.</li>
+</ul>
+<p>This zoned approach keeps strength where it counts while reducing the overall board cost. Our <a href="/modular-kitchen-cost-delhi-ncr-2026.html">Delhi NCR cost guide</a> explains how material choices affect the final quote.</p>
+
+<h2 id="way-2-standard-modules">2. Design around standard module sizes</h2>
+<p>Modular kitchens are made from standard-width units. Odd widths and one-off dimensions take extra cutting, handling and wastage, which shows up in the price.</p>
+<p>Ask your designer to plan the run in standard modules and use small fillers or open niches to absorb leftover gaps. You'll usually get the same storage for less, and a faster production time.</p>
+<figure>
+  <img src="/minimal_open_shelving.webp" alt="Minimal kitchen with open wooden shelving instead of closed wall cabinets" loading="lazy" decoding="async">
+  <figcaption>Swapping a run of wall cabinets for open shelving cuts shutters and hardware, and opens up the room.</figcaption>
+</figure>
+<div class="callout tip"><strong>Easy win:</strong> replace one or two overhead cabinets with open shelves for everyday jars and cups. Fewer shutters means less hardware and lower cost. Just keep them away from the hob, where grease builds up.</div>
+
+<h2 id="way-3-hardware">3. Prioritise hardware you use every day</h2>
+<p>Hardware is where quotes balloon. Corner carousels, magic corners, motorised lift-ups and pull-out larders all add up quickly, and some end up barely used.</p>
+<figure>
+  <img src="/modular_tandem.webp" alt="Deep tandem drawers storing pots and pans in a modular kitchen" loading="lazy" decoding="async">
+  <figcaption>Deep drawers for pots and pans are often more useful, and better value, than specialised gadgets.</figcaption>
+</figure>
+<p><strong>Worth paying for:</strong> branded soft-close hinges and quality drawer channels. You'll open them thousands of times a year.</p>
+<p><strong>Think twice about:</strong> elaborate corner mechanisms (a simple blind corner with a deep shelf may do), multiple specialised pull-outs, and accessories duplicated across several units.</p>
+
+<h2 id="way-4-finishes">4. Choose finishes strategically</h2>
+<p>Acrylic and PU look stunning, but you don't need them everywhere. Options to get a premium look for less:</p>
+<ul>
+  <li><strong>High-gloss laminate</strong> instead of acrylic: a similar shine at a lower price.</li>
+  <li><strong>Premium finish only on visible surfaces</strong>, such as overheads or an island, with practical matte laminate on base units.</li>
+  <li><strong>Laminate interiors</strong> in a simple light colour. Nobody sees them, and light interiors make things easier to find.</li>
+</ul>
+<p>Compare finishes in detail in our <a href="/guide-to-kitchen-laminates-2026.html">kitchen laminates guide</a>.</p>
+
+<h2 id="way-5-plan-early">5. Lock the design before production starts</h2>
+<p>The most expensive change is the one made after cutting begins. A new chimney model, a bigger fridge or a moved sink can mean scrapping shutters, re-drilling and re-ordering.</p>
+<ol>
+  <li>Finalise appliance models and their exact dimensions first.</li>
+  <li>Approve a 3D design and check every drawer and door opening.</li>
+  <li>Confirm plumbing and electrical points match the drawing before installation day.</li>
+</ol>
+
+<h2 id="never-cut">What you should never cut</h2>
+<blockquote>Save on looks if you must. Never save on the parts that hold the kitchen together.</blockquote>
+<ul>
+  <li><strong>The sink-base board.</strong> Water damage here ruins the cabinet.</li>
+  <li><strong>Edge banding quality.</strong> Poor edging lets moisture into the board and causes swelling.</li>
+  <li><strong>Hinges and drawer channels.</strong> Cheap ones sag, squeak and fail first.</li>
+  <li><strong>Proper installation and levelling.</strong> Even the best cabinets misalign on an unlevel platform.</li>
+</ul>
+
+<h2 id="compare-quotes">Bonus: read quotes properly</h2>
+<p>Two quotes can look very different simply because they're pricing different things. Ask every vendor for a line-item breakdown naming board type, laminate brand and hardware brand. That's the only way to see whether a lower price is real savings or just a lower specification.</p>
+
+          <section class="news-faq" aria-labelledby="faq">
+            <h2 id="faq">Frequently asked questions</h2>
+          <details open>
+            <summary>How can I reduce the cost of a modular kitchen?</summary>
+            <p>Use BWP plywood only in wet zones and HDHMR elsewhere, design around standard module sizes, prioritise everyday hardware over specialised gadgets, use high-gloss laminate instead of acrylic, and finalise appliances before production to avoid costly changes.</p>
+          </details>
+          <details>
+            <summary>Is HDHMR good for kitchen cabinets?</summary>
+            <p>HDHMR is a good, cost-effective choice for overhead and dry-zone cabinets. For the sink base and areas exposed to regular water, BWP plywood is the safer choice.</p>
+          </details>
+          <details>
+            <summary>Which kitchen accessories are worth the money?</summary>
+            <p>Branded soft-close hinges and good-quality drawer channels give the best value because they are used constantly. Deep drawers for utensils are usually more useful than complex corner mechanisms.</p>
+          </details>
+          <details>
+            <summary>Are open shelves cheaper than kitchen cabinets?</summary>
+            <p>Yes. Open shelves need no shutters, hinges or handles, so replacing a few wall cabinets with shelves can lower costs. Keep them away from the hob to avoid grease build-up.</p>
+          </details>
+          </section>
+
+          <aside class="news-author" aria-label="About the author">
+            <img src="/custom-logo.webp" alt="Gharwaala logo" width="64" height="64" loading="lazy">
+            <div>
+              <div class="label">Written by</div>
+              <h2>Gharwaala Design Team</h2>
+              <p>Gharwaala's in-house kitchen designers plan, design and oversee modular kitchen projects across Delhi, Gurugram, Noida, Faridabad and Ghaziabad. Our Journal shares what we learn on real sites: materials, budgets and layouts that actually work in Indian homes.</p>
+            </div>
+          </aside>
+
+          <section class="news-cta">
+            <h2>Planning a kitchen in Delhi NCR?</h2>
+            <p>Get a free, itemised estimate and a 3D design consultation from our kitchen designers.</p>
+            <button class="cta-trigger" type="button">Get my free estimate</button>
+          </section>
+        </div>
+
+        <aside class="news-aside">
+          <nav class="news-toc" aria-labelledby="toc-heading">
+            <h2 id="toc-heading">In this article</h2>
+            <ol>
+            <li><a href="#way-1-materials">1. Put premium materials only where they're needed</a></li>
+            <li><a href="#way-2-standard-modules">2. Design around standard module sizes</a></li>
+            <li><a href="#way-3-hardware">3. Prioritise hardware you use every day</a></li>
+            <li><a href="#way-4-finishes">4. Choose finishes strategically</a></li>
+            <li><a href="#way-5-plan-early">5. Lock the design before production starts</a></li>
+            <li><a href="#never-cut">What you should never cut</a></li>
+            <li><a href="#compare-quotes">Bonus: read quotes properly</a></li>
+            <li><a href="#faq">Frequently asked questions</a></li>
+            </ol>
+          </nav>
+          <div class="aside-cta">
+            <strong>Free kitchen estimate</strong>
+            <p>Transparent, line-item pricing for homes across Delhi NCR.</p>
+            <button class="cta-trigger" type="button">Talk to a designer</button>
+          </div>
+        </aside>
       </div>
-    </header>
-
-    <figure class="article-hero">
-      <img src="/blog_budget_cabinets.webp" alt="Modular kitchen design with smart storage in Delhi NCR" width="1024" height="1024">
-    </figure>
-
-    <article class="article-body">
-      
-      <p>Hidden costs can ruin a renovation. Custom cabinets are often the most expensive part of a kitchen upgrade. If you aren't careful, the price of hardware, complex fabrication, and premium finishes can easily blow your budget out of proportion. However, strategic planning can help you achieve a luxury look without the luxury price tag.</p>
-      
-      <p>Here are five actionable, expert-approved ways to save money on your modular kitchen while actually maximizing your layout efficiency.</p>
-      
-      <h2>1. Opt for Standard Sizes</h2>
-      <p>Whenever possible, stick to standard cabinet dimensions (like 300mm, 450mm, 600mm, or 900mm widths). Custom sizing down to the precise millimeter requires unique fabrication, which completely defeats the cost-saving purpose of "modular" manufacturing and drives up costs significantly. Planning your layout intelligently around standard modules can save you up to 20% right off the bat.</p>
-      
-      <h2>2. Choose Open Shelving</h2>
-      <p>Replacing a few upper wall cabinets with open floating shelves dramatically reduces material costs (no doors, hinges, or complex carcass boxes). It also opens up the kitchen visually, making the space feel larger and providing a perfect spot to display beautiful glassware, spices, or trailing plants.</p>
-
-      <figure style="margin: 3rem 0; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
-        <img src="/minimal_open_shelving.webp" alt="Minimal kitchen with open wooden shelving" style="width: 100%; height: auto; display: block;" loading="lazy">
-        <figcaption style="padding: 1rem; background: #fff; font-size: 0.95rem; color: #6b7280; text-align: center; border-bottom: 3px solid var(--color-primary);">Open shelving reduces hardware costs while keeping the kitchen airy.</figcaption>
-      </figure>
-      
-      <h2>3. Prioritize Drawers Where It Counts</h2>
-      <p>Deep tandem drawers with heavy-duty soft-close channels are incredibly ergonomic, but they are vastly more expensive than simple doors with internal shelves. Use large drawers exclusively for your pots and pans in the primary cooking zone, but stick to standard shutter cabinets for less frequently used items like bulk pantry storage.</p>
-      
-      <figure style="margin: 3rem 0; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
-        <img src="/modular_tandem.webp" alt="Tandem drawers for kitchen pots and pans" style="width: 100%; height: auto; display: block;" loading="lazy">
-        <figcaption style="padding: 1rem; background: #fff; font-size: 0.95rem; color: #6b7280; text-align: center; border-bottom: 3px solid var(--color-primary);">Allocate your hardware budget to high-utility tandem drawers.</figcaption>
-      </figure>
-
-      <blockquote>"A smart kitchen designer knows that you only need deep drawers immediately surrounding the cooktop. Everything else can be standard shelving with shutter doors to save on channel costs."</blockquote>
-      
-      <h2>4. Select Cost-Effective Core Materials</h2>
-      <p>While BWP (Boiling Water Proof) plywood is strictly recommended for wet areas like under the sink, you do not need it everywhere. You can safely use high-quality HDHMR (High-Density High Moisture Resistance) for overhead wall cabinets to save heavily on core material costs without compromising on longevity.</p>
-      
-      <h2>5. Minimalist Hardware & Profile Handles</h2>
-      <p>Instead of expensive designer handles or imported knobs, consider profile handles (G-profile or J-pull edge pulls). They are incredibly cost-effective, integrate seamlessly into the shutter, and offer a sleek, premium, modern aesthetic at a fraction of the cost.</p>
-      
     </article>
 
-    <footer class="article-footer">
-      <div class="author-box">
-        <img src="/custom-logo.webp" alt="Gharwaala Logo" width="500" height="500">
-        <div>
-          <h4>Gharwaala Design Team</h4>
-          <p>Expert interior designers and architects specializing in modern, budget-friendly modular kitchens across India. We believe every home deserves a premium finish.</p>
-        </div>
+    <section class="news-related" aria-labelledby="related-heading">
+      <h2 id="related-heading">Keep reading</h2>
+      <div class="related-grid">
+        <a class="related-card" href="/modular-kitchen-cost-delhi-ncr-2026.html">
+          <img src="/blog_cost_guide.webp" alt="Modular kitchen cost planning for Delhi NCR homes in 2026" loading="lazy" decoding="async" width="1024" height="1024">
+          <div>
+            <span>Cost &amp; Budgeting</span>
+            <h3>Modular Kitchen Cost in Delhi NCR (2026): Complete Price Breakdown</h3>
+          </div>
+        </a>
+        <a class="related-card" href="/guide-to-kitchen-laminates-2026.html">
+          <img src="/featured_laminates.webp" alt="Kitchen laminate finish samples for modular kitchens in India" loading="lazy" decoding="async" width="1200" height="1200">
+          <div>
+            <span>Materials &amp; Finishes</span>
+            <h3>Kitchen Laminates Guide 2026: Best Finishes for Modular Kitchens in India</h3>
+          </div>
+        </a>
+        <a class="related-card" href="/why-handleless-kitchens-trending.html">
+          <img src="/blog_handleless.webp" alt="Minimal handleless modular kitchen design in a Delhi apartment" loading="lazy" decoding="async" width="1024" height="1024">
+          <div>
+            <span>Design Trends</span>
+            <h3>Handleless Kitchen Design: Is It Practical for Indian Cooking?</h3>
+          </div>
+        </a>
       </div>
-
-      <div class="cta-box">
-        <h3>Ready to upgrade your kitchen?</h3>
-        <p>Get a free estimate and 3D design consultation from our experts.</p>
-        <button class="btn-white cta-trigger">Design My Kitchen</button>
-      </div>
-    </footer>
+    </section>
   </main>
 
-  
   <!-- Seamless Contact & Footer -->
   <footer class="site-footer" id="contact">
     <div class="container footer-grid">

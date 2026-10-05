@@ -15,307 +15,131 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/src/style.css" />
-  <style>
-    /* Premium Editorial Blog Styles */
-    :root {
-      --blog-text: #1f2937;
-      --blog-heading: #111827;
-    }
-    .article-container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 4rem 20px;
-    }
-    .article-header {
-      text-align: center;
-      margin-bottom: 3rem;
-    }
-    .article-category {
-      display: inline-block;
-      background: rgba(13, 148, 136, 0.1);
-      color: var(--color-primary);
-      padding: 6px 16px;
-      border-radius: 50px;
-      font-size: 0.85rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      margin-bottom: 1.5rem;
-    }
-    .article-title {
-      font-size: clamp(2.2rem, 5vw, 3.5rem);
-      font-weight: 800;
-      line-height: 1.15;
-      color: var(--blog-heading);
-      margin-bottom: 1.5rem;
-      letter-spacing: -0.02em;
-    }
-    .article-meta {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      color: #6b7280;
-      font-size: 1rem;
-      font-weight: 500;
-      flex-wrap: wrap;
-    }
-    .author-avatar {
-      width: 52px;
-      height: 52px;
-      border-radius: 12px;
-      object-fit: contain;
-      background: #f0fdfa;
-      padding: 6px;
-      border: 2px solid #e0f2f1;
-      flex-shrink: 0;
-    }
-    .meta-divider {
-      color: #d1d5db;
-    }
-    .article-hero {
-      width: 100%;
-      border-radius: 20px;
-      overflow: hidden;
-      margin-bottom: 4rem;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-      position: relative;
-    }
-    .article-hero img {
-      width: 100%;
-      height: auto;
-      aspect-ratio: 16/9;
-      object-fit: cover;
-      display: block;
-    }
-    .article-body {
-      max-width: 680px;
-      margin: 0 auto;
-      font-family: 'Lora', serif;
-      font-size: 1.15rem;
-      line-height: 1.8;
-      color: var(--blog-text);
-    }
-    .article-body p {
-      margin-bottom: 2rem;
-    }
-    .article-body p:first-of-type {
-      font-size: 1.35rem;
-      line-height: 1.7;
-      color: #1f2937;
-      font-weight: 400;
-    }
-    /* Drop Cap */
-    .article-body p:first-of-type::first-letter {
-      float: left;
-      font-size: 4.5rem;
-      line-height: 1;
-      font-weight: 700;
-      color: var(--color-primary);
-      margin-right: 12px;
-      margin-top: -6px;
-      font-family: 'Outfit', sans-serif;
-    }
-    .article-body h2 {
-      font-family: 'Outfit', sans-serif;
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--blog-heading);
-      margin-top: 3.5rem;
-      margin-bottom: 1.25rem;
-      letter-spacing: -0.01em;
-      line-height: 1.3;
-    }
-    .article-body h3 {
-      font-family: 'Outfit', sans-serif;
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: var(--blog-heading);
-      margin-top: 2.5rem;
-      margin-bottom: 1rem;
-    }
-    .article-body ul {
-      margin-bottom: 2rem;
-      padding-left: 1.5rem;
-    }
-    .article-body li {
-      margin-bottom: 0.8rem;
-    }
-    .article-body blockquote {
-      font-size: 1.3rem;
-      font-style: italic;
-      border-left: 4px solid var(--color-primary);
-      margin: 3rem 0;
-      padding: 1.5rem 2rem;
-      background: #f3f4f6;
-      border-radius: 0 16px 16px 0;
-      color: #4b5563;
-    }
-    
-    .article-footer {
-      max-width: 680px;
-      margin: 4rem auto 0 auto;
-    }
-    .author-box {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-      padding: 2rem;
-      background: white;
-      border-radius: 16px;
-      border: 1px solid #e5e7eb;
-      margin-bottom: 3rem;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.02);
-    }
-    .author-box img {
-      width: 72px;
-      height: 72px;
-      border-radius: 14px;
-      object-fit: contain;
-      background: #f0fdfa;
-      padding: 8px;
-      border: 2px solid #e0f2f1;
-      flex-shrink: 0;
-    }
-    .author-box h4 {
-      font-family: 'Outfit', sans-serif;
-      font-size: 1.2rem;
-      margin-bottom: 0.4rem;
-      color: var(--blog-heading);
-      font-weight: 700;
-    }
-    .author-box p {
-      font-family: 'Outfit', sans-serif;
-      font-size: 0.95rem;
-      color: #6b7280;
-      margin: 0;
-      line-height: 1.5;
-    }
-    .cta-box {
-      background: var(--color-primary);
-      color: white;
-      padding: 3.5rem 2rem;
-      border-radius: 20px;
-      text-align: center;
-      box-shadow: 0 15px 30px rgba(13, 148, 136, 0.2);
-    }
-    .cta-box h3 {
-      font-size: 2rem;
-      font-family: 'Outfit', sans-serif;
-      margin-bottom: 1rem;
-      color: white;
-    }
-    .cta-box p {
-      font-family: 'Outfit', sans-serif;
-      font-size: 1.15rem;
-      margin-bottom: 2rem;
-      color: rgba(255, 255, 255, 0.95) !important;
-    }
-    .btn-white {
-      background: white;
-      color: var(--color-primary);
-      border: none;
-      font-weight: 700;
-      padding: 0.8rem 2rem;
-      font-size: 1.1rem;
-      border-radius: 50px;
-      cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .btn-white:hover {
-      background: #f9fafb;
-      transform: translateY(-2px);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    }
-    @media (max-width: 768px) {
-      .article-container {
-        padding: 3rem 15px;
-      }
-      .article-body {
-        font-size: 1.02rem;
-        line-height: 1.75;
-      }
-      .article-body p:first-of-type {
-        font-size: 1.15rem;
-        line-height: 1.65;
-      }
-      .article-body p:first-of-type::first-letter {
-        float: none;
-        font-size: inherit;
-        line-height: inherit;
-        margin: 0;
-      }
-      .article-body h2 {
-        font-size: 1.65rem;
-        margin-top: 2.75rem;
-      }
-      .article-body h3 {
-        font-size: 1.3rem;
-      }
-      .article-body blockquote {
-        font-size: 1.1rem;
-        margin: 2.25rem 0;
-        padding: 1.25rem 1rem;
-      }
-      .article-meta {
-        flex-direction: column;
-        gap: 8px;
-      }
-      .meta-divider { display: none; }
-      .author-box {
-        flex-direction: column;
-        text-align: center;
-      }
-      .cta-box {
-        padding: 2.5rem 1.25rem;
-      }
-      .cta-box h3 {
-        font-size: 1.6rem;
-      }
-      .cta-box p {
-        font-size: 1rem;
-      }
-      .btn-white {
-        width: 100%;
-        max-width: 280px;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="/src/article.css" />
 
   <title>Open vs Closed Kitchen: Which Is Better for Indian Homes? | Gharwaala</title>
-  <meta name="description" content="Open or closed kitchen — which layout works best in Indian homes? We break down ventilation, space, and lifestyle factors.">
+  <meta name="description" content="Open, closed or semi-open kitchen? We compare layouts for Indian cooking: smoke and smells, ventilation, chimney needs, space, privacy and cost, plus a decision checklist.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
   <link rel="canonical" href="https://gharwaala.com/open-vs-closed-kitchens.html" />
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="Gharwaala" />
-  <meta property="og:title" content="Open vs Closed Kitchen: Which Is Better for Indian Homes? | Gharwaala" />
-  <meta property="og:description" content="Open or closed kitchen — which layout works best in Indian homes? We break down ventilation, space, and lifestyle factors." />
+  <meta property="og:locale" content="en_IN" />
+  <meta property="og:title" content="Open vs Closed Kitchen: Which Is Better for Indian Homes?" />
+  <meta property="og:description" content="Open, closed or semi-open kitchen? We compare layouts for Indian cooking: smoke and smells, ventilation, chimney needs, space, privacy and cost, plus a decision checklist." />
   <meta property="og:url" content="https://gharwaala.com/open-vs-closed-kitchens.html" />
-  <meta property="og:image" content="https://gharwaala.com/custom-logo.webp" />
+  <meta property="og:image" content="https://gharwaala.com/blog_open_closed.webp" />
+  <meta property="article:published_time" content="2026-02-18" />
+  <meta property="article:modified_time" content="2026-10-06" />
+  <meta property="article:section" content="Layouts &amp; Planning" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Open vs Closed Kitchen: Which Is Better for Indian Homes? | Gharwaala" />
-  <meta name="twitter:description" content="Open or closed kitchen — which layout works best in Indian homes? We break down ventilation, space, and lifestyle factors." />
-  
+  <meta name="twitter:title" content="Open vs Closed Kitchen: Which Is Better for Indian Homes?" />
+  <meta name="twitter:description" content="Open, closed or semi-open kitchen? We compare layouts for Indian cooking: smoke and smells, ventilation, chimney needs, space, privacy and cost, plus a decision checklist." />
+  <meta name="twitter:image" content="https://gharwaala.com/blog_open_closed.webp" />
+  <link rel="preload" as="image" href="/blog_open_closed.webp" fetchpriority="high">
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": "Open vs Closed Kitchens: The Verdict",
-    "description": "Open or closed kitchen — which layout works best in Indian homes? We break down ventilation, space, and lifestyle factors.",
-    "author": {
-      "@type": "Organization",
-      "name": "Gharwaala"
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "Gharwaala",
-      "logo": {
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BlogPosting",
+      "@id": "https://gharwaala.com/open-vs-closed-kitchens.html#article",
+      "headline": "Open vs Closed Kitchen: Which Is Better for Indian Homes?",
+      "description": "Open, closed or semi-open kitchen? We compare layouts for Indian cooking: smoke and smells, ventilation, chimney needs, space, privacy and cost, plus a decision checklist.",
+      "image": {
         "@type": "ImageObject",
-        "url": "https://gharwaala.com/custom-logo.webp"
+        "url": "https://gharwaala.com/blog_open_closed.webp",
+        "width": 1024,
+        "height": 1024
+      },
+      "datePublished": "2026-02-18",
+      "dateModified": "2026-10-06",
+      "author": {
+        "@type": "Organization",
+        "name": "Gharwaala Design Team",
+        "url": "https://gharwaala.com/about.html"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Gharwaala",
+        "url": "https://gharwaala.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://gharwaala.com/custom-logo.webp"
+        }
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://gharwaala.com/open-vs-closed-kitchens.html"
+      },
+      "articleSection": "Layouts & Planning",
+      "wordCount": 894,
+      "inLanguage": "en-IN",
+      "isPartOf": {
+        "@id": "https://gharwaala.com/blog.html#blog"
       }
     },
-    "datePublished": "2026-02-18",
-    "url": "https://gharwaala.com/open-vs-closed-kitchens.html"
-  }
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://gharwaala.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Journal",
+          "item": "https://gharwaala.com/blog.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Open vs Closed Kitchen",
+          "item": "https://gharwaala.com/open-vs-closed-kitchens.html"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is an open kitchen good for Indian cooking?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "An open kitchen can work for Indian cooking if you install a powerful chimney (around 1200 m³/hr suction or more) and ensure good cross-ventilation. For daily heavy frying and tadka, a closed or semi-open kitchen usually keeps the home cleaner."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is a semi-open kitchen?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A semi-open kitchen is partially separated from the living area by a glass partition, sliding door, half-wall or breakfast counter. It keeps visual connection and light while containing smoke and smells."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which is better for a small apartment: open or closed kitchen?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Open kitchens make small apartments feel larger and brighter, but closed kitchens offer more storage and contain smells. A semi-open layout with a glass partition is often the best compromise for compact homes."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I convert my closed kitchen into an open kitchen?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Often, yes, but first confirm the wall is not structural and check society or builder rules. Plan electrical, plumbing and chimney ducting changes at the same time."
+          }
+        }
+      ]
+    }
+  ]
+}
   </script>
 </head>
 <body>
@@ -342,110 +166,213 @@
     </div>
   </nav>
 
+  <main class="news-wrap">
+    <nav class="news-crumbs" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li><a href="/blog.html">Journal</a></li>
+        <li><span aria-current="page">Open vs Closed Kitchen</span></li>
+      </ol>
+    </nav>
 
-  <main class="article-container">
-    <header class="article-header">
-      <div class="article-category">Layout & Space</div>
-      <h1 class="article-title">Open vs Closed Kitchens: The Verdict</h1>
-      <div class="article-meta">
-        <img src="/custom-logo.webp" alt="Gharwaala Logo" class="author-avatar" width="500" height="500">
-        <span>By Gharwaala Design Team</span>
-        <span class="meta-divider">•</span>
-        <span>February 18, 2026</span>
-        <span class="meta-divider">•</span>
-        <span>7 min read</span>
+    <article>
+      <header class="news-header">
+        <div class="news-kicker">Layouts &amp; Planning</div>
+        <h1 class="news-title">Open vs Closed Kitchen: Which Is Better for Indian Homes?</h1>
+        <p class="news-dek">Open kitchens dominate design magazines. Indian cooking, with its tadka, frying and lingering masala, makes the decision more complicated. Here&#x27;s how to choose.</p>
+        <div class="news-byline">
+          <img src="/custom-logo.webp" alt="" width="44" height="44">
+          <span>By <strong>Gharwaala Design Team</strong></span>
+          <span class="sep">|</span>
+          <span>Published <time datetime="2026-02-18">February 18, 2026</time></span>
+          <span class="sep">|</span>
+          <span>Updated <time datetime="2026-10-06">October 6, 2026</time></span>
+          <span class="sep">|</span>
+          <span>4 min read</span>
+        </div>
+      </header>
+
+      <figure class="news-hero">
+        <img src="/blog_open_closed.webp" alt="Open kitchen versus closed kitchen layout in an Indian home" width="1024" height="1024" fetchpriority="high" decoding="async">
+        <figcaption>The right layout depends as much on how you cook as on how much space you have.</figcaption>
+      </figure>
+
+      <div class="news-layout">
+        <div class="news-body">
+          <section class="news-takeaways" aria-labelledby="takeaways-heading">
+            <h2 id="takeaways-heading">Key takeaways</h2>
+            <ul>
+            <li>Open kitchens feel larger and more social but need strong ventilation for Indian cooking.</li>
+            <li>Closed kitchens contain smoke, smells, noise and clutter, which suits daily heavy cooking.</li>
+            <li>Semi-open layouts with glass partitions or sliding doors are a popular middle ground.</li>
+            <li>For open kitchens, a high-suction chimney (around 1200 m³/hr or more) is essential.</li>
+            <li>Choose by cooking style first, then by space and how you entertain.</li>
+            </ul>
+          </section>
+
+<p class="lede">The open kitchen is one of the most requested features in new Indian homes, and one of the most argued about at the dinner table. One family member pictures chatting with guests while cooking; another pictures the sofa smelling of last night's tadka.</p>
+
+<p>Both are right. The best layout depends on how your household cooks, how much space you have and how you use the rest of your home. Here's a clear-eyed look at each option.</p>
+
+<h2 id="open-kitchens">The case for open kitchens</h2>
+<figure>
+  <img src="/open_living_integration.webp" alt="Open kitchen integrated with the living and dining area" loading="lazy" decoding="async">
+  <figcaption>Open kitchens connect the cook with the rest of the home.</figcaption>
+</figure>
+<ul>
+  <li><strong>More space and light.</strong> Removing a wall makes compact apartments feel larger and lets daylight reach the kitchen.</li>
+  <li><strong>More social.</strong> You can talk to family, watch children or host guests while cooking.</li>
+  <li><strong>Flexible layouts.</strong> Islands and breakfast counters double as dining, homework or work-from-home spots.</li>
+  <li><strong>Modern feel.</strong> It suits contemporary apartments and is what many buyers look for.</li>
+</ul>
+
+<h2 id="closed-kitchens">The case for closed kitchens</h2>
+<p>Indian cooking often involves heavy spices, deep frying and tadkas, with aromas that linger for hours. A closed kitchen keeps smoke, grease, smells and noise from reaching your living room furniture, curtains and cushions. It also hides the clutter of active meal prep from guests, which is a real practical advantage.</p>
+<ul>
+  <li><strong>Contains smoke and smells.</strong> Grease doesn't settle on living-room fabrics.</li>
+  <li><strong>Hides the mess.</strong> No need to tidy before guests see the kitchen.</li>
+  <li><strong>Quieter home.</strong> Pressure cooker whistles, mixer-grinders and exhaust noise stay contained.</li>
+  <li><strong>More wall storage.</strong> Extra walls mean more room for cabinets and tall units.</li>
+</ul>
+
+<h2 id="comparison">Open vs closed: side by side</h2>
+<div class="table-scroll">
+<table>
+  <caption>How each layout performs on the factors that matter most in Indian homes.</caption>
+  <thead><tr><th>Factor</th><th>Open kitchen</th><th>Closed kitchen</th></tr></thead>
+  <tbody>
+    <tr><td>Smoke and smells</td><td>Spread into living areas</td><td>Contained</td></tr>
+    <tr><td>Ventilation</td><td>Requires a powerful chimney</td><td>Standard chimney and exhaust are usually enough</td></tr>
+    <tr><td>Sense of space</td><td>Feels larger and brighter</td><td>Can feel enclosed</td></tr>
+    <tr><td>Socialising</td><td>Excellent</td><td>Limited</td></tr>
+    <tr><td>Storage</td><td>Less wall space</td><td>More wall space</td></tr>
+    <tr><td>Noise</td><td>Travels through the home</td><td>Contained</td></tr>
+    <tr><td>Upkeep</td><td>Always on display</td><td>Mess stays out of sight</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2 id="semi-open">The middle ground: semi-open kitchens</h2>
+<figure>
+  <img src="/open_breakfast_island.webp" alt="Semi-open kitchen with breakfast counter separating cooking and living areas" loading="lazy" decoding="async">
+  <figcaption>A breakfast counter or glass partition keeps the connection while containing the mess.</figcaption>
+</figure>
+<p>Many families now choose a semi-open layout, which keeps the openness while controlling smoke and smells:</p>
+<ul>
+  <li><strong>Glass partitions</strong>: visual connection and light, with smells contained.</li>
+  <li><strong>Sliding or folding doors</strong>: open when entertaining, closed during heavy cooking.</li>
+  <li><strong>Breakfast counter or half-wall</strong>: defines the kitchen while keeping sightlines.</li>
+  <li><strong>Wet and dry kitchen split</strong>: an open "show" kitchen for light prep, with a closed or utility kitchen for heavy cooking. This is common in larger homes and villas.</li>
+</ul>
+
+<h2 id="ventilation">Ventilation: non-negotiable for open kitchens</h2>
+<p>If you choose an open kitchen, a high-suction, low-noise chimney (at least around 1200 m³/hr suction) is essential. Auto-clean and filterless chimneys reduce maintenance. Add cross-ventilation and a well-placed exhaust fan, and the living room stays fresh even on heavy cooking days.</p>
+<div class="callout tip"><strong>Planning tip:</strong> plan the chimney duct route at the design stage. A short, straight duct with few bends works far better than a long, twisting one, whatever the suction rating says.</div>
+
+<h2 id="apartments">What about apartments in Delhi NCR?</h2>
+<p>In many builder apartments across Delhi NCR the kitchen position is fixed and walls may be structural, so check with your society or builder before removing any wall. Where a full open plan isn't possible, a widened opening, a pass-through counter or a glass partition can deliver much of the same feel. Explore options for your city: <a href="/modular-kitchen-delhi.html">Delhi</a>, <a href="/modular-kitchen-gurugram.html">Gurugram</a>, <a href="/modular-kitchen-noida.html">Noida</a>.</p>
+
+<h2 id="checklist">How to decide: a quick checklist</h2>
+<ol>
+  <li><strong>How often do you deep-fry or do heavy tadka?</strong> Daily points towards closed or semi-open.</li>
+  <li><strong>Do you entertain often?</strong> Frequently points towards open or semi-open.</li>
+  <li><strong>Can you install a powerful chimney with a good duct route?</strong> If not, avoid fully open.</li>
+  <li><strong>Do you need maximum storage?</strong> Closed kitchens offer more wall space.</li>
+  <li><strong>Are there young children to keep an eye on?</strong> Open layouts help supervision.</li>
+</ol>
+
+<h2 id="verdict">The verdict</h2>
+<p>The right choice depends on your family's cooking habits. If you cook light meals and entertain often, go open, with serious ventilation. If your family does heavy Indian cooking every day, a closed or semi-open layout will save a great deal of cleaning in the long run. For most Delhi NCR homes we work on, a semi-open kitchen with a glass partition or sliding door is the best balance.</p>
+<p>Browse open, closed and semi-open layouts in our <a href="/designs.html">kitchen design gallery</a>.</p>
+
+          <section class="news-faq" aria-labelledby="faq">
+            <h2 id="faq">Frequently asked questions</h2>
+          <details open>
+            <summary>Is an open kitchen good for Indian cooking?</summary>
+            <p>An open kitchen can work for Indian cooking if you install a powerful chimney (around 1200 m³/hr suction or more) and ensure good cross-ventilation. For daily heavy frying and tadka, a closed or semi-open kitchen usually keeps the home cleaner.</p>
+          </details>
+          <details>
+            <summary>What is a semi-open kitchen?</summary>
+            <p>A semi-open kitchen is partially separated from the living area by a glass partition, sliding door, half-wall or breakfast counter. It keeps visual connection and light while containing smoke and smells.</p>
+          </details>
+          <details>
+            <summary>Which is better for a small apartment: open or closed kitchen?</summary>
+            <p>Open kitchens make small apartments feel larger and brighter, but closed kitchens offer more storage and contain smells. A semi-open layout with a glass partition is often the best compromise for compact homes.</p>
+          </details>
+          <details>
+            <summary>Can I convert my closed kitchen into an open kitchen?</summary>
+            <p>Often, yes, but first confirm the wall is not structural and check society or builder rules. Plan electrical, plumbing and chimney ducting changes at the same time.</p>
+          </details>
+          </section>
+
+          <aside class="news-author" aria-label="About the author">
+            <img src="/custom-logo.webp" alt="Gharwaala logo" width="64" height="64" loading="lazy">
+            <div>
+              <div class="label">Written by</div>
+              <h2>Gharwaala Design Team</h2>
+              <p>Gharwaala's in-house kitchen designers plan, design and oversee modular kitchen projects across Delhi, Gurugram, Noida, Faridabad and Ghaziabad. Our Journal shares what we learn on real sites: materials, budgets and layouts that actually work in Indian homes.</p>
+            </div>
+          </aside>
+
+          <section class="news-cta">
+            <h2>Planning a kitchen in Delhi NCR?</h2>
+            <p>Get a free, itemised estimate and a 3D design consultation from our kitchen designers.</p>
+            <button class="cta-trigger" type="button">Get my free estimate</button>
+          </section>
+        </div>
+
+        <aside class="news-aside">
+          <nav class="news-toc" aria-labelledby="toc-heading">
+            <h2 id="toc-heading">In this article</h2>
+            <ol>
+            <li><a href="#open-kitchens">The case for open kitchens</a></li>
+            <li><a href="#closed-kitchens">The case for closed kitchens</a></li>
+            <li><a href="#comparison">Open vs closed: side by side</a></li>
+            <li><a href="#semi-open">The middle ground: semi-open kitchens</a></li>
+            <li><a href="#ventilation">Ventilation: non-negotiable for open kitchens</a></li>
+            <li><a href="#apartments">What about apartments in Delhi NCR?</a></li>
+            <li><a href="#checklist">How to decide: a quick checklist</a></li>
+            <li><a href="#verdict">The verdict</a></li>
+            <li><a href="#faq">Frequently asked questions</a></li>
+            </ol>
+          </nav>
+          <div class="aside-cta">
+            <strong>Free kitchen estimate</strong>
+            <p>Transparent, line-item pricing for homes across Delhi NCR.</p>
+            <button class="cta-trigger" type="button">Talk to a designer</button>
+          </div>
+        </aside>
       </div>
-    </header>
-
-    <figure class="article-hero">
-      <img src="/blog_open_closed.webp" alt="Modern kitchen interior design with sleek cabinets for Indian homes" width="1024" height="1024">
-    </figure>
-
-    <article class="article-body">
-      
-      <p>Are open kitchens truly practical in India, or are they just a glamorous import from Western home magazines? This is one of the most debated questions among homeowners planning a modular kitchen in Delhi NCR. We explore the real pros, cons, and hybrid solutions for both spatial layouts to help you make the right decision for your family's lifestyle.</p>
-      
-      <h2>1. The Open Kitchen Advantage</h2>
-      <p>Open kitchens dissolve the boundary between cooking and living areas. They are perfect for entertaining, allowing the cook to interact with guests, keep an eye on children, and participate in family conversations without being isolated behind a wall. They also make the entire home feel significantly larger and more connected — a major advantage in compact 2BHK and 3BHK apartments.</p>
-      
-      <figure style="margin: 3rem 0; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
-        <img src="/open_living_integration.webp" alt="Open kitchen seamlessly integrated with the living room" style="width: 100%; height: auto; display: block;" loading="lazy">
-        <figcaption style="padding: 1rem; background: #fff; font-size: 0.95rem; color: #6b7280; text-align: center; border-bottom: 3px solid var(--color-primary);">An open layout creates a seamless flow between the kitchen and the living area.</figcaption>
-      </figure>
-
-      <h2>2. The Closed Kitchen Reality</h2>
-      <p>Indian cooking often involves heavy spices, deep frying, tadkas, and strong aromas that linger for hours. A closed kitchen contains the smoke, grease, smells, and noise, preventing them from permeating your living room furniture, curtains, and soft furnishings. It also hides the inevitable clutter of active meal prep from guests — a significant practical advantage in Indian households.</p>
-      
-      <blockquote>"An open kitchen looks stunning in magazines and on Instagram, but it requires strict daily discipline to keep clean. A closed kitchen gives you the freedom to be messy while entertaining guests in your spotless living room."</blockquote>
-
-      <h2>3. Quick Comparison: Open vs. Closed</h2>
-      <table>
-        <tr>
-          <th>Feature</th>
-          <th>Open Kitchen</th>
-          <th>Closed Kitchen</th>
-        </tr>
-        <tr>
-          <td>Visual Space</td>
-          <td>Feels larger and connected</td>
-          <td>Feels compact and separate</td>
-        </tr>
-        <tr>
-          <td>Odour Control</td>
-          <td>Requires powerful chimney</td>
-          <td>Naturally contained</td>
-        </tr>
-        <tr>
-          <td>Social Interaction</td>
-          <td>Excellent</td>
-          <td>Limited</td>
-        </tr>
-        <tr>
-          <td>Cleaning Effort</td>
-          <td>High (always visible)</td>
-          <td>Low (hidden behind walls)</td>
-        </tr>
-        <tr>
-          <td>Best For</td>
-          <td>Light cooking, entertaining</td>
-          <td>Heavy Indian cooking</td>
-        </tr>
-      </table>
-      
-      <h2>4. The Best of Both Worlds: The Semi-Open Kitchen</h2>
-      <p>Many homeowners are now opting for a brilliant hybrid approach. Installing sliding glass partitions, folding glass doors, or a large pass-through window with a breakfast counter offers the visual connectivity and airiness of an open layout with the functional isolation of a closed room when you're doing heavy cooking.</p>
-
-      <figure style="margin: 3rem 0; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
-        <img src="/open_breakfast_island.webp" alt="Semi-open kitchen with breakfast island counter" style="width: 100%; height: auto; display: block;" loading="lazy">
-        <figcaption style="padding: 1rem; background: #fff; font-size: 0.95rem; color: #6b7280; text-align: center; border-bottom: 3px solid var(--color-primary);">A breakfast counter or island bridge creates a semi-open layout — the best of both worlds.</figcaption>
-      </figure>
-
-      <h2>5. Ventilation is Non-Negotiable</h2>
-      <p>If you choose an open kitchen, investing in a high-suction, low-noise chimney (minimum 1200 m³/hr suction capacity) is absolutely non-negotiable. Auto-clean chimneys with filterless technology are the gold standard in 2026. Proper cross-ventilation and a strategically placed exhaust fan will ensure your living room stays fresh even during heavy cooking sessions.</p>
-      
-      <h2>Conclusion</h2>
-      <p>The "right" choice depends entirely on your family's cooking habits. If you cook light meals and entertain frequently, go open. If you're a family that does heavy Indian cooking daily with lots of frying and tadkas, a closed or semi-open layout will save you enormous cleaning effort in the long run.</p>
-    
     </article>
 
-    <footer class="article-footer">
-      <div class="author-box">
-        <img src="/custom-logo.webp" alt="Gharwaala Logo" width="500" height="500">
-        <div>
-          <h4>Gharwaala Design Team</h4>
-          <p>Expert interior designers and architects specializing in modern, budget-friendly modular kitchens across India. We believe every home deserves a premium finish.</p>
-        </div>
+    <section class="news-related" aria-labelledby="related-heading">
+      <h2 id="related-heading">Keep reading</h2>
+      <div class="related-grid">
+        <a class="related-card" href="/modular-kitchen-cost-delhi-ncr-2026.html">
+          <img src="/blog_cost_guide.webp" alt="Modular kitchen cost planning for Delhi NCR homes in 2026" loading="lazy" decoding="async" width="1024" height="1024">
+          <div>
+            <span>Cost &amp; Budgeting</span>
+            <h3>Modular Kitchen Cost in Delhi NCR (2026): Complete Price Breakdown</h3>
+          </div>
+        </a>
+        <a class="related-card" href="/why-handleless-kitchens-trending.html">
+          <img src="/blog_handleless.webp" alt="Minimal handleless modular kitchen design in a Delhi apartment" loading="lazy" decoding="async" width="1024" height="1024">
+          <div>
+            <span>Design Trends</span>
+            <h3>Handleless Kitchen Design: Is It Practical for Indian Cooking?</h3>
+          </div>
+        </a>
+        <a class="related-card" href="/guide-to-kitchen-laminates-2026.html">
+          <img src="/featured_laminates.webp" alt="Kitchen laminate finish samples for modular kitchens in India" loading="lazy" decoding="async" width="1200" height="1200">
+          <div>
+            <span>Materials &amp; Finishes</span>
+            <h3>Kitchen Laminates Guide 2026: Best Finishes for Modular Kitchens in India</h3>
+          </div>
+        </a>
       </div>
-
-      <div class="cta-box">
-        <h3>Ready to upgrade your kitchen?</h3>
-        <p>Get a free estimate and 3D design consultation from our experts.</p>
-        <button class="btn-white cta-trigger">Design My Kitchen</button>
-      </div>
-    </footer>
+    </section>
   </main>
 
-  
   <!-- Seamless Contact & Footer -->
   <footer class="site-footer" id="contact">
     <div class="container footer-grid">
