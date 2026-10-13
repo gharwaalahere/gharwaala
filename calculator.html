@@ -185,9 +185,14 @@
     }
 
     @media (max-width: 600px) {
-      .calc-container { margin: -40px 15px 60px; padding: 24px; }
-      .options-grid { grid-template-columns: 1fr; }
-      .price-range { font-size: 32px; }
+      .page-header { padding: 130px 0 60px 0 !important; }
+      .calc-container { margin: -30px 15px 50px; padding: 24px 18px; border-radius: 14px; }
+      .step-title { font-size: 22px; }
+      .options-grid { grid-template-columns: 1fr; gap: 12px; }
+      .option-card { padding: 18px; }
+      .price-range { font-size: 30px; }
+      .btn-row { flex-direction: column-reverse; gap: 10px; margin-top: 24px; padding-top: 16px; }
+      .btn-calc { width: 100%; text-align: center; padding: 14px 20px; font-size: 15px; }
     }
   </style>
 </head>
@@ -339,7 +344,7 @@
     </div>
   </section>
 
-  <script src="/src/main.js"></script>
+  <script type="module" src="/src/main.js"></script>
   <script>
     let currentStep = 1;
     const totalSteps = 4;

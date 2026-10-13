@@ -187,8 +187,8 @@
         <h1 class="hero-anim hero-anim-2">Custom Modular Kitchens in <em class="changing-text" style="display:inline-block; transition: opacity 0.5s ease, transform 0.5s ease;">Delhi NCR.</em></h1>
         <p class="hero-anim hero-anim-3">Thoughtful layouts, honest pricing, and beautiful materials from the region's most trusted kitchen designers.</p>
         <div class="hero-cta-group hero-anim hero-anim-4">
-          <button class="btn btn-primary cta-trigger mobile-pill-btn">Get Free Consultation <span style="margin-left:9px">↗</span></button>
-          <a class="btn btn-outline mobile-text-link" href="/calculator.html">Calculate Kitchen Cost <span style="margin-left:4px">→</span></a>
+          <button class="btn btn-hero-primary cta-trigger">Get Free Consultation <span class="cta-arrow">↗</span></button>
+          <a class="btn btn-hero-secondary" href="/calculator.html">Calculate Kitchen Cost <span class="cta-arrow">→</span></a>
         </div>
       </div>
       <div class="hero-meta-wrapper hero-anim hero-anim-5">
@@ -198,78 +198,174 @@
   </header>
 
   <style>
+    /* Hero Action Buttons - Architectural Luxury Design */
+    .hero-cta-group {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+
+    .btn-hero-primary {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 10px !important;
+      background: linear-gradient(135deg, #e3c46e 0%, #d5b45f 50%, #b88f30 100%) !important;
+      color: #171512 !important;
+      font-weight: 700 !important;
+      font-size: 15px !important;
+      letter-spacing: 0.6px !important;
+      padding: 16px 32px !important;
+      min-height: 52px !important;
+      border-radius: 50px !important;
+      border: 1px solid rgba(255, 255, 255, 0.4) !important;
+      box-shadow: 0 10px 28px -4px rgba(213, 180, 95, 0.45), 0 2px 6px rgba(0, 0, 0, 0.15) !important;
+      cursor: pointer !important;
+      text-decoration: none !important;
+      white-space: nowrap !important;
+      transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .btn-hero-primary:hover {
+      transform: translateY(-2px) !important;
+      box-shadow: 0 14px 34px -4px rgba(213, 180, 95, 0.6), 0 4px 10px rgba(0, 0, 0, 0.2) !important;
+      filter: brightness(1.06);
+    }
+    .btn-hero-primary:active {
+      transform: translateY(1px) scale(0.98) !important;
+    }
+
+    .btn-hero-secondary {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 10px !important;
+      background: rgba(255, 255, 255, 0.12) !important;
+      backdrop-filter: blur(14px) !important;
+      -webkit-backdrop-filter: blur(14px) !important;
+      border: 1.5px solid rgba(255, 255, 255, 0.45) !important;
+      color: #ffffff !important;
+      font-weight: 600 !important;
+      font-size: 15px !important;
+      letter-spacing: 0.5px !important;
+      padding: 16px 30px !important;
+      min-height: 52px !important;
+      border-radius: 50px !important;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2) !important;
+      cursor: pointer !important;
+      text-decoration: none !important;
+      white-space: nowrap !important;
+      transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .btn-hero-secondary:hover {
+      background: rgba(255, 255, 255, 0.22) !important;
+      border-color: #d5b45f !important;
+      color: #ffffff !important;
+      transform: translateY(-2px) !important;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3) !important;
+    }
+    .btn-hero-secondary:active {
+      transform: translateY(1px) scale(0.98) !important;
+    }
+
+    .cta-arrow {
+      display: inline-block;
+      transition: transform 0.25s ease;
+      font-size: 16px;
+      line-height: 1;
+    }
+    .btn-hero-primary:hover .cta-arrow {
+      transform: translate(2px, -2px);
+    }
+    .btn-hero-secondary:hover .cta-arrow {
+      transform: translateX(3px);
+    }
+
     @media (max-width: 850px) {
+      .home-hero {
+        min-height: 100svh;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 0;
+      }
       .home-hero .container {
-        padding-top: 60px;
-        padding-bottom: 90px;
+        padding-top: max(85px, 11vh);
+        padding-bottom: 24px;
         align-items: flex-start;
-        position: static !important; /* Force absolute children to anchor to full-width home-hero */
+        width: 100%;
+        box-sizing: border-box;
       }
       .hero-content {
         text-align: left !important;
         margin: 0 !important;
-        position: static !important; /* so absolute children anchor to home-hero */
+        width: 100%;
+        max-width: 100% !important;
       }
-      .home-hero h1, .home-hero p {
+      .eyebrow {
+        font-size: 10.5px !important;
+        letter-spacing: 2px !important;
+        margin-bottom: 18px !important;
+      }
+      .home-hero h1 {
         text-align: left !important;
-        margin-left: 0 !important;
+        font-size: clamp(34px, 8.8vw, 48px) !important;
+        line-height: 1.08 !important;
+        letter-spacing: -1.5px !important;
+        margin: 0 0 16px 0 !important;
       }
       .home-hero p {
-        max-width: 90% !important;
-        margin-bottom: 24px !important;
+        text-align: left !important;
+        margin-left: 0 !important;
+        max-width: 95% !important;
+        margin-bottom: 26px !important;
+        font-size: 15px !important;
+        line-height: 1.6 !important;
       }
       .hero-cta-group {
         flex-direction: column !important;
-        align-items: flex-start !important;
-        gap: 16px !important;
+        align-items: stretch !important;
+        gap: 12px !important;
+        width: 100% !important;
+        max-width: 340px !important;
+        margin-bottom: 24px !important;
       }
-      .hero-cta-group .mobile-pill-btn {
-        width: 100%;
-        max-width: 280px;
-        border-radius: 40px !important;
-        background: rgba(43, 35, 27, 0.75) !important;
-        border: 1px solid rgba(255,255,255,0.3) !important;
-        color: #fff !important;
-        backdrop-filter: blur(8px);
-        font-weight: 500;
-        letter-spacing: 1px;
-      }
-      .hero-cta-group .mobile-text-link {
-        width: auto;
-        background: transparent !important;
-        border: none !important;
-        border-bottom: 1px solid rgba(255,255,255,0.4) !important;
-        border-radius: 0 !important;
-        padding: 4px 0 !important;
-        min-height: auto;
-        color: #fff !important;
-        font-weight: 400;
-        letter-spacing: 0.5px;
+      .hero-cta-group .btn-hero-primary,
+      .hero-cta-group .btn-hero-secondary {
+        width: 100% !important;
+        text-align: center !important;
+        padding: 15px 20px !important;
+        font-size: 15px !important;
       }
       .hero-meta-wrapper {
-        position: absolute;
-        bottom: 0; 
-        left: 0; 
-        right: 0;
-        width: 100%;
-        z-index: 20;
+        position: static !important;
+        width: 100% !important;
+        margin-top: 8px !important;
       }
       .hero-meta {
-        background: rgba(62, 53, 41, 0.95);
-        border-top: 1px solid rgba(255,255,255,0.1);
-        padding: 14px 12px !important;
+        background: rgba(24, 21, 18, 0.9) !important;
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        border-radius: 12px !important;
+        padding: 12px 14px !important;
         margin-top: 0 !important;
-        justify-content: space-between;
-        gap: 0 !important;
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        gap: 6px !important;
         text-transform: uppercase;
-        font-size: 7.5px !important;
-        letter-spacing: 0.5px;
-        white-space: nowrap;
+        font-size: 10px !important;
+        letter-spacing: 0.8px !important;
+        white-space: nowrap !important;
       }
-      .hero-meta span { display: inline-flex; }
-      .hero-meta b { color: #d5b45f !important; margin-right: 4px; }
+      .hero-meta span { display: inline-flex; align-items: center; }
+      .hero-meta b { color: #d5b45f !important; margin-right: 4px; font-weight: 700; }
       .mobile-divider {
-        color: rgba(255,255,255,0.2) !important;
+        color: rgba(255, 255, 255, 0.25) !important;
       }
     }
     @media (min-width: 851px) {
