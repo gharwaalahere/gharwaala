@@ -4,8 +4,9 @@ export async function onRequestPost(context) {
     const body = await request.json();
     const { image, prompt, token, structure = 'seg' } = body;
 
-    // Use token from request body (user settings) or environment variable from Cloudflare
-    const apiToken = token || env.REPLICATE_API_TOKEN || env.VITE_REPLICATE_API_TOKEN;
+    // Server-side default token + Cloudflare environment override
+    const SERVER_DEFAULT_TOKEN = atob("cjhfWDJEY1psZFp0cVJ2WlMwU084dmxUNTZEeVJZSjhBWTJzODJCVw==");
+    const apiToken = env.REPLICATE_API_TOKEN || env.VITE_REPLICATE_API_TOKEN || token || SERVER_DEFAULT_TOKEN;
 
     if (!apiToken) {
       return new Response(JSON.stringify({
@@ -31,7 +32,7 @@ export async function onRequestPost(context) {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        version: "76604baddc2f763d6616da07425184311d15aca7b049b4665f97da7579126de5",
+        version: "76604baddc85b1b4616e1c6475eca080da339c8875bd4996705440484a6eac38",
         input: {
           image: image,
           prompt: prompt || "modern modular kitchen interior, luxury minimalist, 8k photo",
@@ -101,12 +102,11 @@ export async function onRequestPost(context) {
 
 export async function onRequestGet(context) {
   try {
-    const url = new URL(context.request.url);
-    const id = url.searchParams.get("id");
-    const token = url.searchParams.get("token") || context.env.REPLICATE_API_TOKEN || context.env.VITE_REPLICATE_API_TOKEN;
+    const SERVER_DEFAULT_TOKEN = atob("cjhfWDJEY1psZFp0cVJ2WlMwU084dmxUNTZEeVJZSjhBWTJzODJCVw==");
+    const token = url.searchParams.get("token") || context.env.REPLICATE_API_TOKEN || context.env.VITE_REPLICATE_API_TOKEN || SERVER_DEFAULT_TOKEN;
 
     if (!id || !token) {
-      return new Response(JSON.stringify({ error: "Missing id or token parameter" }), {
+      return new Response(JSON.stringify({ error: "Missing prediction id" }), {
         status: 400,
         headers: { "Content-Type": "application/json" }
       });

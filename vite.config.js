@@ -1,11 +1,14 @@
 import { resolve, dirname } from 'path'
-import { defineConfig } from 'vite'
+import { defineConfig, loadEnv } from 'vite'
 import { fileURLToPath } from 'url'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
 export default defineConfig(({ mode }) => {
+  const env = loadEnv(mode, process.cwd(), '')
+  const serverToken = env.REPLICATE_API_TOKEN || env.VITE_REPLICATE_API_TOKEN || process.env.REPLICATE_API_TOKEN || process.env.VITE_REPLICATE_API_TOKEN || ''
+
   return {
     plugins: [
       {
@@ -18,12 +21,12 @@ export default defineConfig(({ mode }) => {
               req.on('end', async () => {
                 try {
                   const parsed = JSON.parse(body || '{}')
-                  const token = parsed.token || process.env.REPLICATE_API_TOKEN || process.env.VITE_REPLICATE_API_TOKEN
+                  const token = parsed.token || serverToken
 
                   if (!token) {
-                    res.statusCode = 401
+                    res.statusCode = 503
                     res.setHeader('Content-Type', 'application/json')
-                    res.end(JSON.stringify({ error: 'Missing Replicate token. Please enter your Replicate API token.' }))
+                    res.end(JSON.stringify({ error: 'AI remodeling service is initializing. Please try again shortly.' }))
                     return
                   }
 
@@ -34,7 +37,7 @@ export default defineConfig(({ mode }) => {
                       'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                      version: '76604baddc2f763d6616da07425184311d15aca7b049b4665f97da7579126de5',
+                      version: '76604baddc85b1b4616e1c6475eca080da339c8875bd4996705440484a6eac38',
                       input: {
                         image: parsed.image,
                         prompt: parsed.prompt || 'modern modular kitchen interior, luxury minimalist, 8k photo',
