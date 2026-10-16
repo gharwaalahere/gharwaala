@@ -5,7 +5,7 @@ export async function onRequestPost(context) {
     const { image, prompt, token, structure = 'seg' } = body;
 
     // Server-side default token + Cloudflare environment override
-    const SERVER_DEFAULT_TOKEN = atob("cjhfWDJEY1psZFp0cVJ2WlMwU084dmxUNTZEeVJZSjhBWTJzODJCVw==");
+    const SERVER_DEFAULT_TOKEN = atob("cjhfVUJmQjNKUFQ2T2Z1b1YzakhaTDZ1RUlFWG5jYjg3SzFrYTBvbA==");
     const apiToken = env.REPLICATE_API_TOKEN || env.VITE_REPLICATE_API_TOKEN || token || SERVER_DEFAULT_TOKEN;
 
     if (!apiToken) {
@@ -44,9 +44,10 @@ export async function onRequestPost(context) {
     });
 
     const prediction = await createRes.json();
-    if (prediction.error) {
-      return new Response(JSON.stringify({ error: prediction.error }), {
-        status: 400,
+    if (!createRes.ok || prediction.error || prediction.detail) {
+      const errMsg = prediction.detail || prediction.error || prediction.title || "Failed to start AI transformation.";
+      return new Response(JSON.stringify({ error: errMsg }), {
+        status: createRes.status || 400,
         headers: { "Content-Type": "application/json" }
       });
     }
@@ -102,7 +103,7 @@ export async function onRequestPost(context) {
 
 export async function onRequestGet(context) {
   try {
-    const SERVER_DEFAULT_TOKEN = atob("cjhfWDJEY1psZFp0cVJ2WlMwU084dmxUNTZEeVJZSjhBWTJzODJCVw==");
+    const SERVER_DEFAULT_TOKEN = atob("cjhfVUJmQjNKUFQ2T2Z1b1YzakhaTDZ1RUlFWG5jYjg3SzFrYTBvbA==");
     const token = url.searchParams.get("token") || context.env.REPLICATE_API_TOKEN || context.env.VITE_REPLICATE_API_TOKEN || SERVER_DEFAULT_TOKEN;
 
     if (!id || !token) {

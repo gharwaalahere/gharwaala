@@ -49,10 +49,10 @@ export default defineConfig(({ mode }) => {
                   })
 
                   const prediction = await createRes.json()
-                  if (prediction.error) {
-                    res.statusCode = 400
+                  if (!createRes.ok || prediction.error || prediction.detail) {
+                    res.statusCode = createRes.status || 400
                     res.setHeader('Content-Type', 'application/json')
-                    res.end(JSON.stringify({ error: prediction.error }))
+                    res.end(JSON.stringify({ error: prediction.detail || prediction.error || prediction.title || 'Prediction failed' }))
                     return
                   }
 
