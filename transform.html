@@ -1601,6 +1601,63 @@ Respond ONLY with valid JSON with this exact schema:
       return JSON.parse(rawText);
     }
 
+    // Google Gemini Generative In-Place Remodel (gemini-3.1-flash-image)
+    async function callGeminiImageGeneration(imageDataUrl, targetStyleName) {
+      let mimeType = 'image/jpeg';
+      let base64Data = '';
+      
+      if (imageDataUrl.startsWith('data:')) {
+        mimeType = imageDataUrl.substring(imageDataUrl.indexOf(':') + 1, imageDataUrl.indexOf(';'));
+        base64Data = imageDataUrl.substring(imageDataUrl.indexOf(',') + 1);
+      } else {
+        const res = await fetch(imageDataUrl);
+        const blob = await res.blob();
+        const dataUrl = await new Promise(resolve => {
+          const r = new FileReader();
+          r.onloadend = () => resolve(r.result);
+          r.readAsDataURL(blob);
+        });
+        mimeType = dataUrl.substring(dataUrl.indexOf(':') + 1, dataUrl.indexOf(';'));
+        base64Data = dataUrl.substring(dataUrl.indexOf(',') + 1);
+      }
+
+      const prompt = `Photorealistic architectural remodel of this exact kitchen room into luxury ${targetStyleName} style. Preserve the exact room perspective, camera angle, walls, window placement, and floor layout. Replace all existing cabinets with premium ${targetStyleName} seamless cabinets, Blum profile channel handles, Calacatta quartz countertops, and warm 3000K undercabinet LED illumination. High-end Architectural Digest luxury interior photography.`;
+
+      const payload = {
+        contents: [{
+          parts: [
+            { text: prompt },
+            {
+              inline_data: {
+                mime_type: mimeType,
+                data: base64Data
+              }
+            }
+          ]
+        }]
+      };
+
+      const keyToUse = apiToken || DEFAULT_GEMINI_KEY;
+      const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-image:generateContent?key=${keyToUse}`;
+
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+
+      if (!response.ok) throw new Error(`Gemini Image API status: ${response.status}`);
+
+      const data = await response.json();
+      const parts = data.candidates?.[0]?.content?.parts || [];
+      for (const part of parts) {
+        if (part.inlineData && part.inlineData.data) {
+          return `data:${part.inlineData.mimeType || 'image/png'};base64,${part.inlineData.data}`;
+        }
+      }
+      return null;
+    }
+
     // Render Gemini Audit Diagnostic Card
     function renderGeminiAuditCard(data) {
       if (!geminiAuditCard || !data) return;
@@ -1781,8 +1838,20 @@ Respond ONLY with valid JSON with this exact schema:
           loadingStepText.textContent = 'Synthesizing Gharwaala Makeover...';
           loadingSubText.textContent = `Applying ${targetStyleName} with German Blum hardware to ${auditData.detectedLayout || 'Modular'} layout.`;
 
-          // Map detected layout to high-fidelity 4K render
-          resultImageUrl = getTransformedRenderUrl(auditData.detectedLayout, selectedStyle);
+          // Attempt generative in-place room remodel if enabled on Google Cloud
+          let customAiRemodelImage = null;
+          if (isCustomUserUpload) {
+            try {
+              loadingStepText.textContent = 'Rendering Custom 3D Makeover...';
+              loadingSubText.textContent = 'Generating photorealistic in-place remodel of your uploaded room perspective...';
+              customAiRemodelImage = await callGeminiImageGeneration(currentOriginalImage, targetStyleName);
+            } catch (imgErr) {
+              console.warn('Gemini generative image quota not active, utilizing 4K architectural layout render:', imgErr);
+            }
+          }
+
+          // Use the generated AI remodel or fallback to 4K architectural render
+          resultImageUrl = customAiRemodelImage || getTransformedRenderUrl(auditData.detectedLayout, selectedStyle);
 
           // Populate the executive audit card
           renderGeminiAuditCard(auditData);
