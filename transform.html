@@ -644,21 +644,7 @@
       gap: 10px;
     }
 
-    /* Inline API Key Helper Card */
-    .api-key-banner {
-      background: rgba(213, 180, 95, 0.08);
-      border: 1px solid rgba(213, 180, 95, 0.25);
-      border-radius: 10px;
-      padding: 12px 14px;
-      margin-top: 12px;
-      font-size: 12px;
-      color: #e5e5e5;
-      display: none;
-    }
-    .api-key-banner p { margin: 0 0 8px; line-height: 1.4; }
-    .api-key-banner a { color: var(--saas-gold); text-decoration: underline; cursor: pointer; }
-
-    /* Modal for API Key Settings */
+    /* Consultation Modal Styling */
     .modal-overlay-saas {
       position: fixed;
       inset: 0;
@@ -888,10 +874,6 @@
     </div>
 
     <div class="saas-nav-right">
-      <button class="nav-btn-outline" id="openSettingsBtn" title="Configure AI API Key">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-        <span id="navApiStatus">AI Settings</span>
-      </button>
       <a href="/calculator.html" class="nav-btn-outline">Cost Estimator</a>
       <a href="/#contact" class="nav-btn-gold">Consult Architect ↗</a>
     </div>
@@ -931,11 +913,6 @@
           <button class="sample-pill" data-sample-before="/before_kitchen_6.jpg" data-sample-after="/true_after_kitchen_6.jpg" data-title="Narrow Galley">
             <img src="/before_kitchen_6.jpg" alt="Galley"> Galley
           </button>
-        </div>
-
-        <!-- Custom Upload Notice -->
-        <div class="api-key-banner" id="customUploadApiKeyNotice" style="display: none;">
-          <p><strong>Replicate ControlNet Ready:</strong> Upload your kitchen photo and click "Transform With ControlNet AI". Your exact room geometry will be transformed. Token can be configured in <a id="linkOpenSettings">AI Settings</a>.</p>
         </div>
       </div>
 
@@ -1183,29 +1160,6 @@
 
   </main>
 
-  <!-- API Settings Modal -->
-  <div class="modal-overlay-saas" id="settingsModal">
-    <div class="modal-card-saas">
-      <button class="modal-close-btn" id="closeSettingsModalBtn">✕</button>
-      <h3>Replicate ControlNet Configuration</h3>
-      <p>Connect your Replicate API token to run ControlNet interior remodeling directly on your uploaded kitchen photos.</p>
-
-      <div class="option-row" id="tokenGroup">
-        <label class="option-label" for="apiTokenInput">Replicate API Token (r8_...)</label>
-        <input type="password" id="apiTokenInput" class="select-dropdown" placeholder="r8_..." />
-        <span style="font-size: 11px; color: var(--saas-subtle); margin-top: 4px;" id="tokenHintText">
-          Get your token at <a href="https://replicate.com/account/api-tokens" target="_blank" style="color: var(--saas-gold);">replicate.com/account/api-tokens</a>. Stored securely.
-        </span>
-      </div>
-
-      <div style="display: flex; gap: 10px; margin-top: 20px;">
-        <button class="nav-btn-gold" id="saveSettingsBtn" style="flex: 1; justify-content: center;">
-          Save Token
-        </button>
-      </div>
-    </div>
-  </div>
-
   <!-- Lead Modal For Consultation -->
   <div class="modal-overlay-saas" id="consultModal">
     <div class="modal-card-saas" style="max-width: 520px;">
@@ -1251,7 +1205,6 @@
     let isCustomUserUpload = false;
     let selectedStyle = 'minimalist';
     let isDraggingSlider = false;
-    let replicateToken = localStorage.getItem('gharwaala_replicate_token') || localStorage.getItem('gharwaala_ai_token') || import.meta.env.VITE_REPLICATE_API_TOKEN || "";
 
     // Style Configuration & Delhi NCR Cost Matrix
     const styleLibrary = {
@@ -1301,55 +1254,14 @@
     const resetCanvasBtn = document.getElementById('resetCanvasBtn');
     const stageStatusText = document.getElementById('stageStatusText');
     const uploadStatusText = document.getElementById('uploadStatusText');
-    const customUploadApiKeyNotice = document.getElementById('customUploadApiKeyNotice');
-    const linkOpenSettings = document.getElementById('linkOpenSettings');
-    const navApiStatus = document.getElementById('navApiStatus');
     const remodelAuditCard = document.getElementById('remodelAuditCard');
     const whatsappChatBtn = document.getElementById('whatsappChatBtn');
 
-    // Modals
-    const settingsModal = document.getElementById('settingsModal');
-    const openSettingsBtn = document.getElementById('openSettingsBtn');
-    const closeSettingsModalBtn = document.getElementById('closeSettingsModalBtn');
-    const apiTokenInput = document.getElementById('apiTokenInput');
-    const saveSettingsBtn = document.getElementById('saveSettingsBtn');
-
+    // Lead Consultation Modal
     const consultModal = document.getElementById('consultModal');
     const bookSiteAuditBtn = document.getElementById('bookSiteAuditBtn');
     const closeConsultModalBtn = document.getElementById('closeConsultModalBtn');
     const saasConsultForm = document.getElementById('saasConsultForm');
-
-    // Update API Status badge in nav
-    function updateApiNavBadge() {
-      if (replicateToken) {
-        navApiStatus.textContent = 'Replicate SDXL Connected ✓';
-        navApiStatus.style.color = '#10b981';
-      } else {
-        navApiStatus.textContent = 'AI Settings';
-        navApiStatus.style.color = '';
-      }
-    }
-    updateApiNavBadge();
-
-    // Initialize Settings Modal values
-    if (apiTokenInput) apiTokenInput.value = replicateToken;
-
-    openSettingsBtn.addEventListener('click', () => settingsModal.classList.add('active'));
-    linkOpenSettings.addEventListener('click', () => settingsModal.classList.add('active'));
-    closeSettingsModalBtn.addEventListener('click', () => settingsModal.classList.remove('active'));
-    settingsModal.addEventListener('click', (e) => {
-      if (e.target === settingsModal) settingsModal.classList.remove('active');
-    });
-
-    saveSettingsBtn.addEventListener('click', () => {
-      replicateToken = apiTokenInput.value.trim();
-      localStorage.setItem('gharwaala_replicate_token', replicateToken);
-      localStorage.setItem('gharwaala_ai_token', replicateToken);
-      updateApiNavBadge();
-      settingsModal.classList.remove('active');
-      customUploadApiKeyNotice.style.display = 'none';
-      alert('Replicate API Token saved! Custom kitchen photo remodels are now active via ControlNet SDXL.');
-    });
 
     // File Drop & Upload Handling
     dropzoneBox.addEventListener('click', () => kitchenFileInput.click());
@@ -1388,11 +1300,6 @@
       const reader = new FileReader();
       reader.onload = (e) => {
         loadInputImage(e.target.result, file.name);
-        if (!replicateToken) {
-          customUploadApiKeyNotice.style.display = 'block';
-        } else {
-          customUploadApiKeyNotice.style.display = 'none';
-        }
       };
       reader.readAsDataURL(file);
     }
@@ -1404,7 +1311,6 @@
         document.querySelectorAll('.sample-pill').forEach(p => p.classList.remove('active'));
         btn.classList.add('active');
         isCustomUserUpload = false;
-        customUploadApiKeyNotice.style.display = 'none';
 
         const sampleBefore = btn.dataset.sampleBefore;
         activeSampleTargetAfter = btn.dataset.sampleAfter;
@@ -1540,21 +1446,21 @@
         const specs = getSelectedHardwareSpecs();
 
         if (isCustomUserUpload) {
-          loadingStepText.textContent = 'Preparing ControlNet Segmentation...';
+          loadingStepText.textContent = 'Preparing Room Segmentation...';
           loadingSubText.textContent = 'Segmenting walls, windows, countertop depth, and camera perspective...';
           loadingProgressFill.style.width = '30%';
 
           const fullPrompt = `${styleConf.prompt}, ${specs.summary}, photorealistic interior design, architectural digest 8k, modern luxury Indian apartment`;
 
-          // Call Cloudflare serverless endpoint (/api/transform)
-          loadingStepText.textContent = 'Executing Replicate ControlNet SDXL...';
+          // Call backend serverless endpoint (/api/transform)
+          loadingStepText.textContent = 'Executing AI Architectural Remodel...';
           loadingSubText.textContent = 'Generating photorealistic interior remodel on your uploaded room perspective...';
           loadingProgressFill.style.width = '55%';
 
-          // Smooth progress ticker while waiting for Replicate GPU
+          // Smooth progress ticker while waiting for GPU render
           const ticker = setInterval(() => {
             let cur = parseFloat(loadingProgressFill.style.width) || 55;
-            if (cur < 85) loadingProgressFill.style.width = `${cur + 3}%`;
+            if (cur < 88) loadingProgressFill.style.width = `${cur + 3}%`;
           }, 1500);
 
           let resp;
@@ -1565,7 +1471,6 @@
               body: JSON.stringify({
                 image: currentOriginalImage,
                 prompt: fullPrompt,
-                token: replicateToken || undefined,
                 structure: 'seg'
               })
             });
@@ -1575,7 +1480,7 @@
 
           const data = await resp.json();
           if (!resp.ok || data.error) {
-            throw new Error(data.error || `Replicate transformation returned status ${resp.status}`);
+            throw new Error(data.error || 'Server error during transformation');
           }
 
           if (data.output) {
@@ -1583,20 +1488,20 @@
           } else if (data.id) {
             // Polling fallback
             loadingStepText.textContent = 'Finalizing High-Resolution Render...';
-            loadingProgressFill.style.width = '85%';
+            loadingProgressFill.style.width = '88%';
             let poll = data;
             while (poll.status !== 'succeeded' && poll.status !== 'failed' && poll.status !== 'canceled') {
               await new Promise(r => setTimeout(r, 2000));
-              const pollRes = await fetch(`/api/transform?id=${poll.id}&token=${encodeURIComponent(replicateToken || '')}`);
+              const pollRes = await fetch(`/api/transform?id=${poll.id}`);
               poll = await pollRes.json();
             }
             if (poll.status === 'succeeded' && poll.output) {
               resultImageUrl = Array.isArray(poll.output) ? poll.output[poll.output.length - 1] : poll.output;
             } else {
-              throw new Error(poll.error || 'Replicate prediction did not succeed.');
+              throw new Error(poll.error || 'Prediction did not succeed');
             }
           } else {
-            throw new Error('No output image returned by Replicate model.');
+            throw new Error('No output image returned by model.');
           }
 
         } else {
@@ -1648,14 +1553,7 @@
         saasLoadingOverlay.style.display = 'none';
         generateBtn.disabled = false;
         btnGenerateText.textContent = 'Retry Transformation';
-        
-        let msg = err.message || 'Transformation failed. Please check your network or API token.';
-        if (msg.includes('Missing Replicate API Token') || msg.includes('401') || msg.includes('token')) {
-          customUploadApiKeyNotice.style.display = 'block';
-          alert('Replicate API Token Required: Click "AI Settings" in the header to enter your Replicate API token (r8_...) or configure REPLICATE_API_TOKEN in Cloudflare Pages.');
-        } else {
-          alert(`Transformation Error: ${msg}`);
-        }
+        alert(err.message || "We're experiencing high demand on our 3D render servers. Please try again or chat with our design team on WhatsApp for an immediate consultation.");
       }
     }
 
@@ -1708,7 +1606,6 @@
       currentOriginalImage = null;
       currentTransformedImage = null;
       isCustomUserUpload = false;
-      customUploadApiKeyNotice.style.display = 'none';
       stageEmptyState.style.display = 'block';
       saasComparisonWrap.style.display = 'none';
       downloadRenderBtn.style.display = 'none';

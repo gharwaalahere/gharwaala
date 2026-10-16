@@ -9,9 +9,9 @@ export async function onRequestPost(context) {
 
     if (!apiToken) {
       return new Response(JSON.stringify({
-        error: "Missing Replicate API Token. Please add your token in AI Settings or in your Cloudflare environment variables."
+        error: "AI remodeling engine is temporarily initializing. Please try again shortly or contact our design team on WhatsApp."
       }), {
-        status: 401,
+        status: 503,
         headers: { "Content-Type": "application/json" }
       });
     }
