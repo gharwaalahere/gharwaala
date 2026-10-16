@@ -188,11 +188,17 @@
         <p class="hero-anim hero-anim-3">Thoughtful layouts, honest pricing, and beautiful materials from the region's most trusted kitchen designers.</p>
         <div class="hero-cta-group hero-anim hero-anim-4">
           <button class="btn btn-hero-primary cta-trigger">Get Free Consultation <span class="cta-arrow">↗</span></button>
-          <a class="btn btn-hero-secondary" href="/calculator.html">Calculate Kitchen Cost <span class="cta-arrow">→</span></a>
+          <a class="btn btn-hero-secondary" href="/calculator.html">Calculate your kitchen cost in 60s <span class="cta-arrow">→</span></a>
         </div>
       </div>
       <div class="hero-meta-wrapper hero-anim hero-anim-5">
-        <div class="hero-meta"><div class="meta-col"><b>01</b> Design-led</div><div class="meta-col"><b>02</b> Delhi NCR</div><div class="meta-col"><b>03</b> Sketch to install</div></div>
+        <div class="hero-meta">
+          <div class="meta-col"><b>01</b> Design-led</div>
+          <span class="meta-sep">·</span>
+          <div class="meta-col"><b>02</b> Delhi NCR</div>
+          <span class="meta-sep">·</span>
+          <div class="meta-col"><b>03</b> Sketch to install</div>
+        </div>
       </div>
     </div>
   </header>
@@ -291,12 +297,20 @@
         display: flex;
         flex-direction: column;
         justify-content: center !important;
-        padding: 85px 0 35px 0 !important;
+        padding: 95px 0 45px 0 !important;
         box-sizing: border-box;
       }
+      .home-hero-overlay {
+        background: linear-gradient(
+          180deg,
+          rgba(12, 10, 8, 0.68) 0%,
+          rgba(12, 10, 8, 0.36) 42%,
+          rgba(12, 10, 8, 0.85) 100%
+        ) !important;
+      }
       .home-hero .container {
-        width: calc(100% - 40px) !important;
-        max-width: 500px !important;
+        width: calc(100% - 44px) !important;
+        max-width: 480px !important;
         margin: 0 auto !important;
         padding: 0 !important;
         display: flex !important;
@@ -311,77 +325,144 @@
         max-width: 100% !important;
       }
       .eyebrow {
-        font-size: 11px !important;
-        letter-spacing: 2px !important;
-        margin-bottom: 16px !important;
+        font-size: 10px !important;
+        letter-spacing: 2.8px !important;
+        font-weight: 600 !important;
+        color: #d5b45f !important;
+        margin-bottom: 14px !important;
+        text-transform: uppercase !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        gap: 8px !important;
         justify-content: flex-start !important;
+      }
+      .eyebrow:before {
+        width: 20px !important;
+        height: 1px !important;
+        background: #d5b45f !important;
       }
       .home-hero h1 {
         text-align: left !important;
-        font-size: clamp(32px, 8.5vw, 46px) !important;
-        line-height: 1.1 !important;
-        letter-spacing: -1.5px !important;
-        margin: 0 0 16px 0 !important;
+        font-size: clamp(33px, 8.4vw, 44px) !important;
+        line-height: 1.12 !important;
+        letter-spacing: -0.6px !important;
+        font-weight: 600 !important;
+        margin: 0 0 14px 0 !important;
+        text-shadow: 0 4px 18px rgba(0, 0, 0, 0.5) !important;
       }
       .home-hero p {
         text-align: left !important;
         margin: 0 0 24px 0 !important;
         max-width: 100% !important;
-        font-size: 15px !important;
+        font-size: 14.5px !important;
         line-height: 1.6 !important;
+        color: rgba(255, 255, 255, 0.86) !important;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5) !important;
       }
       .hero-cta-group {
         flex-direction: column !important;
-        align-items: stretch !important;
-        gap: 12px !important;
+        align-items: flex-start !important;
+        gap: 16px !important;
         width: 100% !important;
         max-width: 100% !important;
-        margin: 0 0 20px 0 !important;
+        margin: 0 0 24px 0 !important;
       }
-      .hero-cta-group .btn-hero-primary,
-      .hero-cta-group .btn-hero-secondary {
+      .hero-cta-group .btn-hero-primary {
         width: 100% !important;
         max-width: 100% !important;
+        min-height: 50px !important;
+        padding: 15px 28px !important;
+        font-size: 14.5px !important;
+        font-weight: 700 !important;
+        letter-spacing: 0.5px !important;
+        border-radius: 50px !important;
+        background: linear-gradient(135deg, #e3c46e 0%, #d5b45f 50%, #b88f30 100%) !important;
+        color: #14120f !important;
+        border: 1px solid rgba(255, 255, 255, 0.45) !important;
+        box-shadow: 0 8px 24px -2px rgba(213, 180, 95, 0.42), 0 2px 6px rgba(0, 0, 0, 0.2) !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 8px !important;
         box-sizing: border-box !important;
         text-align: center !important;
-        padding: 15px 20px !important;
-        font-size: 15px !important;
+      }
+      .hero-cta-group .btn-hero-secondary {
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        padding: 4px 0 !important;
+        min-height: auto !important;
+        color: rgba(255, 255, 255, 0.9) !important;
+        font-size: 13.5px !important;
+        font-weight: 500 !important;
+        letter-spacing: 0.3px !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        gap: 8px !important;
+        width: auto !important;
+        text-decoration: none !important;
+        transition: color 0.25s ease !important;
+      }
+      .hero-cta-group .btn-hero-secondary:hover {
+        color: #d5b45f !important;
+        background: transparent !important;
+        transform: none !important;
+        box-shadow: none !important;
+      }
+      .hero-cta-group .btn-hero-secondary .cta-arrow {
+        color: #d5b45f !important;
+        font-size: 14px !important;
+        transition: transform 0.25s ease !important;
+      }
+      .hero-cta-group .btn-hero-secondary:hover .cta-arrow {
+        transform: translateX(4px) !important;
       }
       .hero-meta-wrapper {
         position: static !important;
         width: 100% !important;
         max-width: 100% !important;
         margin-top: 4px !important;
+        padding-top: 16px !important;
+        border-top: 1px solid rgba(255, 255, 255, 0.12) !important;
       }
       .hero-meta {
-        background: rgba(24, 21, 18, 0.88) !important;
-        backdrop-filter: blur(12px) !important;
-        -webkit-backdrop-filter: blur(12px) !important;
-        border: 1px solid rgba(255, 255, 255, 0.12) !important;
-        border-radius: 12px !important;
-        padding: 12px 10px !important;
+        background: transparent !important;
+        border: none !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        box-shadow: none !important;
+        padding: 0 !important;
         margin: 0 !important;
-        display: grid !important;
-        grid-template-columns: 1fr 1fr 1fr !important;
-        text-align: center !important;
+        display: flex !important;
+        justify-content: flex-start !important;
         align-items: center !important;
-        gap: 4px !important;
-        text-transform: uppercase !important;
-        font-size: 9.5px !important;
-        letter-spacing: 0.5px !important;
-        white-space: nowrap !important;
+        flex-wrap: wrap !important;
+        gap: 8px 12px !important;
         width: 100% !important;
         box-sizing: border-box !important;
       }
       .hero-meta .meta-col {
         display: inline-flex !important;
         align-items: center !important;
-        justify-content: center !important;
-        gap: 4px !important;
+        gap: 5px !important;
+        font-size: 10.5px !important;
+        letter-spacing: 0.6px !important;
+        color: rgba(255, 255, 255, 0.72) !important;
+        text-transform: uppercase !important;
+        font-weight: 500 !important;
       }
-      .hero-meta b {
+      .hero-meta .meta-col b {
         color: #d5b45f !important;
         font-weight: 700 !important;
+      }
+      .hero-meta .meta-sep {
+        color: rgba(213, 180, 95, 0.45) !important;
+        font-size: 12px !important;
+        line-height: 1 !important;
       }
       .mobile-divider {
         display: none !important;
@@ -414,7 +495,8 @@
       .hero-meta {
         display: inline-flex !important;
         justify-content: center !important;
-        gap: 28px !important;
+        align-items: center !important;
+        gap: 20px !important;
         background: transparent !important;
         border: none !important;
         backdrop-filter: none !important;
@@ -424,6 +506,10 @@
         display: inline-flex !important;
         align-items: center !important;
         gap: 8px !important;
+      }
+      .hero-meta .meta-sep {
+        color: rgba(213, 180, 95, 0.5) !important;
+        font-size: 13px !important;
       }
       .hero-meta-wrapper {
         margin-top: 2rem;
