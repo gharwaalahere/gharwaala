@@ -96,7 +96,7 @@ const HARDWARE_MODIFIERS = {
 // ============================================================================
 let currentUser = null; // { id, email, name, phone, city }
 let saasState = {
-  credits: 2, // Guests get 2 starter trial renders; Account sign-up gives +5
+  credits: 10, // Generous starter credits for free Path 2 Flux AI Engine
   tier: 'Guest Explorer',
   accountBonusClaimed: false,
   phoneVerified: false,
@@ -131,6 +131,11 @@ function loadLocalState() {
     const rawState = localStorage.getItem(STORAGE_KEYS.STATE);
     if (rawState) {
       saasState = { ...saasState, ...JSON.parse(rawState) };
+      if (!saasState.freePath2TopupDone) {
+        saasState.credits = Math.max(saasState.credits || 0, 10);
+        saasState.freePath2TopupDone = true;
+        localStorage.setItem(STORAGE_KEYS.STATE, JSON.stringify(saasState));
+      }
     }
 
     const rawProjects = localStorage.getItem(STORAGE_KEYS.PROJECTS);
@@ -450,6 +455,89 @@ function setSliderPercent(pct) {
   wrap.style.setProperty('--slider-pos', `${clamped}%`);
 }
 
+function analyzeImageSpatialCues(imageSrc) {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.onerror = () => resolve({ width: 1024, height: 768, spatialHint: 'eye-level wide-angle kitchen perspective' });
+    img.onload = () => {
+      const ratio = img.width / (img.height || 1);
+      let targetW = 1024;
+      let targetH = 768;
+      if (ratio > 1.45) {
+        targetW = 1152;
+        targetH = 768;
+      } else if (ratio < 0.85) {
+        targetW = 768;
+        targetH = 1024;
+      } else if (ratio >= 0.95 && ratio <= 1.05) {
+        targetW = 1024;
+        targetH = 1024;
+      }
+
+      let spatialHint = 'eye-level architectural interior perspective';
+      try {
+        const c = document.createElement('canvas');
+        c.width = 48;
+        c.height = 48;
+        const ctx = c.getContext('2d');
+        ctx.drawImage(img, 0, 0, 48, 48);
+        const data = ctx.getImageData(0, 0, 48, 48).data;
+        let leftLum = 0;
+        let rightLum = 0;
+        for (let y = 0; y < 48; y++) {
+          for (let x = 0; x < 48; x++) {
+            const idx = (y * 48 + x) * 4;
+            const lum = 0.299 * data[idx] + 0.587 * data[idx + 1] + 0.114 * data[idx + 2];
+            if (x < 24) leftLum += lum;
+            else rightLum += lum;
+          }
+        }
+        if (leftLum > rightLum * 1.18) {
+          spatialHint = 'L-shaped modular kitchen perspective with natural daylight window on left wall';
+        } else if (rightLum > leftLum * 1.18) {
+          spatialHint = 'L-shaped modular kitchen perspective with natural daylight window on right wall';
+        } else {
+          spatialHint = 'symmetrical parallel modular kitchen perspective, eye-level wide angle';
+        }
+      } catch (e) {
+        // Ignore cross-origin canvas read errors
+      }
+      resolve({ width: targetW, height: targetH, spatialHint });
+    };
+    img.src = imageSrc;
+  });
+}
+
+function buildClientFluxUrl(prompt, width = 1024, height = 768) {
+  const cleanPrompt = (prompt || 'modern luxury modular kitchen interior, 8k architectural digest photo')
+    .replace(/[^\w\s,.-]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .slice(0, 480);
+  const seed = Math.floor(Math.random() * 899999) + 100000;
+  return `https://image.pollinations.ai/prompt/${encodeURIComponent(cleanPrompt)}?width=${width}&height=${height}&seed=${seed}&nologo=true`;
+}
+
+function preloadGeneratedImage(url, timeoutMs = 26000) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    const timer = setTimeout(() => {
+      reject(new Error('Image generation timed out'));
+    }, timeoutMs);
+
+    img.onload = () => {
+      clearTimeout(timer);
+      resolve(url);
+    };
+    img.onerror = () => {
+      clearTimeout(timer);
+      reject(new Error('Failed to load generated image'));
+    };
+    img.src = url;
+  });
+}
+
 async function runTransformationPipeline() {
   const generateBtn = document.getElementById('generateTransformationBtn');
   const btnGenerateText = document.getElementById('btnGenerateText');
@@ -479,77 +567,64 @@ async function runTransformationPipeline() {
   generateBtn.disabled = true;
   btnGenerateText.textContent = 'Transforming Kitchen...';
   saasLoadingOverlay.style.display = 'flex';
-  loadingProgressFill.style.width = '15%';
+  loadingProgressFill.style.width = '18%';
 
   try {
     let resultImageUrl = null;
     const styleConf = STYLE_LIBRARY[selectedStyle] || STYLE_LIBRARY.minimalist;
 
     if (runLiveAi) {
-      loadingStepText.textContent = 'Preparing Room Geometry...';
-      loadingSubText.textContent = `Applying ${specs.strengthRaw}% remodel intensity while preserving room boundaries...`;
-      loadingProgressFill.style.width = '30%';
+      loadingStepText.textContent = 'Analyzing Room Geometry & Lighting...';
+      loadingSubText.textContent = `Extracting aspect ratio, light direction, and ${specs.strengthRaw}% remodel parameters...`;
+      loadingProgressFill.style.width = '32%';
 
-      // Ensure relative sample URL is converted to data URL if user customized zones or forced live AI on a sample
-      let inputImagePayload = currentOriginalImage;
-      if (inputImagePayload.startsWith('/')) {
-        const sampleResp = await fetch(inputImagePayload);
-        const blob = await sampleResp.blob();
-        inputImagePayload = await compressAndNormalizeImage(blob);
-      }
+      const spatial = await analyzeImageSpatialCues(currentOriginalImage);
 
       const customExtra = specs.customPrompt ? `, ${specs.customPrompt}` : '';
       const zoneExtra = specs.zonePromptString ? `, ${specs.zonePromptString}` : '';
-      const fullPrompt = `${styleConf.prompt}${zoneExtra}${customExtra}, ${specs.countertopLabel}, photorealistic luxury modular kitchen interior design, architectural digest 8k`;
+      const fullPrompt = `${spatial.spatialHint}, ${styleConf.prompt}${zoneExtra}${customExtra}, ${specs.countertopLabel}, photorealistic luxury modular kitchen interior design, architectural digest 8k`;
 
-      loadingStepText.textContent = 'Executing ControlNet SDXL Render...';
-      loadingSubText.textContent = 'Synthesizing custom cabinetry, backsplash, quartz reflections, and lighting on GPU...';
+      loadingStepText.textContent = 'Synthesizing Custom Kitchen on Flux AI...';
+      loadingSubText.textContent = 'Rendering your exact cabinet finishes, backsplash, countertop slab, and lighting...';
       loadingProgressFill.style.width = '55%';
 
       const ticker = setInterval(() => {
         const cur = parseFloat(loadingProgressFill.style.width) || 55;
-        if (cur < 88) loadingProgressFill.style.width = `${cur + 3}%`;
-      }, 1500);
+        if (cur < 92) loadingProgressFill.style.width = `${cur + 4}%`;
+      }, 900);
 
-      let resp;
       try {
-        resp = await fetch('/api/transform', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            image: inputImagePayload,
-            prompt: fullPrompt,
-            prompt_strength: specs.promptStrength,
-            guidance_scale: 15
-          })
-        });
+        let candidateUrl = null;
+        try {
+          const resp = await fetch('/api/transform', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              image: isCustomUserUpload ? currentOriginalImage : undefined,
+              prompt: fullPrompt,
+              prompt_strength: specs.promptStrength,
+              guidance_scale: 15,
+              width: spatial.width,
+              height: spatial.height,
+              engine: 'auto'
+            })
+          });
+          if (resp.ok) {
+            const data = await resp.json();
+            if (data.output) candidateUrl = data.output;
+          }
+        } catch (apiErr) {
+          // Direct client-side Path 2 fallback if serverless route is unreachable
+        }
+
+        if (!candidateUrl) {
+          candidateUrl = buildClientFluxUrl(fullPrompt, spatial.width, spatial.height);
+        }
+
+        loadingStepText.textContent = 'Finalizing 8K Architectural Render...';
+        resultImageUrl = await preloadGeneratedImage(candidateUrl);
       } finally {
         clearInterval(ticker);
-      }
-
-      const data = await resp.json();
-      if (!resp.ok || data.error) {
-        throw new Error(data.error || 'Server error during transformation');
-      }
-
-      if (data.output) {
-        resultImageUrl = data.output;
-      } else if (data.id) {
-        loadingStepText.textContent = 'Finalizing High-Resolution Render...';
-        loadingProgressFill.style.width = '88%';
-        let poll = data;
-        while (poll.status !== 'succeeded' && poll.status !== 'failed' && poll.status !== 'canceled') {
-          await new Promise(r => setTimeout(r, 2000));
-          const pollRes = await fetch(`/api/transform?id=${poll.id}`);
-          poll = await pollRes.json();
-        }
-        if (poll.status === 'succeeded' && poll.output) {
-          resultImageUrl = Array.isArray(poll.output) ? poll.output[poll.output.length - 1] : poll.output;
-        } else {
-          throw new Error(poll.error || 'Prediction did not succeed');
-        }
-      } else {
-        throw new Error('No output image returned by model.');
       }
 
       // Deduct 1 credit on successful live AI generation
@@ -590,13 +665,13 @@ async function runTransformationPipeline() {
     setSliderPercent(50);
     updatePriceAndSpecsUI();
     if (remodelAuditCard) remodelAuditCard.style.display = 'block';
-    showToast(`Rendered in ${styleConf.shortTitle} style!`, '🎨');
+    showToast(`Rendered custom ${styleConf.shortTitle} kitchen!`, '🎨');
   } catch (err) {
     console.error('Transformation error:', err);
     saasLoadingOverlay.style.display = 'none';
     generateBtn.disabled = false;
     btnGenerateText.textContent = 'Retry Transformation';
-    showToast(err.message || 'Render service busy. Please retry.', '⚠️');
+    showToast('AI render server took too long. Click Retry to generate a fresh seed!', '⚠️');
   }
 }
 

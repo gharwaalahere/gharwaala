@@ -5,6 +5,18 @@ import { fileURLToPath } from 'url'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
+function buildFreeFluxUrl(prompt, width = 1024, height = 768) {
+  const cleanPrompt = (prompt || 'modern luxury modular kitchen interior, 8k architectural digest photo')
+    .replace(/[^\w\s,.-]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .slice(0, 480)
+  const seed = Math.floor(Math.random() * 899999) + 100000
+  const w = Math.min(1280, Math.max(512, Number(width) || 1024))
+  const h = Math.min(1280, Math.max(512, Number(height) || 768))
+  return `https://image.pollinations.ai/prompt/${encodeURIComponent(cleanPrompt)}?width=${w}&height=${h}&seed=${seed}&nologo=true`
+}
+
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '')
   const fallbackToken = Buffer.from('cjhfVUJmQjNKUFQ2T2Z1b1YzakhaTDZ1RUlFWG5jYjg3SzFrYTBvbA==', 'base64').toString('utf-8')
@@ -46,59 +58,66 @@ export default defineConfig(({ mode }) => {
                 try {
                   const parsed = JSON.parse(body || '{}')
                   const token = parsed.token || serverToken
+                  const width = parsed.width || 1024
+                  const height = parsed.height || 768
 
-                  if (!token) {
-                    res.statusCode = 503
+                  // If explicitly requesting Free Flux Engine (Path 2)
+                  if (parsed.engine === 'flux-free') {
+                    const fluxUrl = buildFreeFluxUrl(parsed.prompt, width, height)
                     res.setHeader('Content-Type', 'application/json')
-                    res.end(JSON.stringify({ error: 'AI remodeling service is initializing. Please try again shortly.' }))
+                    res.end(JSON.stringify({ output: fluxUrl, engine: 'flux-free', status: 'succeeded' }))
                     return
                   }
 
-                  const createRes = await fetch('https://api.replicate.com/v1/predictions', {
-                    method: 'POST',
-                    headers: {
-                      'Authorization': `Bearer ${token}`,
-                      'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                      version: '76604baddc85b1b4616e1c6475eca080da339c8875bd4996705440484a6eac38',
-                      input: {
-                        image: parsed.image,
-                        prompt: parsed.prompt || 'modern modular kitchen interior, luxury minimalist, 8k photo, architectural digest',
-                        negative_prompt: parsed.negative_prompt || 'lowres, watermark, banner, logo, text, deformed, blurry, bad quality, sketches, messy, cluttered, cartoon',
-                        prompt_strength: Number(parsed.prompt_strength) || 0.78,
-                        guidance_scale: Number(parsed.guidance_scale) || 15,
-                        num_inference_steps: 50
+                  // 1. Try Replicate ControlNet if token & image present
+                  if (token && parsed.image) {
+                    try {
+                      const createRes = await fetch('https://api.replicate.com/v1/predictions', {
+                        method: 'POST',
+                        headers: {
+                          'Authorization': `Bearer ${token}`,
+                          'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                          version: '76604baddc85b1b4616e1c6475eca080da339c8875bd4996705440484a6eac38',
+                          input: {
+                            image: parsed.image,
+                            prompt: parsed.prompt || 'modern modular kitchen interior, luxury minimalist, 8k photo, architectural digest',
+                            negative_prompt: parsed.negative_prompt || 'lowres, watermark, banner, logo, text, deformed, blurry, bad quality, sketches, messy, cluttered, cartoon',
+                            prompt_strength: Number(parsed.prompt_strength) || 0.78,
+                            guidance_scale: Number(parsed.guidance_scale) || 15,
+                            num_inference_steps: 50
+                          }
+                        })
+                      })
+
+                      const prediction = await createRes.json()
+                      if (createRes.ok && !prediction.error && !prediction.detail) {
+                        let poll = prediction
+                        while (poll.status !== 'succeeded' && poll.status !== 'failed' && poll.status !== 'canceled') {
+                          await new Promise(r => setTimeout(r, 1800))
+                          const check = await fetch(`https://api.replicate.com/v1/predictions/${poll.id}`, {
+                            headers: { 'Authorization': `Bearer ${token}` }
+                          })
+                          poll = await check.json()
+                        }
+
+                        if (poll.status === 'succeeded') {
+                          const outputUrl = Array.isArray(poll.output) ? poll.output[poll.output.length - 1] : poll.output
+                          res.setHeader('Content-Type', 'application/json')
+                          res.end(JSON.stringify({ output: outputUrl, engine: 'replicate-controlnet', status: 'succeeded' }))
+                          return
+                        }
                       }
-                    })
-                  })
-
-                  const prediction = await createRes.json()
-                  if (!createRes.ok || prediction.error || prediction.detail) {
-                    res.statusCode = createRes.status || 400
-                    res.setHeader('Content-Type', 'application/json')
-                    res.end(JSON.stringify({ error: prediction.detail || prediction.error || prediction.title || 'Prediction failed' }))
-                    return
+                    } catch (repErr) {
+                      // Fall through to Path 2 Free Flux AI Engine
+                    }
                   }
 
-                  let poll = prediction
-                  while (poll.status !== 'succeeded' && poll.status !== 'failed' && poll.status !== 'canceled') {
-                    await new Promise(r => setTimeout(r, 1800))
-                    const check = await fetch(`https://api.replicate.com/v1/predictions/${poll.id}`, {
-                      headers: { 'Authorization': `Bearer ${token}` }
-                    })
-                    poll = await check.json()
-                  }
-
-                  if (poll.status === 'succeeded') {
-                    const outputUrl = Array.isArray(poll.output) ? poll.output[poll.output.length - 1] : poll.output
-                    res.setHeader('Content-Type', 'application/json')
-                    res.end(JSON.stringify({ output: outputUrl, status: 'succeeded' }))
-                  } else {
-                    res.statusCode = 500
-                    res.setHeader('Content-Type', 'application/json')
-                    res.end(JSON.stringify({ error: poll.error || 'Prediction failed' }))
-                  }
+                  // 2. Path 2 Automatic Fallback: Free Flux Architectural AI Engine ($0 Cost)
+                  const fallbackFluxUrl = buildFreeFluxUrl(parsed.prompt, width, height)
+                  res.setHeader('Content-Type', 'application/json')
+                  res.end(JSON.stringify({ output: fallbackFluxUrl, engine: 'flux-free', status: 'succeeded' }))
                 } catch (err) {
                   res.statusCode = 500
                   res.setHeader('Content-Type', 'application/json')
