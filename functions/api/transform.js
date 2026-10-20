@@ -2,7 +2,14 @@ export async function onRequestPost(context) {
   try {
     const { request, env } = context;
     const body = await request.json();
-    const { image, prompt, token, structure = 'seg' } = body;
+    const {
+      image,
+      prompt,
+      token,
+      prompt_strength = 0.78,
+      guidance_scale = 15,
+      negative_prompt
+    } = body;
 
     // Server-side default token + Cloudflare environment override
     const SERVER_DEFAULT_TOKEN = atob("cjhfVUJmQjNKUFQ2T2Z1b1YzakhaTDZ1RUlFWG5jYjg3SzFrYTBvbA==");
@@ -35,10 +42,11 @@ export async function onRequestPost(context) {
         version: "76604baddc85b1b4616e1c6475eca080da339c8875bd4996705440484a6eac38",
         input: {
           image: image,
-          prompt: prompt || "modern modular kitchen interior, luxury minimalist, 8k photo",
-          structure: structure, // 'seg' preserves room segments, 'hough' preserves clean lines
-          a_prompt: "best quality, extremely detailed, photo, 8k, modern luxury modular kitchen interior design, architectural digest",
-          n_prompt: "low quality, bad quality, sketches, blurry, deformed, watermark, low resolution, messy"
+          prompt: prompt || "modern modular kitchen interior, luxury minimalist, 8k photo, architectural digest",
+          negative_prompt: negative_prompt || "lowres, watermark, banner, logo, text, deformed, blurry, bad quality, sketches, messy, cluttered, cartoon",
+          prompt_strength: Number(prompt_strength) || 0.78,
+          guidance_scale: Number(guidance_scale) || 15,
+          num_inference_steps: 50
         }
       })
     });
@@ -103,6 +111,8 @@ export async function onRequestPost(context) {
 
 export async function onRequestGet(context) {
   try {
+    const url = new URL(context.request.url);
+    const id = url.searchParams.get("id");
     const SERVER_DEFAULT_TOKEN = atob("cjhfVUJmQjNKUFQ2T2Z1b1YzakhaTDZ1RUlFWG5jYjg3SzFrYTBvbA==");
     const token = url.searchParams.get("token") || context.env.REPLICATE_API_TOKEN || context.env.VITE_REPLICATE_API_TOKEN || SERVER_DEFAULT_TOKEN;
 
