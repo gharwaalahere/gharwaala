@@ -1,22 +1,62 @@
 
-import { createClient } from '@supabase/supabase-js'
-
-// Initialize Supabase Client
-// We use Vite's import.meta.env to access environment variables safely
+// Lazy-load Supabase Client on demand to keep initial JS bundle tiny (CWV / INP optimization)
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || ''
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || ''
 
-let supabase = null;
-if (supabaseUrl && supabaseAnonKey) {
-  supabase = createClient(supabaseUrl, supabaseAnonKey);
+let supabasePromise = null;
+async function getSupabase() {
+  if (!supabaseUrl || !supabaseAnonKey) return null;
+  if (!supabasePromise) {
+    supabasePromise = import('@supabase/supabase-js').then(({ createClient }) =>
+      createClient(supabaseUrl, supabaseAnonKey)
+    );
+  }
+  return supabasePromise;
 }
+
+// Reusable global lead submission helper (used by Lead Modal and Kitchen Cost Calculator)
+window.submitGharwaalaLead = async function ({ name, phone, location, budget, source = 'Website Modal' }) {
+  const web3FormsKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
+  if (web3FormsKey && web3FormsKey.trim() !== '') {
+    const submissionTime = new Date().toLocaleString("en-IN", {
+      timeZone: "Asia/Kolkata",
+      dateStyle: "medium",
+      timeStyle: "short"
+    });
+    const payloadObject = {
+      access_key: web3FormsKey,
+      subject: `🔔 NEW LEAD (${source}): ${name} from ${location}`,
+      from_name: "Gharwaala System",
+      email: "notifications@gharwaala.com",
+      Name: name,
+      Phone: phone,
+      Location: location,
+      Budget: budget,
+      Source: source,
+      "System Check": "Passed - Authentic Lead",
+      "Submitted At (IST)": submissionTime
+    };
+    try {
+      await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify(payloadObject)
+      });
+    } catch (err) {
+      console.error("Web3Forms Network Error:", err);
+    }
+  }
+  const sb = await getSupabase();
+  if (sb) {
+    const { error } = await sb.from('leads').insert([{ name, phone, location, budget }]);
+    if (error) console.error("Supabase Error:", error);
+  }
+};
 
 // Ensure DOM is fully loaded
 document.addEventListener('DOMContentLoaded', () => {
-  // Trigger hero entrance animations after page fully paints
-  window.addEventListener('load', () => {
-    document.body.classList.add('page-loaded');
-  });
+  // Immediately mark page loaded so LCP hero text renders without waiting for window.load
+  document.body.classList.add('page-loaded');
 
   // --- Initialize Lenis Smooth Scroll ---
   let lenis;
@@ -312,63 +352,7 @@ document.addEventListener('DOMContentLoaded', () => {
       submitBtn.disabled = true;
 
       try {
-        // 1. Instant Email Notification via Web3Forms
-        const web3FormsKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
-        if (web3FormsKey && web3FormsKey.trim() !== '') {
-          // Format explicitly to Indian Standard Time to prevent UTC timezone drift
-          const submissionTime = new Date().toLocaleString("en-IN", {
-            timeZone: "Asia/Kolkata",
-            dateStyle: "medium",
-            timeStyle: "short"
-          });
-
-          const payloadObject = {
-            access_key: web3FormsKey,
-            subject: "🔔 NEW LEAD: " + name + " from " + location,
-            from_name: "Gharwaala System",
-            email: "notifications@gharwaala.com", // Critical: Bypasses silent spam drops by satisfying standard email format requirements
-            Name: name,
-            Phone: phone,
-            Location: location,
-            Budget: budget,
-            "System Check": "Passed - Authentic Lead",
-            "Submitted At (IST)": submissionTime
-          };
-
-          try {
-            const w3Res = await fetch("https://api.web3forms.com/submit", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-              },
-              body: JSON.stringify(payloadObject)
-            });
-            const w3Json = await w3Res.json();
-            if (!w3Json.success) {
-              console.error("Web3Forms API rejected:", w3Json);
-              // Silently fail: do not alert the user. Supabase is the source of truth.
-            } else {
-              console.log("Web3Forms Email Sent Successfully!", w3Json);
-            }
-          } catch (err) {
-            console.error("Web3Forms Network Error:", err);
-            // Silently fail network errors to ensure user still sees Success Popup for Supabase.
-          }
-        }
-
-        // 2. Insert into Supabase table "leads"
-        if (supabase) {
-          const { data, error } = await supabase
-            .from('leads')
-            .insert([
-              { name, phone, location, budget }
-            ]);
-
-          if (error) {
-            console.error("Supabase Error:", error);
-          }
-        }
+        await window.submitGharwaalaLead({ name, phone, location, budget, source: 'Consultation Modal' });
 
         // Success
         const popup = document.getElementById('successPopup');
@@ -500,7 +484,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const card = document.createElement('div');
       card.className = 'photo-card';
       card.innerHTML = `
-        <img src="${item.url}" alt="${item.title}" />
+        <img src="${item.url}" alt="${item.title} — Gharwaala Modular Kitchen" width="800" height="600" loading="lazy" decoding="async" />
         <div class="photo-info">
           <h4>${item.title}</h4>
           <p>${item.desc}</p>
@@ -544,7 +528,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   waTooltip.innerHTML = `
     <div class="chat-header">
-      <div class="chat-avatar"><img src="/custom-logo.webp" alt="Gharwaala Support"></div>
+      <div class="chat-avatar"><img src="/custom-logo.webp" alt="Gharwaala Support" width="40" height="40" loading="lazy" decoding="async"></div>
       <div class="chat-title">
         <h4>Gharwaala Support</h4>
         <span class="online-status">Typically replies instantly</span>

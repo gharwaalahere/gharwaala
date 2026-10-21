@@ -10,6 +10,22 @@ function buildFreeFluxUrl(prompt, width = 1024, height = 768) {
   return `https://image.pollinations.ai/prompt/${encodeURIComponent(cleanPrompt)}?width=${w}&height=${h}&seed=${seed}&nologo=true`;
 }
 
+async function pollReplicatePrediction(prediction, apiToken, maxWaitMs = 46000) {
+  let pollResult = prediction;
+  const startTime = Date.now();
+  while (pollResult.status !== "succeeded" && pollResult.status !== "failed" && pollResult.status !== "canceled") {
+    if (Date.now() - startTime > maxWaitMs) {
+      return { timeout: true, pollResult };
+    }
+    await new Promise(r => setTimeout(r, 1600));
+    const checkRes = await fetch(`https://api.replicate.com/v1/predictions/${pollResult.id}`, {
+      headers: { "Authorization": `Bearer ${apiToken}` }
+    });
+    pollResult = await checkRes.json();
+  }
+  return { timeout: false, pollResult };
+}
+
 export async function onRequestPost(context) {
   try {
     const { request, env } = context;
@@ -18,8 +34,8 @@ export async function onRequestPost(context) {
       image,
       prompt,
       token,
-      prompt_strength = 0.78,
-      guidance_scale = 15,
+      prompt_strength = 0.65,
+      guidance_scale = 12,
       negative_prompt,
       width = 1024,
       height = 768,
@@ -33,7 +49,6 @@ export async function onRequestPost(context) {
       });
     }
 
-    // If user explicitly selected Free Flux Engine (Path 2), return immediately
     if (engine === "flux-free") {
       const fluxUrl = buildFreeFluxUrl(prompt, width, height);
       return new Response(JSON.stringify({
@@ -45,13 +60,65 @@ export async function onRequestPost(context) {
       });
     }
 
-    // Server-side default token + Cloudflare environment override
     const SERVER_DEFAULT_TOKEN = atob("cjhfVUJmQjNKUFQ2T2Z1b1YzakhaTDZ1RUlFWG5jYjg3SzFrYTBvbA==");
     const apiToken = env.REPLICATE_API_TOKEN || env.VITE_REPLICATE_API_TOKEN || token || SERVER_DEFAULT_TOKEN;
 
+    const richPrompt = prompt || "Luxury modern modular kitchen interior with detailed cabinet doors, fluted glass upper cabinets with warm interior LED lighting, veined Calacatta quartz countertop and backsplash, brushed brass hardware, photorealistic 8k architectural photography";
+
     if (apiToken && image) {
+      // 1A. Primary High-Definition 3D Depth Model: black-forest-labs/flux-depth-dev
+      // Preserves exact 3D depth of cabinet doors, counter edges, and objects without turning them into flat blobs
       try {
-        // 1. Try creating prediction on Replicate with adirik/interior-design (ControlNet)
+        const fluxDepthRes = await fetch("https://api.replicate.com/v1/models/black-forest-labs/flux-depth-dev/predictions", {
+          method: "POST",
+          headers: {
+            "Authorization": `Bearer ${apiToken}`,
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            input: {
+              control_image: image,
+              prompt: richPrompt,
+              guidance: Number(guidance_scale) || 10,
+              num_inference_steps: 28,
+              megapixels: "1",
+              output_format: "jpg",
+              output_quality: 92
+            }
+          })
+        });
+
+        const fluxPred = await fluxDepthRes.json();
+        if (fluxDepthRes.ok && !fluxPred.error && !fluxPred.detail) {
+          const { timeout, pollResult } = await pollReplicatePrediction(fluxPred, apiToken);
+          if (timeout) {
+            return new Response(JSON.stringify({
+              id: pollResult.id,
+              status: pollResult.status,
+              pollUrl: `/api/transform?id=${pollResult.id}`
+            }), {
+              headers: { "Content-Type": "application/json" }
+            });
+          }
+          if (pollResult.status === "succeeded" && pollResult.output) {
+            const outputUrl = Array.isArray(pollResult.output)
+              ? pollResult.output[pollResult.output.length - 1]
+              : pollResult.output;
+            return new Response(JSON.stringify({
+              output: outputUrl,
+              engine: "flux-depth-controlnet",
+              status: "succeeded"
+            }), {
+              headers: { "Content-Type": "application/json" }
+            });
+          }
+        }
+      } catch (fluxErr) {
+        // Continue to secondary ControlNet model if flux-depth-dev fails
+      }
+
+      // 1B. Secondary ControlNet Model: adirik/interior-design (tuned with lower strength 0.62 to preserve cabinet doors)
+      try {
         const createRes = await fetch("https://api.replicate.com/v1/predictions", {
           method: "POST",
           headers: {
@@ -62,43 +129,31 @@ export async function onRequestPost(context) {
             version: "76604baddc85b1b4616e1c6475eca080da339c8875bd4996705440484a6eac38",
             input: {
               image: image,
-              prompt: prompt || "modern modular kitchen interior, luxury minimalist, 8k photo, architectural digest",
-              negative_prompt: negative_prompt || "lowres, watermark, banner, logo, text, deformed, blurry, bad quality, sketches, messy, cluttered, cartoon",
-              prompt_strength: Number(prompt_strength) || 0.78,
-              guidance_scale: Number(guidance_scale) || 15,
+              prompt: richPrompt,
+              negative_prompt: negative_prompt || "empty white walls, unpainted plaster, blank boxy walls, featureless surfaces, lowres, watermark, blurry, out of focus, deformed, cartoon",
+              prompt_strength: Math.min(0.65, Number(prompt_strength) || 0.62),
+              guidance_scale: 15,
               num_inference_steps: 50
             }
           })
         });
 
         const prediction = await createRes.json();
-
-        // If Replicate succeeds in starting prediction, poll for completion
         if (createRes.ok && !prediction.error && !prediction.detail) {
-          let pollResult = prediction;
-          const startTime = Date.now();
-          while (pollResult.status !== "succeeded" && pollResult.status !== "failed" && pollResult.status !== "canceled") {
-            if (Date.now() - startTime > 45000) {
-              return new Response(JSON.stringify({
-                id: pollResult.id,
-                status: pollResult.status,
-                pollUrl: `/api/transform?id=${pollResult.id}`
-              }), {
-                headers: { "Content-Type": "application/json" }
-              });
-            }
-            await new Promise(r => setTimeout(r, 1800));
-            const checkRes = await fetch(`https://api.replicate.com/v1/predictions/${pollResult.id}`, {
-              headers: { "Authorization": `Bearer ${apiToken}` }
+          const { timeout, pollResult } = await pollReplicatePrediction(prediction, apiToken);
+          if (timeout) {
+            return new Response(JSON.stringify({
+              id: pollResult.id,
+              status: pollResult.status,
+              pollUrl: `/api/transform?id=${pollResult.id}`
+            }), {
+              headers: { "Content-Type": "application/json" }
             });
-            pollResult = await checkRes.json();
           }
-
-          if (pollResult.status === "succeeded") {
+          if (pollResult.status === "succeeded" && pollResult.output) {
             const outputUrl = Array.isArray(pollResult.output)
               ? pollResult.output[pollResult.output.length - 1]
               : pollResult.output;
-
             return new Response(JSON.stringify({
               output: outputUrl,
               engine: "replicate-controlnet",
@@ -114,7 +169,7 @@ export async function onRequestPost(context) {
     }
 
     // 2. Path 2 Automatic Fallback: Free Flux Architectural AI Engine ($0 Cost)
-    const fallbackFluxUrl = buildFreeFluxUrl(prompt, width, height);
+    const fallbackFluxUrl = buildFreeFluxUrl(richPrompt, width, height);
     return new Response(JSON.stringify({
       output: fallbackFluxUrl,
       engine: "flux-free",

@@ -4,15 +4,71 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AI Kitchen Studio SaaS | Redesign, Save & Share | Gharwaala</title>
-  <meta name="description" content="Transform your kitchen with Gharwaala's AI Kitchen Studio SaaS. Upload a photo, customize modular finishes & German hardware, save cloud projects, and share interactive before/after links." />
+  <meta name="description" content="Upload your kitchen photo and remodel its exact 3D layout with Gharwaala's AI Kitchen Studio. Customize finishes, German hardware & instant BOQ quotes." />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
 
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="canonical" href="https://gharwaala.com/transform.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Gharwaala" />
+  <meta property="og:locale" content="en_IN" />
+  <meta property="og:title" content="AI Kitchen Studio SaaS | Redesign, Save & Share | Gharwaala" />
+  <meta property="og:description" content="Upload your kitchen photo and remodel its exact 3D layout with Gharwaala's AI Kitchen Studio. Customize finishes, German hardware & instant BOQ quotes." />
+  <meta property="og:url" content="https://gharwaala.com/transform.html" />
+  <meta property="og:image" content="https://gharwaala.com/true_after_kitchen_1.webp" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="AI Kitchen Studio SaaS | Redesign, Save & Share | Gharwaala" />
+  <meta name="twitter:description" content="Upload your kitchen photo and remodel its exact 3D layout with Gharwaala's AI Kitchen Studio. Customize finishes, German hardware & instant BOQ quotes." />
+  <meta name="twitter:image" content="https://gharwaala.com/true_after_kitchen_1.webp" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Josefin+Sans:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/src/style.css" />
   <link rel="stylesheet" href="/src/studio/saas-style.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://gharwaala.com/transform.html#webapp",
+        "name": "Gharwaala AI Kitchen Studio",
+        "url": "https://gharwaala.com/transform.html",
+        "applicationCategory": "DesignApplication",
+        "operatingSystem": "Web",
+        "description": "Upload a photo of your current kitchen and remodel its exact 3D perspective with ControlNet AI, custom modular finishes, German hardware, and instant Delhi NCR BOQ pricing.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "INR"
+        },
+        "provider": {
+          "@id": "https://gharwaala.com/#organization"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://gharwaala.com/transform.html#breadcrumb",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://gharwaala.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "AI Kitchen Studio",
+            "item": "https://gharwaala.com/transform.html"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 
 <body class="saas-body">
@@ -23,7 +79,7 @@
   <header class="saas-nav">
     <div class="saas-nav-left">
       <a href="/" class="saas-brand">
-        <img src="/custom-logo.webp" alt="Gharwaala" width="30" height="30" style="object-fit: contain;">
+        <img src="/custom-logo.webp" alt="Gharwaala AI Kitchen Studio logo" width="30" height="30" style="object-fit: contain;">
         <span class="saas-brand-title">Gharwaala</span>
       </a>
       <span class="saas-badge-tool">AI Studio SaaS</span>
@@ -93,7 +149,7 @@
         <!-- Editable Project Name -->
         <div class="project-name-bar">
           <span style="font-size: 13px; color: var(--saas-gold);">✎</span>
-          <input type="text" id="projectTitleInput" class="project-name-input" value="My Delhi NCR Kitchen Makeover" placeholder="Enter project name (e.g. Gurugram L-Shape)..." />
+          <input type="text" id="projectTitleInput" aria-label="Kitchen project name" class="project-name-input" value="My Delhi NCR Kitchen Makeover" placeholder="Enter project name (e.g. Gurugram L-Shape)..." />
         </div>
 
         <!-- Step 1: Image Upload -->
@@ -109,26 +165,26 @@
             </div>
             <div class="dropzone-title">Click to upload or drag & drop</div>
             <p class="dropzone-subtext">Upload any kitchen photo to remodel its exact geometry</p>
-            <input type="file" id="kitchenFileInput" accept="image/*" class="file-input-hidden" />
+            <input type="file" id="kitchenFileInput" aria-label="Upload kitchen photo" accept="image/*" class="file-input-hidden" />
           </div>
 
           <!-- Sample Kitchens Strip -->
           <div class="sample-strip">
             <span class="sample-strip-label">Samples:</span>
-            <button class="sample-pill active" data-sample-before="/before_kitchen.jpg" data-sample-after="/true_after_kitchen_1.jpg" data-title="Cramped L-Shape">
-              <img src="/before_kitchen.jpg" alt="L-Shape"> L-Shape
+            <button class="sample-pill active" data-sample-before="/before_kitchen.webp" data-sample-after="/true_after_kitchen_1.webp" data-title="Cramped L-Shape">
+              <img src="/before_kitchen.webp" alt="Sample L-shape kitchen in Delhi NCR before remodel" width="48" height="48" loading="lazy" decoding="async"> L-Shape
             </button>
-            <button class="sample-pill" data-sample-before="/before_kitchen_5.jpg" data-sample-after="/true_after_kitchen_5.jpg" data-title="Outdated U-Shape">
-              <img src="/before_kitchen_5.jpg" alt="U-Shape"> U-Shape
+            <button class="sample-pill" data-sample-before="/before_kitchen_5.webp" data-sample-after="/true_after_kitchen_5.webp" data-title="Outdated U-Shape">
+              <img src="/before_kitchen_5.webp" alt="Sample U-shape kitchen in Noida before remodel" width="48" height="48" loading="lazy" decoding="async"> U-Shape
             </button>
-            <button class="sample-pill" data-sample-before="/before_kitchen_6.jpg" data-sample-after="/true_after_kitchen_6.jpg" data-title="Narrow Galley">
-              <img src="/before_kitchen_6.jpg" alt="Galley"> Galley
+            <button class="sample-pill" data-sample-before="/before_kitchen_6.webp" data-sample-after="/true_after_kitchen_6.webp" data-title="Narrow Galley">
+              <img src="/before_kitchen_6.webp" alt="Sample parallel galley kitchen before remodel" width="48" height="48" loading="lazy" decoding="async"> Galley
             </button>
-            <button class="sample-pill" data-sample-before="/before_kitchen_2.jpg" data-sample-after="/true_after_kitchen_2.jpg" data-title="Open Builder Floor">
-              <img src="/before_kitchen_2.jpg" alt="Open"> Open Layout
+            <button class="sample-pill" data-sample-before="/before_kitchen_2.webp" data-sample-after="/true_after_kitchen_2.webp" data-title="Open Builder Floor">
+              <img src="/before_kitchen_2.webp" alt="Sample open builder floor kitchen in Gurugram" width="48" height="48" loading="lazy" decoding="async"> Open Layout
             </button>
-            <button class="sample-pill" data-sample-before="/before_kitchen_4.jpg" data-sample-after="/true_after_kitchen_4.jpg" data-title="Dark Peninsula">
-              <img src="/before_kitchen_4.jpg" alt="Peninsula"> Peninsula
+            <button class="sample-pill" data-sample-before="/before_kitchen_4.webp" data-sample-after="/true_after_kitchen_4.webp" data-title="Dark Peninsula">
+              <img src="/before_kitchen_4.webp" alt="Sample peninsula kitchen before AI redesign" width="48" height="48" loading="lazy" decoding="async"> Peninsula
             </button>
           </div>
         </div>
@@ -366,7 +422,7 @@
         <!-- Stage Toolbar -->
         <div class="stage-header">
           <div class="stage-title-wrap">
-            <h2 id="stageHeaderTitle">Interactive Transformation Canvas</h2>
+            <h1 id="stageHeaderTitle" style="font-size: inherit; margin: 0;">Interactive Transformation Canvas</h1>
             <div class="stage-status-indicator">
               <span class="status-dot"></span>
               <span id="stageStatusText">Drag slider to compare Before & After</span>
@@ -407,7 +463,7 @@
             <div class="empty-state-icon">
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
             </div>
-            <h3>Upload Your Kitchen Photo</h3>
+            <h2>Upload Your Kitchen Photo</h2>
             <p>Drop a photo of your current kitchen on the left or select one of our Delhi NCR apartment samples to run the ControlNet redesign engine.</p>
             <button class="nav-btn-gold" onclick="document.getElementById('kitchenFileInput').click()">
               Upload Kitchen Photo ↗
@@ -416,11 +472,11 @@
 
           <!-- Comparison Layer -->
           <div class="saas-comparison-wrap" id="saasComparisonWrap" style="display: block;">
-            <img src="/true_after_kitchen_1.jpg" alt="Transformed Kitchen" class="saas-img-base" id="saasImgAfter" />
+            <img src="/true_after_kitchen_1.webp" alt="AI remodeled modular kitchen in Matte Cashmere Greige finish" class="saas-img-base" id="saasImgAfter" width="1024" height="1024" fetchpriority="high" decoding="async" />
             <span class="viewer-tag viewer-tag-after">After · ControlNet AI</span>
 
             <div class="saas-before-layer" id="saasBeforeLayer">
-              <img src="/before_kitchen.jpg" alt="Original Kitchen" id="saasImgBefore" />
+              <img src="/before_kitchen.webp" alt="Original kitchen before Gharwaala ControlNet AI transformation" id="saasImgBefore" width="1024" height="1024" decoding="async" />
               <span class="viewer-tag viewer-tag-before">Before (Original)</span>
             </div>
 
@@ -432,7 +488,7 @@
           <!-- Loading Overlay -->
           <div class="saas-loading-overlay" id="saasLoadingOverlay">
             <div class="loader-spinner"></div>
-            <h4 class="loading-step-text" id="loadingStepText">Segmenting Room Perspective...</h4>
+            <h3 class="loading-step-text" id="loadingStepText">Segmenting Room Perspective...</h3>
             <p class="loading-sub-text" id="loadingSubText">Locking wall lines, window placements, and cabinet heights with ControlNet SDXL.</p>
             <div class="loading-progress-bar">
               <div class="loading-progress-fill" id="loadingProgressFill"></div>
@@ -503,6 +559,28 @@
       </section>
 
     </div>
+
+    <!-- Crawlable SEO & Navigation Footer Strip -->
+    <footer class="saas-seo-footer" style="margin-top: 24px; padding: 20px 24px; background: rgba(18, 18, 22, 0.92); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; color: #9ca3af; font-size: 12.5px; line-height: 1.6;">
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px;">
+        <div style="max-width: 620px;">
+          <strong style="color: #f3f4f6;">Gharwaala AI Kitchen Studio (Delhi NCR):</strong> Upload any L-Shape, U-Shape, Parallel, or Island kitchen photo to preview factory-pressed IS:710 BWP Marine Plywood cabinetry, 2mm Acrylic &amp; Matte PU shutters, Blum/Hettich German hardware, and Calacatta quartz countertops with instant BOQ estimates.
+        </div>
+        <nav aria-label="Site Footer Navigation" style="display: flex; flex-wrap: wrap; gap: 10px 16px; font-weight: 500;">
+          <a href="/" style="color: #d5b45f; text-decoration: none;">Home</a>
+          <a href="/calculator.html" style="color: #e5e7eb; text-decoration: none;">Cost Calculator</a>
+          <a href="/designs.html" style="color: #e5e7eb; text-decoration: none;">Kitchen Gallery</a>
+          <a href="/blog.html" style="color: #e5e7eb; text-decoration: none;">Journal</a>
+          <a href="/about.html" style="color: #e5e7eb; text-decoration: none;">About</a>
+          <a href="/contact.html" style="color: #e5e7eb; text-decoration: none;">Contact</a>
+          <a href="/modular-kitchen-delhi.html" style="color: #9ca3af; text-decoration: none;">Delhi</a>
+          <a href="/modular-kitchen-gurugram.html" style="color: #9ca3af; text-decoration: none;">Gurugram</a>
+          <a href="/modular-kitchen-noida.html" style="color: #9ca3af; text-decoration: none;">Noida</a>
+          <a href="/modular-kitchen-faridabad.html" style="color: #9ca3af; text-decoration: none;">Faridabad</a>
+          <a href="/modular-kitchen-ghaziabad.html" style="color: #9ca3af; text-decoration: none;">Ghaziabad</a>
+        </nav>
+      </div>
+    </footer>
   </main>
 
   <!-- ====================================================================
@@ -511,7 +589,7 @@
   <section class="saas-view-section" id="view-dashboard">
     <div class="saas-page-header">
       <div>
-        <h1 id="dashWelcomeTitle">Welcome to Gharwaala AI Kitchen Studio</h1>
+        <h2 id="dashWelcomeTitle">Welcome to Gharwaala AI Kitchen Studio</h2>
         <p>Manage your kitchen transformations, unlock free AI render credits, and track your Delhi NCR execution quotes.</p>
       </div>
       <div style="display: flex; gap: 10px;">
@@ -569,7 +647,7 @@
   <section class="saas-view-section" id="view-projects">
     <div class="saas-page-header">
       <div>
-        <h1>Saved Kitchen Projects & Cloud Workspace</h1>
+        <h2>Saved Kitchen Projects & Cloud Workspace</h2>
         <p>Re-open any saved design in the Studio, compare material tiers, or share an interactive link with family on WhatsApp.</p>
       </div>
       <button class="nav-btn-gold" onclick="window.switchSaaSView('studio')">+ Create New Render</button>
@@ -600,7 +678,7 @@
   <section class="saas-view-section" id="view-credits">
     <div class="saas-page-header">
       <div>
-        <h1>Studio Credits & Homeowner Rewards Hub</h1>
+        <h2>Studio Credits & Homeowner Rewards Hub</h2>
         <p>No subscriptions or credit cards required. Unlock high-resolution AI renders by verifying your NCR homeowner profile or referring friends.</p>
       </div>
       <button class="nav-btn-gold" onclick="window.openSaaSModal('consultModal')">Book 3D Site Audit (+15⚡ VIP)</button>
@@ -718,7 +796,7 @@
       <p>Anyone with this link can drag the interactive Before/After slider, inspect your selected hardware specs, and view the NCR estimate.</p>
 
       <div class="share-url-box">
-        <input type="text" id="shareLinkInput" class="saas-input" readonly />
+        <input type="text" id="shareLinkInput" aria-label="Shareable kitchen transformation link" class="saas-input" readonly />
         <button class="nav-btn-gold" id="copyShareLinkBtn">Copy Link</button>
       </div>
 

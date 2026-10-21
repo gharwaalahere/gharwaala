@@ -25,50 +25,50 @@ const STYLE_LIBRARY = {
   minimalist: {
     title: 'Matte Cashmere Greige',
     shortTitle: 'Matte Greige',
-    defaultAfter: '/true_after_kitchen_1.jpg',
+    defaultAfter: '/true_after_kitchen_1.webp',
     baseMinLakhs: 4.2,
     baseMaxLakhs: 5.4,
-    prompt: 'modern minimalist handleless kitchen, cashmere greige matte PU cabinets, seamless Calacatta white quartz countertop and matching splashback, warm 3000K undercabinet LED strip lighting, photorealistic luxury interior design, 8k photo'
+    prompt: 'luxury modular kitchen interior with warm cashmere greige lacquer cabinet doors and drawers, smoked glass upper display cabinets with warm 3000K interior LED strip lighting, veined Calacatta gold marble countertop and backsplash, brushed brass hardware, designer ceramic bowls and espresso machine on counter, ultra sharp 8k architectural photography'
   },
   japandi: {
     title: 'Japandi Fluted Oak',
     shortTitle: 'Japandi Oak',
-    defaultAfter: '/true_after_kitchen_5.jpg',
+    defaultAfter: '/true_after_kitchen_5.webp',
     baseMinLakhs: 5.2,
     baseMaxLakhs: 6.6,
-    prompt: 'Japandi kitchen interior with fluted natural oak base cabinets, off-white upper cabinets, pristine white quartz waterfall countertop, minimalist warm brass faucet, ambient warm lighting, architectural digest photo'
+    prompt: 'Japandi kitchen interior with detailed vertical fluted natural oak wood base cabinet doors, warm ivory upper cabinets with under-cabinet LED glow, veined white quartz countertop, brushed brass gooseneck faucet and ceramic kitchenware, architectural digest 8k photo'
   },
   charcoal: {
     title: 'Charcoal & Champagne Gold',
     shortTitle: 'Charcoal & Brass',
-    defaultAfter: '/true_after_kitchen_4.jpg',
+    defaultAfter: '/true_after_kitchen_4.webp',
     baseMinLakhs: 5.8,
     baseMaxLakhs: 7.5,
-    prompt: 'ultra luxury dark charcoal matte modular kitchen with champagne gold channel handles, dramatic veined Calacatta marble countertop, suspended brass pendant lights, built-in black glass appliances'
+    prompt: 'ultra luxury dark charcoal matte modular kitchen with champagne gold Gola channel handles, bronze tinted glass upper cabinets with warm interior LED lights, dramatic veined Calacatta marble countertop and backsplash, built-in black glass appliances, 8k interior photo'
   },
   sage: {
     title: 'Matte Sage Green European',
     shortTitle: 'Matte Sage Green',
-    defaultAfter: '/true_after_kitchen_6.jpg',
+    defaultAfter: '/true_after_kitchen_6.webp',
     baseMinLakhs: 3.9,
     baseMaxLakhs: 4.9,
-    prompt: 'contemporary European parallel kitchen with matte sage green cabinets, pure white composite countertop, concealed gas cylinder pullout, fluted glass backsplash, brass gooseneck faucet, architectural photography'
+    prompt: 'contemporary European modular kitchen with detailed matte olive sage green cabinet doors and drawers, fluted glass upper cabinets with warm LED lighting, veined white quartz countertop, brass hardware and kitchen accessories, 8k architectural photography'
   },
   walnut: {
     title: 'Smoked Walnut & Statuario',
     shortTitle: 'Walnut & Marble',
-    defaultAfter: '/true_after_kitchen_2.jpg',
+    defaultAfter: '/true_after_kitchen_2.webp',
     baseMinLakhs: 5.6,
     baseMaxLakhs: 7.2,
-    prompt: 'luxury modern kitchen with smoked walnut wood veneer cabinets, Italian Statuario white marble countertop and island, bronze tinted glass upper display cabinets with warm interior LED lighting, 8k architectural photography'
+    prompt: 'luxury modern kitchen with rich smoked walnut wood grain veneer cabinet doors, Italian Statuario white marble veined countertop and backsplash, bronze glass upper display cabinets with warm interior LED lighting, 8k architectural photography'
   },
   acrylic: {
     title: 'Pure High-Gloss Acrylic Monochrome',
     shortTitle: 'Acrylic Monochrome',
-    defaultAfter: '/true_after_kitchen_3.jpg',
+    defaultAfter: '/true_after_kitchen_3.webp',
     baseMinLakhs: 4.5,
     baseMaxLakhs: 5.9,
-    prompt: 'sleek high-gloss pearl white and graphite acrylic modular kitchen, handleless Gola profile channels, integrated built-in oven tower, reflective pristine quartz counter, modern Indian luxury apartment'
+    prompt: 'sleek high-gloss pearl white and graphite two-tone modular kitchen with defined cabinet doors and brushed aluminium Gola profiles, integrated built-in oven, veined quartz countertop with luxury kitchenware, 8k architectural photo'
   }
 };
 
@@ -111,9 +111,9 @@ let activeFilter = 'all';
 let pendingSaveAfterAuth = false;
 
 // Studio Canvas State
-let currentOriginalImage = '/before_kitchen.jpg';
-let currentTransformedImage = '/true_after_kitchen_1.jpg';
-let activeSampleTargetAfter = '/true_after_kitchen_1.jpg';
+let currentOriginalImage = '/before_kitchen.webp';
+let currentTransformedImage = '/true_after_kitchen_1.webp';
+let activeSampleTargetAfter = '/true_after_kitchen_1.webp';
 let isCustomUserUpload = false;
 let selectedStyle = 'minimalist';
 let selectedStructureMode = 'seg';
@@ -149,8 +149,8 @@ function loadLocalState() {
           title: 'DLF Phase 5 L-Shape Concept',
           styleKey: 'minimalist',
           styleTitle: 'Matte Cashmere Greige',
-          beforeImage: '/before_kitchen.jpg',
-          afterImage: '/true_after_kitchen_1.jpg',
+          beforeImage: '/before_kitchen.webp',
+          afterImage: '/true_after_kitchen_1.webp',
           cabinetCore: 'marine',
           hardwareTier: 'blum',
           countertopSlab: 'quartz_calacatta',
@@ -611,7 +611,19 @@ async function runTransformationPipeline() {
           });
           if (resp.ok) {
             const data = await resp.json();
-            if (data.output) candidateUrl = data.output;
+            if (data.output) {
+              candidateUrl = data.output;
+            } else if (data.id) {
+              let poll = data;
+              while (poll.status !== 'succeeded' && poll.status !== 'failed' && poll.status !== 'canceled') {
+                await new Promise(r => setTimeout(r, 1800));
+                const pollRes = await fetch(`/api/transform?id=${poll.id}`);
+                poll = await pollRes.json();
+              }
+              if (poll.status === 'succeeded' && poll.output) {
+                candidateUrl = Array.isArray(poll.output) ? poll.output[poll.output.length - 1] : poll.output;
+              }
+            }
           }
         } catch (apiErr) {
           // Direct client-side Path 2 fallback if serverless route is unreachable

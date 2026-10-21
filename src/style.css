@@ -347,9 +347,8 @@
   .hero-content {
     max-width: 580px; /* Constrain to the left so it doesn't overlap the bright kitchen parts */
     text-align: left; /* Explicitly force left alignment for desktop */
-    opacity: 0;
-    transform: translateY(30px);
-    animation: fadeInUp 1s forwards 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    opacity: 1;
+    transform: translateY(0);
     pointer-events: auto;
     position: relative;
     z-index: 5;
@@ -2883,20 +2882,16 @@
 }
 
 .hero-anim {
-  opacity: 0;
-  transform: translateY(40px); /* Initial state */
-  will-change: transform, opacity;
+  opacity: 1;
+  transform: translateY(0);
+  animation: heroGlideUp 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-.page-loaded .hero-anim {
-  animation: heroGlideUp 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.hero-anim-1 { animation-delay: 0.35s; }
-.hero-anim-2 { animation-delay: 0.55s; }
-.hero-anim-3 { animation-delay: 0.75s; }
-.hero-anim-4 { animation-delay: 0.90s; }
-.hero-anim-5 { animation-delay: 1.05s; }
+.hero-anim-1 { animation-delay: 0.02s; }
+.hero-anim-2 { animation-delay: 0.05s; }
+.hero-anim-3 { animation-delay: 0.10s; }
+.hero-anim-4 { animation-delay: 0.14s; }
+.hero-anim-5 { animation-delay: 0.18s; }
 
 .changing-text { will-change: transform, opacity; }
 

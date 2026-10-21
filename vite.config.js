@@ -17,6 +17,18 @@ function buildFreeFluxUrl(prompt, width = 1024, height = 768) {
   return `https://image.pollinations.ai/prompt/${encodeURIComponent(cleanPrompt)}?width=${w}&height=${h}&seed=${seed}&nologo=true`
 }
 
+async function pollReplicate(prediction, token) {
+  let poll = prediction
+  while (poll.status !== 'succeeded' && poll.status !== 'failed' && poll.status !== 'canceled') {
+    await new Promise(r => setTimeout(r, 1600))
+    const check = await fetch(`https://api.replicate.com/v1/predictions/${poll.id}`, {
+      headers: { 'Authorization': `Bearer ${token}` }
+    })
+    poll = await check.json()
+  }
+  return poll
+}
+
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '')
   const fallbackToken = Buffer.from('cjhfVUJmQjNKUFQ2T2Z1b1YzakhaTDZ1RUlFWG5jYjg3SzFrYTBvbA==', 'base64').toString('utf-8')
@@ -60,17 +72,51 @@ export default defineConfig(({ mode }) => {
                   const token = parsed.token || serverToken
                   const width = parsed.width || 1024
                   const height = parsed.height || 768
+                  const richPrompt = parsed.prompt || 'Luxury modern modular kitchen interior with detailed cabinet doors, fluted glass upper cabinets with warm interior LED lighting, veined Calacatta quartz countertop and backsplash, brushed brass hardware, photorealistic 8k architectural photography'
 
-                  // If explicitly requesting Free Flux Engine (Path 2)
                   if (parsed.engine === 'flux-free') {
-                    const fluxUrl = buildFreeFluxUrl(parsed.prompt, width, height)
+                    const fluxUrl = buildFreeFluxUrl(richPrompt, width, height)
                     res.setHeader('Content-Type', 'application/json')
                     res.end(JSON.stringify({ output: fluxUrl, engine: 'flux-free', status: 'succeeded' }))
                     return
                   }
 
-                  // 1. Try Replicate ControlNet if token & image present
                   if (token && parsed.image) {
+                    // 1A. Primary 3D Depth ControlNet Model: black-forest-labs/flux-depth-dev
+                    try {
+                      const fluxDepthRes = await fetch('https://api.replicate.com/v1/models/black-forest-labs/flux-depth-dev/predictions', {
+                        method: 'POST',
+                        headers: {
+                          'Authorization': `Bearer ${token}`,
+                          'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                          input: {
+                            control_image: parsed.image,
+                            prompt: richPrompt,
+                            guidance: Number(parsed.guidance_scale) || 10,
+                            num_inference_steps: 28,
+                            megapixels: '1',
+                            output_format: 'jpg',
+                            output_quality: 92
+                          }
+                        })
+                      })
+                      const fluxPred = await fluxDepthRes.json()
+                      if (fluxDepthRes.ok && !fluxPred.error && !fluxPred.detail) {
+                        const poll = await pollReplicate(fluxPred, token)
+                        if (poll.status === 'succeeded' && poll.output) {
+                          const outputUrl = Array.isArray(poll.output) ? poll.output[poll.output.length - 1] : poll.output
+                          res.setHeader('Content-Type', 'application/json')
+                          res.end(JSON.stringify({ output: outputUrl, engine: 'flux-depth-controlnet', status: 'succeeded' }))
+                          return
+                        }
+                      }
+                    } catch (fluxErr) {
+                      // Fall through to secondary model
+                    }
+
+                    // 1B. Secondary ControlNet Model: adirik/interior-design
                     try {
                       const createRes = await fetch('https://api.replicate.com/v1/predictions', {
                         method: 'POST',
@@ -82,10 +128,10 @@ export default defineConfig(({ mode }) => {
                           version: '76604baddc85b1b4616e1c6475eca080da339c8875bd4996705440484a6eac38',
                           input: {
                             image: parsed.image,
-                            prompt: parsed.prompt || 'modern modular kitchen interior, luxury minimalist, 8k photo, architectural digest',
-                            negative_prompt: parsed.negative_prompt || 'lowres, watermark, banner, logo, text, deformed, blurry, bad quality, sketches, messy, cluttered, cartoon',
-                            prompt_strength: Number(parsed.prompt_strength) || 0.78,
-                            guidance_scale: Number(parsed.guidance_scale) || 15,
+                            prompt: richPrompt,
+                            negative_prompt: parsed.negative_prompt || 'empty white walls, unpainted plaster, blank boxy walls, featureless surfaces, lowres, watermark, blurry, out of focus, deformed, cartoon',
+                            prompt_strength: Math.min(0.65, Number(parsed.prompt_strength) || 0.62),
+                            guidance_scale: 15,
                             num_inference_steps: 50
                           }
                         })
@@ -93,16 +139,8 @@ export default defineConfig(({ mode }) => {
 
                       const prediction = await createRes.json()
                       if (createRes.ok && !prediction.error && !prediction.detail) {
-                        let poll = prediction
-                        while (poll.status !== 'succeeded' && poll.status !== 'failed' && poll.status !== 'canceled') {
-                          await new Promise(r => setTimeout(r, 1800))
-                          const check = await fetch(`https://api.replicate.com/v1/predictions/${poll.id}`, {
-                            headers: { 'Authorization': `Bearer ${token}` }
-                          })
-                          poll = await check.json()
-                        }
-
-                        if (poll.status === 'succeeded') {
+                        const poll = await pollReplicate(prediction, token)
+                        if (poll.status === 'succeeded' && poll.output) {
                           const outputUrl = Array.isArray(poll.output) ? poll.output[poll.output.length - 1] : poll.output
                           res.setHeader('Content-Type', 'application/json')
                           res.end(JSON.stringify({ output: outputUrl, engine: 'replicate-controlnet', status: 'succeeded' }))
@@ -115,7 +153,7 @@ export default defineConfig(({ mode }) => {
                   }
 
                   // 2. Path 2 Automatic Fallback: Free Flux Architectural AI Engine ($0 Cost)
-                  const fallbackFluxUrl = buildFreeFluxUrl(parsed.prompt, width, height)
+                  const fallbackFluxUrl = buildFreeFluxUrl(richPrompt, width, height)
                   res.setHeader('Content-Type', 'application/json')
                   res.end(JSON.stringify({ output: fallbackFluxUrl, engine: 'flux-free', status: 'succeeded' }))
                 } catch (err) {
